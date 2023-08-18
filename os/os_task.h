@@ -28,10 +28,12 @@
 * Includes
 ************************************************************************/
 #include "common.h"
+#include "os_task_cfg.h"
 
 /************************************************************************
 * EXPORTED Defines
 ************************************************************************/
+
 
 /************************************************************************
 * EXPORTED Macros
@@ -41,7 +43,6 @@
 /************************************************************************
 * EXPORTED Typedef
 ************************************************************************/
-
 /* Task state type */
 typedef enum 
 {
@@ -52,7 +53,7 @@ typedef enum
 } TaskStateType;
 
 /* Task control block type */
-typedef struct
+typedef struct 
 {
    uint16_t TaskID;        /* The task ID */   
    void (*Task) (void);    /* The task function pointer */   
@@ -63,13 +64,11 @@ typedef struct
 /************************************************************************
 * EXPORTED Variables
 ************************************************************************/
-
+extern TbcType Tasks[];
 
 /************************************************************************
 * EXPORTED Functions
 ************************************************************************/
-/* Sort tasks */
-void Os_SortTaskTable(TbcType Tbc[]);
 /* Activate a task based on its ID */
 void Os_ActivateTask (uint16_t TaskID);
 /* Terminate the current running task */

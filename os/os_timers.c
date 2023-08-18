@@ -103,14 +103,14 @@ uint32_t GetElapsedTime (uint32_t StartTime)
 ************************************************************************/
 
 /************************************************************************
-* Function:     OsTmr_StartTimer
+* Function:     Os_StartTimer
 * Input:        SwTimerType *Timer
 *               uint32_t Timeout 
 * Output:       None
 * Author:       F.Ficili
 * Description:  Start a software timer.
 ************************************************************************/
-void OsTmr_StartTimer (SwTimerType *Timer, uint32_t Timeout)
+void Os_StartTimer (SwTimerType *Timer, uint32_t Timeout)
 {
    /* Mark as not expired */
    Timer->Status = SW_TMR_NOT_EXPIRED;
@@ -123,26 +123,26 @@ void OsTmr_StartTimer (SwTimerType *Timer, uint32_t Timeout)
 }    
 
 /************************************************************************
-* Function:     OsTmr_StopTimer
+* Function:     Os_StopTimer
 * Input:        SwTimerType *Timer
 * Output:       None
 * Author:       F.Ficili
 * Description:  Stop a software timer.
 ************************************************************************/
-void OsTmr_StopTimer (SwTimerType *Timer)
+void Os_StopTimer (SwTimerType *Timer)
 {
    /* Stop the timer */
    Timer->Enabled = STD_FALSE;      
 }  
 
 /************************************************************************
-* Function:     OsTmr_GetTimerStatus
+* Function:     Os_GetTimerStatus
 * Input:        SwTimerType *Timer
 * Output:       SwTimerStatusType
 * Author:       F.Ficili
 * Description:  Check if the software timer status.
 ************************************************************************/
-SwTimerStatusType OsTmr_GetTimerStatus (SwTimerType *Timer)
+SwTimerStatusType Os_GetTimerStatus (SwTimerType *Timer)
 {
    /* Check if the timer is enabled */
    if (Timer->Enabled == STD_TRUE)
@@ -171,13 +171,13 @@ SwTimerStatusType OsTmr_GetTimerStatus (SwTimerType *Timer)
 }  
 
 /************************************************************************
-* Function:     OsTmr_GetElapsedTime
+* Function:     Os_GetElapsedTime
 * Input:        SwTimerType *Timer
 * Output:       uint32_t
 * Author:       F.Ficili
 * Description:  Get the elapsed time since the sw timer started.
 ************************************************************************/
-uint32_t OsTmr_GetElapsedTime (SwTimerType *Timer)
+uint32_t Os_GetElapsedTime (SwTimerType *Timer)
 {
    uint32_t CurrentTimestamp;
    uint32_t TimeValue;
@@ -199,13 +199,13 @@ uint32_t OsTmr_GetElapsedTime (SwTimerType *Timer)
 }  
 
 /************************************************************************
-* Function:     OsTmr_GetRemainingTime
+* Function:     Os_GetRemainingTime
 * Input:        SwTimerType *Timer
 * Output:       uint32_t
 * Author:       F.Ficili
 * Description:  Get the remaining time before a sw timer expires.
 ************************************************************************/
-uint32_t OsTmr_GetRemainingTime (SwTimerType *Timer)
+uint32_t Os_GetRemainingTime (SwTimerType *Timer)
 {
    uint32_t TimeValue;
    

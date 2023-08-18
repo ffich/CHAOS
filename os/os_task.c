@@ -51,71 +51,13 @@
 
 
 /************************************************************************
-* Function Prototypes
+* LOCAL Functions
 ************************************************************************/
+
 
 /************************************************************************
-* Function Implementations
+* GLOBAL Functions
 ************************************************************************/
-
-/* 
- * The following function implemts the sorting algorithm that decide which task run first.
- * This is a crucial part of the Scheduler and the OS, and thus the first chosen algorithm (Insertion Sort) may not be optimal.
- * Then the idea is to postpone the problematic of choose the optimal algorithm and provide option  for changing them at compile time.
- */
-
-#if (SORT_ALGORITHM == INSERTION_SORT)
-#warning "The chosen sorting algorithm is INSERTION_SORT"
-/************************************************************************   
-* Function:     Os_SortTaskTable
-* Input:        TbcType Tbc[]
-* Output:       None
-* Author:       F.Ficili
-* Description:  Function used to sort the task table basing on priority.
-*               Algorithm version: Insertion Sort. 
-************************************************************************/
-void Os_SortTaskTable(TbcType Tbc[])
-{
-  int16_t i,j;
-  uint16_t Priority;
-  TbcType TbcBackup;
-  
-
-  for (i = 1; i < TASK_NUMBER; i++) 
-  {
-    Priority = Tbc[i].Priority;
-    j = i - 1;
-
-    /* Move elements of Tbc[0..i-1], that are greater than Priority, to one position ahead
-      of their current position */
-    while (j >= 0 && Tbc[j].Priority < Priority) 
-    {
-      TbcBackup = Tbc[j + 1];
-      Tbc[j + 1] = Tbc[j];
-      /* Restore Task backup */
-      Tbc[j] = TbcBackup;         
-      j = j - 1;
-    }
-
-    /* Update priority */
-    Tbc[j + 1].Priority = Priority;
-  }
-}
-#elif (SORT_ALGORITHM == MERGE_SORT)
-#warning "The chosen sorting algorithm is MERGE_SORT"
-/************************************************************************   
-* Function:     Os_SortTaskTable
-* Input:        TbcType Tbc[]
-* Output:       None
-* Author:       F.Ficili
-* Description:  Function used to sort the task table basing on priority.
-*               Algorithm version: Merge Sort. 
-************************************************************************/
-void Os_SortTaskTable(TbcType Tbc[])
-{
-  /* To be implemented */
-}
-#endif
 
 /************************************************************************   
 * Function:     Os_ActivateTask
@@ -130,7 +72,7 @@ void Os_ActivateTask (uint16_t TaskID)
   uint16_t TaskIdx = 0u;
 
   /* Scroll the task table */  
-  for (TaskIdx = 0u; TaskIdx < TASK_NUMBER; TaskIdx++)
+  for (TaskIdx = 0u; TaskIdx < TaskNumber; TaskIdx++)
   {
     if (Tasks[TaskIdx].TaskID == TaskID)
     {
@@ -192,6 +134,7 @@ void Os_Yield (void)
 #endif     
 }
 
+#ifdef BUGGY
 /************************************************************************   
 * Function:     Os_YieldAllTasks
 * Input:        None
@@ -201,9 +144,7 @@ void Os_Yield (void)
 *               back to the scheduler. In this way a running task can co-operatively 
 *               ask for pre-emption. This version allow all tasks to preempt.
 ************************************************************************/
-
 /* Still buggy and probably impossible to implement in this way */
-
 void Os_YieldAllTasks (void)
 {
   uint16_t YeldingTaskIdx = 0;
@@ -229,6 +170,7 @@ void Os_YieldAllTasks (void)
 #endif    
   }
 }
+#endif
 
 /************************************************************************   
 * Function:     Os_GetTaskID

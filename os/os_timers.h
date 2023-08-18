@@ -82,15 +82,15 @@ extern uint32_t Os_TickCounter;
 * EXPORTED Functions
 ************************************************************************/
 /* Start a software timer */
-void OsTmr_StartTimer (SwTimerType *Timer, uint32_t Timeout);
+void Os_StartTimer (SwTimerType *Timer, uint32_t Timeout);
 /* Start a software timer */
-void OsTmr_StopTimer (SwTimerType *Timer);
+void Os_StopTimer (SwTimerType *Timer);
 /* Check if the software timer status */
-SwTimerStatusType OsTmr_GetTimerStatus (SwTimerType *Timer);
+SwTimerStatusType Os_GetTimerStatus (SwTimerType *Timer);
 /* Get the elapsed time since the sw timer started */
-uint32_t OsTmr_GetElapsedTime (SwTimerType *Timer);
+uint32_t Os_GetElapsedTime (SwTimerType *Timer);
 /* Get the remaining time before a sw timer expires */
-uint32_t OsTmr_GetRemainingTime (SwTimerType *Timer);
+uint32_t Os_GetRemainingTime (SwTimerType *Timer);
 
 #endif	/* OS_TIMERS_H */
 

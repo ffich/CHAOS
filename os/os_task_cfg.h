@@ -28,14 +28,10 @@
 * Includes
 ************************************************************************/
 #include "common.h"
-#include "os_task.h"
 
 /************************************************************************
 * EXPORTED Defines
 ************************************************************************/
-/* Task number */
-#define TASK_NUMBER                                               4u
-
 /* Task IDs */
 #define MY_TASK_1_ID                                              1u
 #define MY_TASK_2_ID                                              2u
@@ -55,7 +51,8 @@
 /************************************************************************
 * EXPORTED Variables
 ************************************************************************/
-extern TbcType Tasks[TASK_NUMBER];
+/* Auto-calculation of task number */
+extern const uint16_t TaskNumber; 
 
 /************************************************************************
 * EXPORTED Functions

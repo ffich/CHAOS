@@ -30,13 +30,12 @@
 #include "os_timers.h"
 #include "os_cfg.h"
 #include "os_task.h"
-#include "os_task_cfg.h"
 
 /************************************************************************
 * Defines
 ************************************************************************/
 /* Forever define for main while loop */
-#define FOREVER                                          ((uint8_t)(1))
+#define FOREVER                                                     1u
 
 /************************************************************************
 * Typedefs
@@ -48,6 +47,7 @@
 ************************************************************************/
 
 
+
 /************************************************************************
 * GLOBAL Variables
 ************************************************************************/
@@ -57,13 +57,67 @@ volatile MainSystemTimebaseType MainSystemTimebaseFlag = WAIT_TRIGGER_PHASE;
 volatile uint16_t ActiveTaskIndex = 0;
 
 /************************************************************************
-* LOCAL Function Prototypes
+* LOCAL Functions
 ************************************************************************/
 
+/* 
+ * The following function implemts the sorting algorithm that decide which task run first.
+ * This is a crucial part of the Scheduler and the OS, and thus the first chosen algorithm (Insertion Sort) may not be optimal.
+ * Then the idea is to postpone the problematic of choose the optimal algorithm and provide option  for changing them at compile time.
+ */
 
-/************************************************************************
-* LOCAL Function Implementations
+#if (SORT_ALGORITHM == INSERTION_SORT)
+#warning "The chosen sorting algorithm is INSERTION_SORT"
+/************************************************************************   
+* Function:     SortTaskTable
+* Input:        TbcType Tbc[]
+* Output:       None
+* Author:       F.Ficili
+* Description:  Function used to sort the task table basing on priority.
+*               Algorithm version: Insertion Sort. 
 ************************************************************************/
+void SortTaskTable(TbcType Tbc[])
+{
+  int16_t i,j;
+  uint16_t Priority;
+  TbcType TbcBackup;
+  
+
+  for (i = 1; i < TaskNumber; i++) 
+  {
+    Priority = Tbc[i].Priority;
+    j = i - 1;
+
+    /* Move elements of Tbc[0..i-1], that are greater than Priority, to one position ahead
+      of their current position */
+    while (j >= 0 && Tbc[j].Priority < Priority) 
+    {
+      TbcBackup = Tbc[j + 1];
+      Tbc[j + 1] = Tbc[j];
+      /* Restore Task backup */
+      Tbc[j] = TbcBackup;         
+      j = j - 1;
+    }
+
+    /* Update priority */
+    Tbc[j + 1].Priority = Priority;
+  }
+}
+#elif (SORT_ALGORITHM == MERGE_SORT)
+#warning "The chosen sorting algorithm is MERGE_SORT"
+/************************************************************************   
+* Function:     SortTaskTable
+* Input:        TbcType Tbc[]
+* Output:       None
+* Author:       F.Ficili
+* Description:  Function used to sort the task table basing on priority.
+*               Algorithm version: Merge Sort. 
+************************************************************************/
+void SortTaskTable(TbcType Tbc[])
+{
+  /* To be implemented */
+}
+#endif
 
 /************************************************************************   
 * Function:     UpdateSchFlag
@@ -103,7 +157,7 @@ void UpdateOsCounters (void)
 }
 
 /************************************************************************
-* GLOBAL Function Implementations
+* GLOBAL Functions
 ************************************************************************/
 
 /************************************************************************
@@ -119,9 +173,9 @@ void Os_Start (void)
   
 #if (SORT_OPTION == SORT_INIT_ONLY)
   /* Sort task table */
-  Os_SortTaskTable(Tasks);
+  SortTaskTable(Tasks);
 #endif  
-  
+    
   /* Infinite loop */
   do
   {
@@ -130,7 +184,7 @@ void Os_Start (void)
     {   
 #if (SORT_OPTION == SORT_EACH_SCH_CYCLE)      
       /* Sort task table */
-      Os_SortTaskTable(Tasks);
+      SortTaskTable(Tasks);
 #endif        
       
       /* Dispatch the activated tasks */
@@ -169,7 +223,7 @@ void Os_Tick (void)
 void Os_Dispatch (void)
 {
   /* Scroll the task table */  
-  for (ActiveTaskIndex = 0u; ActiveTaskIndex < TASK_NUMBER; ActiveTaskIndex++)
+  for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
   {
     if (Tasks[ActiveTaskIndex].State == READY)
     {
@@ -194,7 +248,7 @@ void Os_Dispatch (void)
 void Os_DispatchOnYeld (uint16_t Priority)
 {
   /* Scroll the task table */  
-  for (ActiveTaskIndex = 0u; ActiveTaskIndex < TASK_NUMBER; ActiveTaskIndex++)
+  for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
   {
     if ((Tasks[ActiveTaskIndex].State == READY) && (Tasks[ActiveTaskIndex].Priority >= Priority))
     {
