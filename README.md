@@ -1,7 +1,7 @@
 # CHAOS - Cooperative Hardware Agnostic OS
 
 ## Introduction
-The idea behind CHAOS is to have a very simple RTOS that can be used with basically any exisitng MCU. This level of HW compatibility is achieved at the cost of having no preemption capability on the OS, an this no need of manipulating the PC and SP as well as saving any CPU register. At the same time, the OS should provide all the other main RTOS services, including:
+The idea behind **CHAOS** is to have a **very simple RTOS** that can be used with basically **any exisitng MCU**. This level of HW compatibility is achieved at the cost of having **no preemption capability** on the OS, an thus no need of manipulating the PC and SP as well as saving any CPU register (so basically making a **context switch**, that normally require assebly code and is consequently HW dependent). At the same time, the OS should provide many other RTOS services, including:
 
 - Cooperative scheduling capability
 - Highest Priority First scheduling policy
@@ -11,19 +11,19 @@ The idea behind CHAOS is to have a very simple RTOS that can be used with basica
 - Virtual Timing
 
 ## Main Characteristics
-The main characteristich of CHAOS are simplicity in the implementation and high portability.
+The main characteristich of CHAOS are **simplicity** in the implementation and usage and **high portability**.
 
 The main characteristics are described in the below sections:
 - Scheduling Policy
 - Task Model
 - Configuration Model
 
-In order to run the OS needs two functions to be called:
+In order to run, the OS needs two functions to be called:
 - **OS_Start()**: to be called in the program main function after the system basic initialization.
 - **OS_Tick()**: to be called inside a periodic timer interrupt (Typically a core tick timer or something similar).
 
 ## The Scheduling Policy
-CHAOS implements an higher priority first scheduling policy. This means that each task is given a priority value and the OS will always run the task with the hihgest priorty value that is ready to run. All the other tasks will be run after in decreasing priority order. This ensure that the developers can determine quite accurately which will be the next task to run, basing on the priority order. Nevertheless, since there is no pre-eption, is an user responsibility to cooperatively release the control with tasks if there is something more urgent to execute.
+CHAOS implements an higher priority first scheduling policy. This means that each task is given a priority value and the OS will always run the task with the hihgest priorty value that is ready to run. All the other tasks will be run after, in decreasing priority order. This ensure that the developers can determine quite accurately which will be the next task that will be run, basing on the priority order. Nevertheless, since there is no pre-eption, is an user responsibility to cooperatively release the control within tasks if there is something more urgent to execute.
 
 ## The Task Model
 CHAOS implements a 4-state task model. Each task can exists in one of the following states:
