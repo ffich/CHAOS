@@ -1,0 +1,1 @@
+- [FIX_1] The virtual timer would not work for tick different from 1ms. It needs to be parametrized with respect to the scheduler tick.

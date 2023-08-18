@@ -1,0 +1,5 @@
+Additional requirements to consider:
+------------------------------------
+
+- [REQ_1] Have the possibility to add more than a schedule table
+- [REQ_2] Have the possibility to auto-start a task (for system initialization
