@@ -34,7 +34,9 @@ CHAOS implements a 4-state task model. Each task can exists in one of the follow
 - **YIELD**: the task has released the control to the scheduler, that will then check if there is an higher priority task to run. If this is the case, the scheduler will launch the higher priorty task and the yielding task will be resumed at the end of the execution of the higher priority task. 
 
 The image below illustrate the task state machine:
+
 ![image](https://github.com/ffich/CHAOS/assets/59200746/d1c98f89-bda3-40ea-9ec2-616a8c2a789a)
+
 *Fig. 1 - The Task State Machine*
 
 
@@ -51,5 +53,6 @@ The CHAOS configuration model is relatively simple. The user need to configure:
 The best way to get started to make some CHAOS stuff is to look at the example sections. Normally all the basic feature of an OS can be showed using LEDs and printf, so basically any evaluation board that has this characteristics i good enough for the job. I've used a Microchip Curiosity 2.0 Pic32 MZ EF evalution board and MPLABX + MPLAB Harmony, but everything is easily portable to other platform, following the example guide. 
 
 ![image](https://github.com/ffich/CHAOS/assets/59200746/33cdfd6b-bde9-4cc2-b57a-0d35b5831352)
+
 *Fig. 2 - Microchip Curiosity 2.0 Pic32 MZ EF evalution board*
 
