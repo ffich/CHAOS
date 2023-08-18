@@ -1,5 +1,18 @@
 Additional requirements to consider:
 ------------------------------------
 
-- [REQ_1] Have the possibility to add more than a schedule table
-- [REQ_2] Have the possibility to auto-start a task (for system initialization
+- [REQ_1] 	Have the possibility to add more than a schedule table
+- [REQ_2] 	Have the possibility to auto-start a task (for system initialization)
+- [REQ_3] 	Have a better sorting algorithm (in term of performance)
+- [REQ_4] 	Have a FIFO queue for task activation rather than stick on the task table (single activation for each task)
+- [REQ_5]  	Have return values for each OS service API
+- [REQ_6]  	Have an API that returns the OS version.
+- [REQ_7]  	Have an API for activate task and Yield (it basically launch a task if it has an higher priority)
+- [REQ_8]  	Have ther possibility to 'start' and 'stop' a schedule table
+- [REQ_9]  	Have an API to shut the OS down (os lifecycle)
+- [REQ_10]  Add OS alarms.
+- [REQ_11]  
+- [REQ_12]  
+- [REQ_13]  
+- [REQ_14]	
+- [REQ_15]    

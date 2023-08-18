@@ -75,8 +75,6 @@ void Os_ActivateTask (uint16_t TaskID);
 void Os_TerminateTask (void);
 /* Yield to higher priority tasks */
 void Os_Yield (void);
-/* Yield to all other tasks  */
-void Os_YieldAllTasks (void);
 /* Get the ID of the running task */
 void Os_GetTaskID (uint16_t* TaskID);
 /* Get the Priority of the running task */

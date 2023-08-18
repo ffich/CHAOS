@@ -134,44 +134,6 @@ void Os_Yield (void)
 #endif     
 }
 
-#ifdef BUGGY
-/************************************************************************   
-* Function:     Os_YieldAllTasks
-* Input:        None
-* Output:       None
-* Author:       F.Ficili
-* Description:  This function is used by a running task to yield control
-*               back to the scheduler. In this way a running task can co-operatively 
-*               ask for pre-emption. This version allow all tasks to preempt.
-************************************************************************/
-/* Still buggy and probably impossible to implement in this way */
-void Os_YieldAllTasks (void)
-{
-  uint16_t YeldingTaskIdx = 0;
-  
-  /* We Yield only if we are not already yielding */
-  if (Tasks[ActiveTaskIndex].State != YIELD)
-  {
-    /* Save the currently active task index (it will be changed by the dispatcher) */
-    YeldingTaskIdx = ActiveTaskIndex;  
-    /* Put the task in YIELD state */
-    Tasks[YeldingTaskIdx].State = YIELD;    
-#ifdef TERMINAL_DEBUG_ENABLED
-    printf("Task %d Yelding \r\n", Tasks[ActiveTaskIndex].TaskID);
-#endif    
-    /* Dispatch tasks */
-    Os_Dispatch();
-    /* Put back the Active task index to the pre-yeld status */
-    ActiveTaskIndex = YeldingTaskIdx;
-    /* Put the task back in RUNNING state */
-  Tasks[ActiveTaskIndex].State = RUNNING;  
-#ifdef TERMINAL_DEBUG_ENABLED
-    printf("Task %d Yelding \r\n", Tasks[ActiveTaskIndex].TaskID);
-#endif    
-  }
-}
-#endif
-
 /************************************************************************   
 * Function:     Os_GetTaskID
 * Input:        None
