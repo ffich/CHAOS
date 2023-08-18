@@ -11,7 +11,7 @@ Additional requirements to consider:
 - [REQ_8]  	Have ther possibility to 'start' and 'stop' a schedule table
 - [REQ_9]  	Have an API to shut the OS down (os lifecycle)
 - [REQ_10]  Add OS alarms.
-- [REQ_11]  
+- [REQ_11]  Add controls before task state change
 - [REQ_12]  
 - [REQ_13]  
 - [REQ_14]	
