@@ -265,6 +265,35 @@ Since we have activated the debug terminal, if we configure the UART and re-dire
 
 ![image](https://github.com/ffich/CHAOS/assets/59200746/52786d32-c780-41c0-8a92-074ee271dc43)
 
+If we make the OS log less verbose (by commenting the option TERMINAL_DEBUG_ENABLED) and we add some logging in the task itself we can see easily the final effect of our design:
+
+```
+/* MyTask_1 function */
+TASK(MyTask_1)
+{  
+  printf("\r\nTimestamp - %d - ", Os_TickCounter);      
+  printf("LED_1 Toggle \r\n");  
+  /* Toggle LED */
+  LED_RED_Toggle();
+
+  /* Task Termination */
+  Os_TerminateTask();
+}
+
+/* MyTask_2 function */
+TASK(MyTask_2)
+{  
+  printf("\r\nTimestamp - %d - ", Os_TickCounter);      
+  printf("LED_2 Toggle \r\n");   
+  /* Toggle LED */
+  LED_GREEN_Toggle();
+  
+  /* Task Termination */  
+  Os_TerminateTask();  
+}
+```
+
+![image](https://github.com/ffich/CHAOS/assets/59200746/f7534258-db27-4a84-954c-f2abe55fbffd)
 
 
 
