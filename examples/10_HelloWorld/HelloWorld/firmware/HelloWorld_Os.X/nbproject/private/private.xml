@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/examples/10_HelloWorld/HelloWorld/firmware/src/main.c</file>
+            <file>file:/D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/examples/10_HelloWorld/HelloWorld/firmware/src/os_cfg/os_task_cfg.c</file>
+            <file>file:/D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/examples/10_HelloWorld/HelloWorld/firmware/src/os_cfg/os_sched_tbl_cfg.c</file>
+            <file>file:/D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_sched_tbl.c</file>
+            <file>file:/D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_task.c</file>
+        </group>
     </open-files>
 </project-private>

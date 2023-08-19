@@ -61,6 +61,8 @@ int main ( void )
     return ( EXIT_FAILURE );
 }
 
+#define delay_ms(x) CORETIMER_DelayMs(x)
+
 /* Task function */
 TASK(MyTask_1)
 {
@@ -75,7 +77,7 @@ TASK(MyTask_1)
 TASK(MyTask_2)
 {  
   /* Toggle LED */
-  LED_GREEN_Toggle();  
+  LED_GREEN_Toggle();
   
   /* Task Termination */  
   Os_TerminateTask();  

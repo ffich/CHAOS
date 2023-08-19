@@ -81,10 +81,16 @@ void Os_UpdateSchedTable (void)
     /* If a schedule event matches... */
     if (SchedTable[SchEvtIdx].Counter >= (SchedTable[SchEvtIdx].TimeoutMs/SCHED_COUNTER_TH))
     {
+#ifdef TERMINAL_DEBUG_ENABLED
+      if (SchEvtIdx == 0)
+      {
+        printf("\r\nNew Scheduling cycle:\r\n");
+      }
+#endif      
       /* ... activate the corresponding task */
       Os_ActivateTask(SchedTable[SchEvtIdx].TaskID);
       /* Reset counter */
-      SchedTable[SchEvtIdx].Counter = 0;
+      SchedTable[SchEvtIdx].Counter = 0;      
     }
   }    
 }
