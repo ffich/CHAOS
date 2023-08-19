@@ -84,7 +84,8 @@ void Os_UpdateSchedTable (void)
 #ifdef TERMINAL_DEBUG_ENABLED
       if (SchEvtIdx == 0)
       {
-        printf("\r\nNew Scheduling cycle:\r\n");
+        printf("\r\nTimestamp - %d - ", Os_TickCounter);        
+        printf("New Scheduling cycle:\r\n");
       }
 #endif      
       /* ... activate the corresponding task */

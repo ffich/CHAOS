@@ -77,6 +77,7 @@ void Os_ActivateTask (uint16_t TaskID)
     if (Tasks[TaskIdx].TaskID == TaskID)
     {
 #ifdef TERMINAL_DEBUG_ENABLED
+      printf("Timestamp - %d - ", Os_TickCounter);      
       printf("Task %d Activated \r\n", Tasks[TaskIdx].TaskID);
 #endif                    
       /* Put the task in ready state */
@@ -99,6 +100,7 @@ void Os_TerminateTask (void)
   /* Put the task in IDLE state */
   Tasks[ActiveTaskIndex].State = IDLE;
 #ifdef TERMINAL_DEBUG_ENABLED
+      printf("Timestamp - %d - ", Os_TickCounter);  
       printf("Task %d Terminated \r\n", Tasks[ActiveTaskIndex].TaskID);
 #endif     
 }
@@ -121,6 +123,7 @@ void Os_Yield (void)
   /* Put the task in YIELD state */
   Tasks[YeldingTaskIdx].State = YIELD; 
 #ifdef TERMINAL_DEBUG_ENABLED
+      printf("Timestamp - %d - ", Os_TickCounter);  
   printf("Task %d Yelding \r\n", Tasks[ActiveTaskIndex].TaskID);
 #endif     
   /* Dispatch tasks */
@@ -130,6 +133,7 @@ void Os_Yield (void)
   /* Put the task back in RUNNING state */
   Tasks[ActiveTaskIndex].State = RUNNING; 
 #ifdef TERMINAL_DEBUG_ENABLED
+      printf("Timestamp - %d - ", Os_TickCounter);  
   printf("Task %d Resuming from Yield \r\n", Tasks[ActiveTaskIndex].TaskID);
 #endif     
 }

@@ -230,6 +230,7 @@ void Os_Dispatch (void)
       /* Change task state */
       Tasks[ActiveTaskIndex].State = RUNNING;
 #ifdef TERMINAL_DEBUG_ENABLED
+      printf("Timestamp - %d - ", Os_TickCounter);
       printf("Task %d Running \r\n", Tasks[ActiveTaskIndex].TaskID);
 #endif      
       /* Run the task */
@@ -255,6 +256,7 @@ void Os_DispatchOnYeld (uint16_t Priority)
       /* Change task state */
       Tasks[ActiveTaskIndex].State = RUNNING;
 #ifdef TERMINAL_DEBUG_ENABLED
+      printf("Timestamp - %d - ", Os_TickCounter);      
       printf("Task %d Running \r\n", Tasks[ActiveTaskIndex].TaskID);
 #endif          
       /* Run the task */
