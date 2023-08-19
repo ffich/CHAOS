@@ -293,8 +293,9 @@ TASK(MyTask_2)
 }
 ```
 
-![image](https://github.com/ffich/CHAOS/assets/59200746/f7534258-db27-4a84-954c-f2abe55fbffd)
+![image](https://github.com/ffich/CHAOS/assets/59200746/24cd452e-ba48-4600-b7fa-9fa105a3e6ba)
 
+We can even see how MyTask_2 (controlling LED_2) is always executyed first (it has higher priority) in the scheduling cycle that happens at 1s multiples. The 2ms delay on the execution of MyTask_1 is determied by the execution time of MyTask_2 (not much for the LED toggling but for UART transmission at the rate of 115200 baud).
 
 
 
