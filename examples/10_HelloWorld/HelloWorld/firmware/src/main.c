@@ -30,6 +30,7 @@
 #include "os_task.h"
 #include "os_task_cfg.h"
 
+
 /* CORE Timer callback */
 void MyCoreTimerCallback (uint32_t status, uintptr_t context)
 {
@@ -63,9 +64,11 @@ int main ( void )
 
 #define delay_ms(x) CORETIMER_DelayMs(x)
 
-/* Task function */
+/* MyTask_1 function */
 TASK(MyTask_1)
-{
+{    
+  printf("\r\nTimestamp - %d - ", Os_TickCounter);      
+  printf("LED_1 Toggle \r\n");  
   /* Toggle LED */
   LED_RED_Toggle();
 
@@ -73,9 +76,11 @@ TASK(MyTask_1)
   Os_TerminateTask();
 }
 
-/* Task function */
+/* MyTask_2 function */
 TASK(MyTask_2)
 {  
+  printf("\r\nTimestamp - %d - ", Os_TickCounter);      
+  printf("LED_2 Toggle \r\n");   
   /* Toggle LED */
   LED_GREEN_Toggle();
   

@@ -35,8 +35,6 @@
 /* Task IDs */
 #define MY_TASK_1_ID                                              1u
 #define MY_TASK_2_ID                                              2u
-#define MY_TASK_3_ID                                              3u
-#define MY_TASK_4_ID                                              4u
 
 /************************************************************************
 * EXPORTED Macros
