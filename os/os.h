@@ -62,6 +62,8 @@ extern volatile MainSystemTimebaseType MainSystemTimebaseFlag;
 extern volatile uint16_t ActiveTaskIndex;
 /* Index of the current yielding task */
 extern volatile uint16_t YieldingTaskIndex;
+/* Flag to indicate a yield */
+extern volatile uint8_t SomebodyYielded;
 
 /************************************************************************
 * EXPORTED Functions

@@ -57,7 +57,8 @@ volatile MainSystemTimebaseType MainSystemTimebaseFlag = WAIT_TRIGGER_PHASE;
 volatile uint16_t ActiveTaskIndex = 0;
 /* Index of the current yielding task - 0xFFFF means nobody is currently yielding */
 volatile uint16_t YieldingTaskIndex = 0xFFFF;
-
+/* Flag to indicate a yield */
+volatile uint8_t SomebodyYielded = 0;
 
 /************************************************************************
 * LOCAL Functions
@@ -250,9 +251,7 @@ void Os_Dispatch (void)
 * Description:  Dispatch after a task yield.  
 ************************************************************************/
 void Os_DispatchOnYeld (uint16_t Priority)
-{
-  uint8_t SomebodyYielded = STD_FALSE;
-  
+{  
   /* Scroll the task table */  
   for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
   {
@@ -262,7 +261,7 @@ void Os_DispatchOnYeld (uint16_t Priority)
 #ifdef TERMINAL_DEBUG_VERBOSE      
       if (!SomebodyYielded)
       {
-        SomebodyYielded = STD_TRUE;
+        SomebodyYielded++;
         printf("Timestamp - %d - ", Os_TickCounter);  
         printf("Task %d Yelding \r\n", Tasks[YieldingTaskIndex].TaskID);        
       }
@@ -277,15 +276,5 @@ void Os_DispatchOnYeld (uint16_t Priority)
       /* Run the task */
       Tasks[ActiveTaskIndex].Task();      
     }
-  }
-  
-#ifdef TERMINAL_DEBUG_ENABLED
-#ifdef TERMINAL_DEBUG_VERBOSE
-  if (SomebodyYielded)
-  {      
-    printf("Timestamp - %d - ", Os_TickCounter);  
-    printf("Task %d Resuming from Yield \r\n", Tasks[YieldingTaskIndex].TaskID);      
-  }
-#endif 
-#endif    
+  }  
 }

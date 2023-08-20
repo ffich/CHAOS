@@ -129,7 +129,17 @@ void Os_Yield (void)
   /* Put back the Active task index to the pre-yeld status */
   ActiveTaskIndex = YeldingTaskIdx;
   /* Put the task back in RUNNING state */
-  Tasks[ActiveTaskIndex].State = RUNNING;     
+  Tasks[ActiveTaskIndex].State = RUNNING;
+#ifdef TERMINAL_DEBUG_ENABLED
+#ifdef TERMINAL_DEBUG_VERBOSE
+  if (SomebodyYielded)
+  {      
+    SomebodyYielded--;
+    printf("Timestamp - %d - ", Os_TickCounter);  
+    printf("Task %d Resuming from Yield \r\n", Tasks[ActiveTaskIndex].TaskID);      
+  }
+#endif 
+#endif    
 }
 
 /************************************************************************   
