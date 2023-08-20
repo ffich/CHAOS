@@ -225,3 +225,11 @@ TASK(MyTask_4)
 As you can see, Os_Yield() calls have been placed inside the "processing" for loops, so that both MyTask_3 and MyTask_4 will release control to the scheduler diring those cycles and allow the dispatcher to run them.
 
 
+
+Activating the log is possible to see how the lower prioriryt tasks yield control to the higher priority ones, and the system still run as expected:
+
+![image](https://github.com/ffich/CHAOS/assets/59200746/0d769673-3e81-4a97-a45e-e4d4def16c3f)
+
+*MyTask_4 Yield, run and terminate*
+
+
