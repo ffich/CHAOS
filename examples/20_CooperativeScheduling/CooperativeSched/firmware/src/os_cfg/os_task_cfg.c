@@ -54,10 +54,10 @@ TbcType Tasks[] =
   /* ID                    Task              State           Priority     */
   /* -------------------------------------------------------------------- */   
   /* --------------------------------- Tasks ---------------------------- */   
-  {MY_TASK_1_ID,           MyTask_1,         IDLE,           10},
-  {MY_TASK_2_ID,           MyTask_2,         IDLE,           20},  
-  {MY_TASK_3_ID,           MyTask_3,         IDLE,           30},
-  {MY_TASK_4_ID,           MyTask_4,         IDLE,           40},     
+  {MY_TASK_1_ID,           MyTask_1,         IDLE,           100},
+  {MY_TASK_2_ID,           MyTask_2,         IDLE,           110}, 
+  {MY_TASK_3_ID,           MyTask_3,         IDLE,           10},  
+  {MY_TASK_4_ID,           MyTask_4,         IDLE,           20},     
   /* -------------------------------------------------------------------- */
 };
 

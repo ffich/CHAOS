@@ -55,8 +55,10 @@ SchedTblType SchedTable[SCHED_EVT_NUMBER] =
   /* TaskID          Counter          Timeout  */
   /* ------------------------------------------------ */   
   /* ----------------- Sched. Table ----------------- */   
-  {MY_TASK_1_ID,     COUNTER_INIT,    PERIOD_1000_MS}, 
-  {MY_TASK_2_ID,     COUNTER_INIT,    PERIOD_500_MS},   
+  {MY_TASK_1_ID,     COUNTER_INIT,    PERIOD_500_MS}, 
+  {MY_TASK_2_ID,     COUNTER_INIT,    PERIOD_1000_MS},   
+  {MY_TASK_3_ID,     COUNTER_INIT,    PERIOD_10000_MS}, 
+  {MY_TASK_4_ID,     COUNTER_INIT,    PERIOD_2000_MS}, 
   /* ------------------------------------------------ */
 };
 

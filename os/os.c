@@ -55,6 +55,9 @@
 volatile MainSystemTimebaseType MainSystemTimebaseFlag = WAIT_TRIGGER_PHASE;
 /* Index of the current active task */
 volatile uint16_t ActiveTaskIndex = 0;
+/* Index of the current yielding task - 0xFFFF means nobody is currently yielding */
+volatile uint16_t YieldingTaskIndex = 0xFFFF;
+
 
 /************************************************************************
 * LOCAL Functions
@@ -253,6 +256,12 @@ void Os_DispatchOnYeld (uint16_t Priority)
   {
     if ((Tasks[ActiveTaskIndex].State == READY) && (Tasks[ActiveTaskIndex].Priority >= Priority))
     {
+#ifdef TERMINAL_DEBUG_ENABLED
+#ifdef TERMINAL_DEBUG_VERBOSE
+      printf("Timestamp - %d - ", Os_TickCounter);  
+      printf("Task %d Yelding \r\n", Tasks[YieldingTaskIndex].TaskID);
+#endif 
+#endif        
       /* Change task state */
       Tasks[ActiveTaskIndex].State = RUNNING;
 #ifdef TERMINAL_DEBUG_ENABLED
@@ -261,6 +270,14 @@ void Os_DispatchOnYeld (uint16_t Priority)
 #endif          
       /* Run the task */
       Tasks[ActiveTaskIndex].Task();
+      
+#ifdef TERMINAL_DEBUG_ENABLED
+#ifdef TERMINAL_DEBUG_VERBOSE
+      printf("Timestamp - %d - ", Os_TickCounter);  
+      printf("Task %d Resuming from Yield \r\n", Tasks[YieldingTaskIndex].TaskID);      
+#endif 
+#endif       
+      
     }
   }    
 }

@@ -48,6 +48,9 @@
 #define PERIOD_1000_MS                                               1000u
 #define PERIOD_2000_MS                                               2000u
 #define PERIOD_5000_MS                                               5000u
+#define PERIOD_10000_MS                                              10000u
+#define PERIOD_15000_MS                                              15000u
+#define PERIOD_20000_MS                                              20000u
 
 /************************************************************************
 * EXPORTED Macros

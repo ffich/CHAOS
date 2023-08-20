@@ -60,6 +60,8 @@ typedef enum MainSystemTimebaseEnum
 extern volatile MainSystemTimebaseType MainSystemTimebaseFlag;
 /* Index of the current active task */
 extern volatile uint16_t ActiveTaskIndex;
+/* Index of the current yielding task */
+extern volatile uint16_t YieldingTaskIndex;
 
 /************************************************************************
 * EXPORTED Functions

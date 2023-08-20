@@ -120,22 +120,16 @@ void Os_Yield (void)
   
   /* Save the currently active task index (it will be changed by the dispatcher) */
   YeldingTaskIdx = ActiveTaskIndex;  
+  /* Save the currently yielding task index on a global variable */
+  YieldingTaskIndex = YeldingTaskIdx;  
   /* Put the task in YIELD state */
   Tasks[YeldingTaskIdx].State = YIELD; 
-#ifdef TERMINAL_DEBUG_ENABLED
-      printf("Timestamp - %d - ", Os_TickCounter);  
-  printf("Task %d Yelding \r\n", Tasks[ActiveTaskIndex].TaskID);
-#endif     
   /* Dispatch tasks */
   Os_DispatchOnYeld(Tasks[YeldingTaskIdx].Priority);
   /* Put back the Active task index to the pre-yeld status */
   ActiveTaskIndex = YeldingTaskIdx;
   /* Put the task back in RUNNING state */
-  Tasks[ActiveTaskIndex].State = RUNNING; 
-#ifdef TERMINAL_DEBUG_ENABLED
-      printf("Timestamp - %d - ", Os_TickCounter);  
-  printf("Task %d Resuming from Yield \r\n", Tasks[ActiveTaskIndex].TaskID);
-#endif     
+  Tasks[ActiveTaskIndex].State = RUNNING;     
 }
 
 /************************************************************************   

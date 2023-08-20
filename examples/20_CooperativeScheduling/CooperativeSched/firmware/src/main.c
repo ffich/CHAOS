@@ -64,32 +64,14 @@ int main ( void )
     return ( EXIT_FAILURE );
 }
 
-#define T2_YIELD
-#define T3_YIELD
-
 #define delay_ms(x) CORETIMER_DelayMs(x)
 
-#ifndef T1_ENDLESS_LOOP
+#define T3_YIELD
+#define T4_YIELD
+
 /* Task function */
 TASK(MyTask_1)
-{
-  /* Toggle LED */
-  LED_RED_Toggle();
-
-  /* Task Termination */
-  Os_TerminateTask();
-}
-#endif
-
-/* Task function */
-TASK(MyTask_2)
 {  
-  /* Activate task 3 */
-  Os_ActivateTask(MY_TASK_3_ID);
-  /* Yield control to the scheduler, allowing preemption */  
-#ifdef T2_YIELD  
-  Os_Yield(); 
-#endif
   /* Toggle LED */
   LED_GREEN_Toggle();  
   
@@ -98,39 +80,69 @@ TASK(MyTask_2)
 }
 
 /* Task function */
-TASK(MyTask_3)
-{
-  /* Activate task 4 */
-  Os_ActivateTask(MY_TASK_4_ID);
-  /* Yield control to the scheduler, allowing preemption */
-#ifdef T3_YIELD    
-  Os_Yield(); 
-#endif  
-  
+TASK(MyTask_2)
+{  
   /* Toggle LED */
-  LED_YELLOW_Toggle();
-  
-  /* Busy wait */
-  delay_ms(100);
-  
-  /* Task Termination */
-  Os_TerminateTask();
-}
-  
-#ifndef T4_ENDLESS_LOOP
-/* Task function */
-TASK(MyTask_4)
-{
-  /* Toggle LED */
-  LED_BLUE_Toggle();
-  
-  /* Busy wait */
-  delay_ms(100);  
+  LED_RED_Toggle();  
   
   /* Task Termination */  
   Os_TerminateTask();  
 }
-#endif
+
+
+/* Task function */
+TASK(MyTask_3)
+{  
+  uint16_t i;
+  
+  /* Set LED */
+  LED_BLUE_Clear();  
+  
+  /* Simulation of processing cycle*/
+  for (i = 0; i < 20; i++)
+  {
+    /* Busy wait simulate processing*/
+    delay_ms(50);
+#ifdef T3_YIELD
+    /* Clear LED */
+    LED_BLUE_Set();       
+    Os_Yield();
+    /* Set LED */
+    LED_BLUE_Clear();     
+#endif   
+  }
+  
+  /* Clear LED */
+  LED_BLUE_Set();    
+  
+  /* Task Termination */  
+  Os_TerminateTask();  
+}
+
+/* Task function */
+TASK(MyTask_4)
+{  
+  uint16_t i;
+  
+  /* Set LED */
+  LED_YELLOW_Clear();  
+  
+  /* Simulation of processing cycle*/
+  for (i = 0; i < 30; i++)
+  {
+    /* Busy wait simulate processing*/
+    delay_ms(50);
+#ifdef T4_YIELD
+    Os_Yield();
+#endif   
+  }
+  
+  /* Clear LED */
+  LED_YELLOW_Set();    
+  
+  /* Task Termination */  
+  Os_TerminateTask();  
+}
 
 /*******************************************************************************
  End of File

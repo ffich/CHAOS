@@ -88,7 +88,7 @@ void UART6_Initialize( void )
     U6STASET = (_U6STA_UTXEN_MASK | _U6STA_URXEN_MASK | _U6STA_UTXISEL1_MASK );
 
     /* BAUD Rate register Setup */
-    U6BRG = 53;
+    U6BRG = 13;
 
     /* Turn ON UART6 */
     U6MODESET = _U6MODE_ON_MASK;
