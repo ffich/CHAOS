@@ -251,15 +251,21 @@ void Os_Dispatch (void)
 ************************************************************************/
 void Os_DispatchOnYeld (uint16_t Priority)
 {
+  uint8_t SomebodyYielded = STD_FALSE;
+  
   /* Scroll the task table */  
   for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
   {
     if ((Tasks[ActiveTaskIndex].State == READY) && (Tasks[ActiveTaskIndex].Priority >= Priority))
     {
 #ifdef TERMINAL_DEBUG_ENABLED
-#ifdef TERMINAL_DEBUG_VERBOSE
-      printf("Timestamp - %d - ", Os_TickCounter);  
-      printf("Task %d Yelding \r\n", Tasks[YieldingTaskIndex].TaskID);
+#ifdef TERMINAL_DEBUG_VERBOSE      
+      if (!SomebodyYielded)
+      {
+        SomebodyYielded = STD_TRUE;
+        printf("Timestamp - %d - ", Os_TickCounter);  
+        printf("Task %d Yelding \r\n", Tasks[YieldingTaskIndex].TaskID);        
+      }
 #endif 
 #endif        
       /* Change task state */
@@ -269,15 +275,17 @@ void Os_DispatchOnYeld (uint16_t Priority)
       printf("Task %d Running \r\n", Tasks[ActiveTaskIndex].TaskID);
 #endif          
       /* Run the task */
-      Tasks[ActiveTaskIndex].Task();
-      
+      Tasks[ActiveTaskIndex].Task();      
+    }
+  }
+  
 #ifdef TERMINAL_DEBUG_ENABLED
 #ifdef TERMINAL_DEBUG_VERBOSE
-      printf("Timestamp - %d - ", Os_TickCounter);  
-      printf("Task %d Resuming from Yield \r\n", Tasks[YieldingTaskIndex].TaskID);      
+  if (SomebodyYielded)
+  {      
+    printf("Timestamp - %d - ", Os_TickCounter);  
+    printf("Task %d Resuming from Yield \r\n", Tasks[YieldingTaskIndex].TaskID);      
+  }
 #endif 
-#endif       
-      
-    }
-  }    
+#endif    
 }
