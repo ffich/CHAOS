@@ -50,7 +50,7 @@ The CHAOS configuration model is relatively simple. The user need to configure:
 - **General OS Configuration**: this includes the OS tick definition (depending on how fast the timer interrupt that calls the Os_Tick() runs) and other general configuraiton.
 
 ## Getting Started
-The best way to get started to make some **CHAOS** is to look at the [example](https://github.com/ffich/CHAOS/tree/main/examples) sections. Normally all the basic feature of an OS can be showed using LEDs and printf, so basically any evaluation board that has this characteristics is good enough for the job. I've used a **Microchip Curiosity 2.0 Pic32 MZ EF** evalution board and **MPLABX + MPLAB Harmony**, but everything is easily portable to other platform, following the example guide. 
+The best way to get started to make some **CHAOS** is to look at the [examples](https://github.com/ffich/CHAOS/tree/main/examples) sections. Normally all the basic feature of an OS can be showed using LEDs and printf, so basically any evaluation board that has this characteristics is good enough for the job. I've used a [Microchip Curiosity 2.0 Pic32 MZ EF](https://www.microchip.com/en-us/development-tool/dm320209) evalution board and [MPLAB X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide) + [MPLAB Harmony V3](https://www.microchip.com/en-us/tools-resources/configure/mplab-harmony) code generator, but everything is easily portable to other platform, following the examples guides. 
 
 ![image](https://github.com/ffich/CHAOS/assets/59200746/33cdfd6b-bde9-4cc2-b57a-0d35b5831352)
 
