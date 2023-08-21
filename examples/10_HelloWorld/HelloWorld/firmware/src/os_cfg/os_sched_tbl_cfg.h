@@ -33,7 +33,7 @@
 * EXPORTED Defines
 ************************************************************************/
 /* NUmber of scheduling events */
-#define SCHED_EVT_NUMBER                                             2u
+#define SCHED_EVT_NUMBER                                             3u
 
 /************************************************************************
 * EXPORTED Macros

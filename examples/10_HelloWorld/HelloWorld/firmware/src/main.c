@@ -88,6 +88,18 @@ TASK(MyTask_2)
   Os_TerminateTask();  
 }
 
+/* MyTask_3 function */
+TASK(MyTask_3)
+{  
+  printf("\r\nTimestamp - %d - ", Os_TickCounter);      
+  printf("LED_3 Toggle \r\n");   
+  /* Toggle LED */
+  LED_BLUE_Toggle();
+  
+  /* Task Termination */  
+  Os_TerminateTask();  
+}
+
 /*******************************************************************************
  End of File
 */
