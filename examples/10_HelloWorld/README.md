@@ -300,5 +300,98 @@ We can also see how MyTask_2 (controlling LED_2) is always executyed first (it h
 ## Closing the circle
 To close the circle we can implement [REQ_2] and see how easy we can do this without any modification to the existing code.
 
+First update **os_task_cfg.h** and **os_task_cfg.c** as below:
 
+*os_task_cfg.c*
+
+```
+/************************************************************************
+* TASK List
+************************************************************************/
+extern void MyTask_1 (void);
+extern void MyTask_2 (void);
+extern void MyTask_3 (void);
+
+/************************************************************************
+* GLOBAL Variables
+************************************************************************/
+TbcType Tasks[] =
+{
+  /* -------------------------------------------------------------------- */
+  /* ID                    Task              State           Priority     */
+  /* -------------------------------------------------------------------- */   
+  /* --------------------------------- Tasks ---------------------------- */   
+  {MY_TASK_1_ID,           MyTask_1,         IDLE,           10},
+  {MY_TASK_2_ID,           MyTask_2,         IDLE,           20},  
+  {MY_TASK_3_ID,           MyTask_3,         IDLE,           30},   
+  /* -------------------------------------------------------------------- */
+};
+
+/* Auto-calculation of task number */
+const uint16_t TaskNumber = (uint16_t)(sizeof(Tasks)/sizeof(TbcType)); 
+```
+
+*os_task_cfg.h*
+
+```
+/************************************************************************
+* EXPORTED Defines
+************************************************************************/
+/* Task IDs */
+#define MY_TASK_1_ID                                              1u
+#define MY_TASK_2_ID                                              2u
+#define MY_TASK_3_ID                                              3u
+```
+
+Then update **os_sched_tbl_cfg.c** and **os_sched_tbl_cfg.h** adding a new scheduling event at 1300ms:
+
+*os_sched_tbl_cfg.c*
+
+```
+/************************************************************************
+* GLOBAL Variables
+************************************************************************/
+/* Schedule Table structure initialization */
+SchedTblType SchedTable[SCHED_EVT_NUMBER] =
+{
+  /* ------------------------------------------------ */
+  /* TaskID          Counter          Timeout  */
+  /* ------------------------------------------------ */   
+  /* ----------------- Sched. Table ----------------- */   
+  {MY_TASK_1_ID,     COUNTER_INIT,    PERIOD_500_MS}, 
+  {MY_TASK_2_ID,     COUNTER_INIT,    PERIOD_1000_MS},  
+  {MY_TASK_3_ID,     COUNTER_INIT,    1300},   
+  /* ------------------------------------------------ */
+};
+```
+
+*os_sched_tbl_cfg.h*
+
+```
+/************************************************************************
+* EXPORTED Defines
+************************************************************************/
+/* NUmber of scheduling events */
+#define SCHED_EVT_NUMBER                                             3u
+```
+
+And, finally, add MyTask_3 implementation in main.c:
+
+```
+/* MyTask_3 function */
+TASK(MyTask_3)
+{  
+  printf("\r\nTimestamp - %d - ", Os_TickCounter);      
+  printf("LED_3 Toggle \r\n");   
+  /* Toggle LED */
+  LED_BLUE_Toggle();
+  
+  /* Task Termination */  
+  Os_TerminateTask();  
+}
+```
+
+Logging as before, we can see how we implemented the requirement as requested:
+
+![image](https://github.com/ffich/CHAOS/assets/59200746/1a3d7c4b-bd61-4ffd-8b09-7603d2a6db3d)
 

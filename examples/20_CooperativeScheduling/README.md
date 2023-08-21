@@ -3,17 +3,19 @@ Now let's imagine that our previous requirement:
 
 *[REQ_1] The system has to blink two LEDs at two different rates, LED_1 every 500ms and LED_2 1000ms.*
 
-Represent the two high highest priorty task in our system and that we have received two additional requirements for lower prioroty task that run processing jobs:
+Represent the two highest priorty tasks in our system and that we have received two additional requirements for lower prioroty task that run processing jobs:
 
 *[REQ_2] The system has to run a lower priority task at 2 seconds rate that makes chunk calculation for a total execution time of 1.5 seconds (at chunks of 50ms, blocking)*
 *[REQ_3] The system has to run a lower priority task at 10 seconds rate that makes chunk calculation for a total execution time of 1 seconds (at chunks of 50ms, blocking)*
 
 We need to merge this two additional task in our system and we have the problem that this two tasks have blocking functions that would interferee with the higher priorty ones.
 
+CHAOS has cooperative features (**Os_Yield** API) that allow to solve this probele, let's see how.
+
 Let's proceed as we did with the first exercise.
 
 ## STEP 1: Task Configuration
-We need to add two tasks to the previous configuration, so the new one would look like :
+We need to add two tasks to the previous configuration, so the new task table would look like:
 
 ```
 /************************************************************************
@@ -44,7 +46,7 @@ TbcType Tasks[] =
 const uint16_t TaskNumber = (uint16_t)(sizeof(Tasks)/sizeof(TbcType));
 ```
 
-We used prioroty 100 and 110 for MyTask_1 and MyTask_2 and 10 and 20 for MyTask_3 and MyTask_4.
+We used prioroty **100** and **110** for **MyTask_1** and **MyTask_2** and **10** and **20** for **MyTask_3** and **MyTask_4**.
 
 Remember to add the new IDs on **os_task_cfg.h**:
 
@@ -96,7 +98,7 @@ The OS general configuration remains basically the same of the previous example.
 
 
 ## STEP 4: Task implementation
-Now we can move to our main file and implement the new tasks. We simulate the chunk processing with a busy wait function for both tasks:
+Now we can move to our main file and implement the new tasks. We can simulate the chunk processing with a busy wait function for both tasks:
 
 ```
 #include <stddef.h>                     // Defines NULL
@@ -178,7 +180,7 @@ TASK(MyTask_3)
   /* Simulation of processing cycle*/
   for (i = 0; i < 20; i++)
   {
-    /* Busy wait simulate processing*/
+    /* Busy wait simulate processing */
     delay_ms(50);
 #ifdef T3_YIELD
     /* Clear LED */
@@ -222,9 +224,7 @@ TASK(MyTask_4)
 }
 ```
 
-As you can see, Os_Yield() calls have been placed inside the "processing" for loops, so that both MyTask_3 and MyTask_4 will release control to the scheduler diring those cycles and allow the dispatcher to run them.
-
-
+As you can see, Os_Yield() calls have been placed inside the "processing" for loops, so that both MyTask_3 and MyTask_4 will release control to the scheduler diring those cycles and allow the dispatcher to run the higer priority tasks at the defined rate.
 
 Activating the log is possible to see how the lower prioriryt tasks yield control to the higher priority ones, and the system still run as expected:
 
