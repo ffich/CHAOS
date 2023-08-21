@@ -1,5 +1,5 @@
 # Hello World
-This first very simple example addresses a common problem of embedded design, described in the below requirement.
+This first, very simple, example addresses a common problem of embedded design, described in the below requirement.
 
 *[REQ_1] The system has to blink two LEDs at two different rates, LED_1 every 500ms and LED_2 1000ms.*
 
@@ -20,13 +20,14 @@ main()
 }
 ```
 
-This approach result in something not scalable, as if we have the following additional requirement:
+Despite it works, this approach result in something not scalable, as if we have the following additional requirement:
 
 *[REQ_2] The system has to blink an additional LED, LED_3, every 1300ms.*
 
-We need to considerably re-design our solution. It would be much easyer to have 3 tasks running at 3 different rates, each one dedicated to a single LED.
+We need to considerably re-design our solution. It would be much easyier to have 3 separate main functions running at 3 different rates, each one dedicated to a single LED.
+The separate 'main function' is nothing more than the abstraction of the task concept within an RTOS.
 
-This is simply achievable with CHAOS, let's see how.
+We can do this with **CHAOS**, let's see how.
 
 ## STEP 1: Task Configuration
 After having imported all the OS files in our project, we need to create the following 5 configuration files:
@@ -259,7 +260,6 @@ TASK(MyTask_2)
 }
 ```
 
-
 ## Test
 Since we have activated the debug terminal, if we configure the UART and re-direct the printf calls to that peripheral, we can see what's actually happening under the hood:
 
@@ -295,7 +295,10 @@ TASK(MyTask_2)
 
 ![image](https://github.com/ffich/CHAOS/assets/59200746/24cd452e-ba48-4600-b7fa-9fa105a3e6ba)
 
-We can even see how MyTask_2 (controlling LED_2) is always executyed first (it has higher priority) in the scheduling cycle that happens at 1s multiples. The 2ms delay on the execution of MyTask_1 is determied by the execution time of MyTask_2 (not much for the LED toggling but for UART transmission at the rate of 115200 baud).
+We can also see how MyTask_2 (controlling LED_2) is always executyed first (it has higher priority) in the scheduling cycle that happens at 1s multiples. The 2ms delay on the execution of MyTask_1 is determied by the execution time of MyTask_2 (not much for the LED toggling but for UART transmission at the rate of 115200 baud).
+
+## Closing the circle
+To close the circle we can implement [REQ_2] and see how easy we can do this without any modification to the existing code.
 
 
 
