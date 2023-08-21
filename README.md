@@ -23,10 +23,10 @@ In order to run, the OS needs two functions to be called:
 - **OS_Tick()**: to be called inside a periodic timer interrupt (Typically a core tick timer or something similar).
 
 ## The Scheduling Policy
-**CHAOS** implements an higher priority first scheduling policy. This means that each task is given a priority value and the OS will always run the task with the hihgest priorty value that is ready to run. All the other tasks will be run after, in decreasing priority order. This ensure that the developers can determine quite accurately which will be the next task that will be run, basing on the priority order. Nevertheless, since there is no pre-eption, is an user responsibility to cooperatively release the control within tasks if there is something more urgent to execute.
+**CHAOS** implements an **higher priority first** scheduling policy. This means that each task is given a priority value and the OS will always **run the task with the hihgest priorty value that is ready to run**. All the other tasks will be run after, in decreasing priority order. This ensure that the developers can determine quite accurately which will be the next task that will be run, basing on the priority order. Nevertheless, since there is **no pre-emption**, is an user responsibility to cooperatively release the control within tasks if there is something more urgent to execute (**Yield**).
 
 ## The Task Model
-CHAOS implements a 4-state task model. Each task can exists in one of the following states:
+**CHAOS** implements a **4-state task model**. Each task can exists in one of the following states:
 
 - **IDLE**: the task is inactive, as nobody (another task, an ISR or a schedule event) has requested the task to be activated.
 - **READY**: the task is ready to run, and will be launched at the next dispatch event if is the higher priorty task in the schedule list.
@@ -55,4 +55,17 @@ The best way to get started to make some **CHAOS** is to look at the [examples](
 ![image](https://github.com/ffich/CHAOS/assets/59200746/33cdfd6b-bde9-4cc2-b57a-0d35b5831352)
 
 *Fig. 2 - Microchip Curiosity 2.0 Pic32 MZ EF evalution board*
+
+## Example List
+Now you can unkork a beer yourself and start making some CHAOS.
+
+[**In the end World begun out of CHAOS...**](https://github.com/ffich/CHAOS/tree/main/examples/10_HelloWorld): Very simple example that blinks two LEDs at different rate. It demonstrates how to create a basic CHAOS configuration with 2 tasks and a schedule table with 2 scheduling events.
+
+[**CHAOS can be cooperative as well**](https://github.com/ffich/CHAOS/tree/main/examples/20_CooperativeScheduling): Example on the usage of cooperative scheduling (yield option) to yield execution control to higher priority tasks.
+
+**Also CHAOS needs some timing**: Example on usage of CHAOS virtual timing features.
+
+**In the event of CHAOS**: Example on usage of events.
+
+**CHAOS Queue**: Example on usage of queues.
 
