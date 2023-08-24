@@ -12,10 +12,19 @@ CHAOS (Cooperative Hardware Agnostic Operative System) is a cooperative RTOS (Re
 
 The main characteristics are simpliciy of implementation and easy integration on different HW platform without need for porting.
 
+The following section list all the OS requirements:
+
+Conventions:
+
+- **Bold**: the requirement is implemented.
+- *Italic*: the requirement has been accepted and is in implementation phase.
+- None: the requirement is proposed.
+- ~~Strikeout~~: the requirement is currently rejected, but for some reasons we decided to keep it in the list (hystorical reasons, or maybe we are not so sure...).
+
 # Kernel Requirements
 The following section lists all the **kernel** requirements.
 
-**[REQ_KER_010]** - The OS shall provide a deterministi High Priority First scheduling implementation.
+**[REQ_KER_010]** - The OS shall provide a deterministic **Higher Priority First** scheduling implementation.
 
 **[REQ_KER_011]** - For the above purpose the OS shall provide an Os_Start() API.
 
@@ -33,7 +42,7 @@ The following section lists all the **task** requirements.
 ![image](https://github.com/ffich/CHAOS/assets/59200746/b7b247b4-a6ea-47db-8b5b-581690bc1cb9)
 
 A task starts in **IDLE** state. In this state the Scheduler will not select the task for dispatching. A task can be moved in **READY** state by means of an activation (ActivateTask API).
-When the task it's ready, at the next dispatching round it will be executed and moved into **RUNNING** state by the Scheduler if it is the higher priority task that is ready to run.
+When the task is in **READY** state, at the next dispatching round it will be executed and moved into **RUNNING** state by the Scheduler if it is the higher priority task that is ready to run.
 A task is put back into **IDLE** state when it's terminated (TerminateTask or ChainTask APIs). A task can't be forcibly interrupted by the Scheduler, but it can voluntarily relase control to it by means of a specific Yield API. In this case the Scheudler taks over and execute any higher priority task that is ready to run (cooperative scheduling). During this period, the task is put into the **YIELD** state by the Scheduler. Once there are no higher priority task to be executed, the control is given back to the yielding task, that is put back into the **RUNNING** state.
 
 **[REQ_TSK_020]** - The OS shall provide a task table definition, that contains:
@@ -63,11 +72,26 @@ TASK(MyTask_1)
 
 **[REQ_TSK_080]** - The OS shall provide an Os_GetTaskPriority API. This API provide the currently running task Priority.
 
+[REQ_TSK_090] - The OS should provide a means to allow tasks to be autostarted once the OS is launched.
+
 # Schedule Table Requirements
 The following section lists all the **schedule table** requirements.
 
-**[REQ_STBL_010]** - 
+**[REQ_STBL_010]** - The OS shall provide a mechanims to schedule tasks using schedule tables.
 
+**[REQ_STBL_020]** - A schedule table shall contains the following entries:
+
+*ID*: this is the ID of the task to be activated at the firing of the scheduling event.
+
+*Counter*: the initial value of the schedule table counter associated to the scheduling event (by default 0).
+
+*Timeout*: the timing value at which the scheduling event will activate the task.
+
+**[REQ_STBL_030]** - The OS shall provide an Os_UpdateSchedTable API that sequentially parse the table and activate the tasks at each specific timeout.
+
+**[REQ_STBL_040]** - The OS shall process the Task schedule table inside the Os_Tick() function.
+
+[REQ_STBL_050] - The OS shall provide the possibility to have more than a single schedule table.
 
 # IPC Requirements
 The following section lists all the **ipc** requirements.
