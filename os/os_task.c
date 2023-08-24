@@ -106,6 +106,21 @@ void Os_TerminateTask (void)
 }
 
 /************************************************************************   
+* Function:     Os_ChainTask
+* Input:        uint16_t TaskID
+* Output:       None
+* Author:       F.Ficili
+* Description:  Terminate the currently running task and activate a new one.
+************************************************************************/
+void Os_ChainTask (uint16_t TaskID)
+{
+  /* Terminate the currently running task */
+  Os_TerminateTask();
+  /* Activate the new task */
+  Os_ActivateTask(TaskID);
+}
+
+/************************************************************************   
 * Function:     Os_Yield
 * Input:        None
 * Output:       None

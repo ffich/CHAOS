@@ -73,6 +73,8 @@ extern TbcType Tasks[];
 void Os_ActivateTask (uint16_t TaskID);
 /* Terminate the current running task */
 void Os_TerminateTask (void);
+/* Terminate the currently running task and activate a new one */
+void Os_ChainTask (uint16_t TaskID);
 /* Yield to higher priority tasks */
 void Os_Yield (void);
 /* Get the ID of the running task */
