@@ -39,7 +39,7 @@ A task is put back into **IDLE** state when it's terminated (TerminateTask or Ch
 **[REQ_TSK_020]** - The OS shall provide a task table definition, that contains:
 
 - The ID of the task. This must be an arbitrary 16-bit number, but each ID must be unique for each task.
-- The task function name. This must a void - void C function:
+- The task function name. This must a void - void C function. A #define TASK(x) macro must be provided for tasks declaration:
 
 ```
 TASK(MyTask_1)
