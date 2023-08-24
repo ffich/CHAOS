@@ -47,7 +47,6 @@
 ************************************************************************/
 
 
-
 /************************************************************************
 * GLOBAL Variables
 ************************************************************************/
@@ -65,7 +64,7 @@ volatile uint8_t SomebodyYielded = 0;
 ************************************************************************/
 
 /* 
- * The following function implemts the sorting algorithm that decide which task run first.
+ * The following function implements the sorting algorithm that decide which task run first.
  * This is a crucial part of the Scheduler and the OS, and thus the first chosen algorithm (Insertion Sort) may not be optimal.
  * Then the idea is to postpone the problematic of choose the optimal algorithm and provide option  for changing them at compile time.
  */
@@ -86,7 +85,7 @@ void SortTaskTable(TbcType Tbc[])
   uint16_t Priority;
   TbcType TbcBackup;
   
-
+  /* Start sorting algorithm */
   for (i = 1; i < TaskNumber; i++) 
   {
     Priority = Tbc[i].Priority;

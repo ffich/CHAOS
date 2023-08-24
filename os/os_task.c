@@ -59,6 +59,7 @@
 * GLOBAL Functions
 ************************************************************************/
 
+/* REQ_TSK_030 */
 /************************************************************************   
 * Function:     Os_ActivateTask
 * Input:        uint16_t TaskID
@@ -87,6 +88,7 @@ void Os_ActivateTask (uint16_t TaskID)
   }
 }
 
+/* REQ_TSK_040 */
 /************************************************************************   
 * Function:     Os_TerminateTask
 * Input:        None
@@ -105,6 +107,7 @@ void Os_TerminateTask (void)
 #endif     
 }
 
+/* REQ_TSK_050 */
 /************************************************************************   
 * Function:     Os_ChainTask
 * Input:        uint16_t TaskID
@@ -120,6 +123,7 @@ void Os_ChainTask (uint16_t TaskID)
   Os_ActivateTask(TaskID);
 }
 
+/* REQ_TSK_060 */
 /************************************************************************   
 * Function:     Os_Yield
 * Input:        None
@@ -157,6 +161,7 @@ void Os_Yield (void)
 #endif    
 }
 
+/* REQ_TSK_070 */
 /************************************************************************   
 * Function:     Os_GetTaskID
 * Input:        None
@@ -170,6 +175,7 @@ void Os_GetTaskID (uint16_t* TaskID)
   *TaskID = Tasks[ActiveTaskIndex].TaskID;
 }
 
+/* REQ_TSK_080 */
 /************************************************************************   
 * Function:     Os_GetTaskPriority
 * Input:        None
