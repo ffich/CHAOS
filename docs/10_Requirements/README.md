@@ -149,6 +149,11 @@ The following section lists all the **virtual timing** requirements.
 
 **[REQ_VTM_070]** - The OS shall provide an **Os_GetRemainingTime** API.
 
+# Alarms Requirements
+The following section lists all the **alarms** requirements.
+
+[REQ_ALRM_010] - The OS shall provide a mechanims to implement alarms.
+
 # Logging Requirements
 The following section lists all the **os logging** requirements.
 
