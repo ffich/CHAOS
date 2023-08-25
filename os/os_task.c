@@ -144,7 +144,7 @@ void Os_Yield (void)
   /* Put the task in YIELD state */
   Tasks[YeldingTaskIdx].State = YIELD; 
   /* Dispatch tasks */
-  Os_DispatchOnYeld(Tasks[YeldingTaskIdx].Priority);
+  Os_ScheduleOnYeld(Tasks[YeldingTaskIdx].Priority);
   /* Put back the Active task index to the pre-yeld status */
   ActiveTaskIndex = YeldingTaskIdx;
   /* Put the task back in RUNNING state */

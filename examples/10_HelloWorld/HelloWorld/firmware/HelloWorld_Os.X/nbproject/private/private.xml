@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/examples/10_HelloWorld/HelloWorld/firmware/src/os_cfg/os_cfg.h</file>
+            <file>file:/D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_sched_tbl.c</file>
+            <file>file:/D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_task.h</file>
+            <file>file:/D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_task.c</file>
+            <file>file:/D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c</file>
         </group>
     </open-files>
 </project-private>

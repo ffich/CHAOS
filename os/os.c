@@ -159,6 +159,19 @@ void UpdateOsCounters (void)
   Os_TickCounter++;
 }
 
+/************************************************************************   
+* Function:     OsDispatch
+* Input:        None
+* Output:       None
+* Author:       F.Ficili
+* Description:  Dispatch a task.
+************************************************************************/
+void OsDispatch (void)
+{
+  /* Run the task */
+  Tasks[ActiveTaskIndex].Task();
+}
+
 /************************************************************************
 * GLOBAL Functions
 ************************************************************************/
@@ -191,7 +204,7 @@ void Os_Start (void)
 #endif        
       
       /* Dispatch the activated tasks */
-      Os_Dispatch();
+      Os_Schedule();
       /* Reset flag */
       MainSystemTimebaseFlag = WAIT_TRIGGER_PHASE;
     }
@@ -217,13 +230,13 @@ void Os_Tick (void)
 }
 
 /************************************************************************
-* Function:     Os_Dispatch
+* Function:     Os_Schedule
 * Input:        None
 * Output:       None
 * Author:       F.Ficili	
 * Description:  Dispatch ready tasks.  
 ************************************************************************/
-void Os_Dispatch (void)
+void Os_Schedule (void)
 {
   /* Scroll the task table */  
   for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
@@ -236,20 +249,20 @@ void Os_Dispatch (void)
       printf("Timestamp - %d - ", Os_TickCounter);
       printf("Task %d Running \r\n", Tasks[ActiveTaskIndex].TaskID);
 #endif      
-      /* Run the task */
-      Tasks[ActiveTaskIndex].Task();    
+      /* Call dispatcher  */
+      OsDispatch();    
     }
   }    
 }
 
 /************************************************************************
-* Function:     Os_DispatchOnYeld
+* Function:     Os_ScheduleOnYeld
 * Input:        uint16_t Priority
 * Output:       None
 * Author:       F.Ficili	
 * Description:  Dispatch after a task yield.  
 ************************************************************************/
-void Os_DispatchOnYeld (uint16_t Priority)
+void Os_ScheduleOnYeld (uint16_t Priority)
 {  
   /* Scroll the task table */  
   for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
@@ -272,8 +285,8 @@ void Os_DispatchOnYeld (uint16_t Priority)
       printf("Timestamp - %d - ", Os_TickCounter);      
       printf("Task %d Running \r\n", Tasks[ActiveTaskIndex].TaskID);
 #endif          
-      /* Run the task */
-      Tasks[ActiveTaskIndex].Task();      
+      /* Call dispatcher  */
+      OsDispatch();      
     }
   }  
 }

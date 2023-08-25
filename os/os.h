@@ -73,8 +73,8 @@ void Os_Start (void);
 /* Manage the various Scheduler interrupt services */
 void Os_Tick (void);
 /* Dispatch ready tasks*/
-void Os_Dispatch (void);
+void Os_Schedule (void);
 /* Dipatch after a task yield */
-void Os_DispatchOnYeld (uint16_t Priority);
+void Os_ScheduleOnYeld (uint16_t Priority);
 
 #endif /* OS_H */
