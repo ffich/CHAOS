@@ -117,33 +117,70 @@ The following section lists all the **schedule table** requirements.
 
 [REQ_STBL_060] - The OS shall provide the possibility to start and stop each schedule table.
 
+[REQ_STBL_061] - The OS shall provide an **Os_StartScheduleTable()** API. This API takes the Schedule table ID as input parameter.
+
+[REQ_STBL_062] - The OS shall provide an **Os_StopScheduleTable()** API. This API takes the Schedule table ID as input parameter.
+
 # IPC Requirements
 The following section lists all the **ipc** requirements.
 
-[REQ_IPC_010] - 
+**[REQ_IPC_010]** - The OS shall provide an API to send single events between tasks.
+
+**[REQ_IPC_020]** - The OS shall provide an API to receive single events between tasks.
+
+**[REQ_IPC_030]** - The OS shall provide an API to enqueue a message in a FIFO queue.
+
+**[REQ_IPC_030]** - The OS shall provide an API to extract a message from a FIFO queue.
 
 # Virtual Timing Requirements
 The following section lists all the **virtual timing** requirements.
 
-[REQ_VTM_010] - 
+**[REQ_VTM_010]** - The OS shall provide virtual timing features.
+
+**[REQ_VTM_020]** - The OS shall provide a type definition for SW timer variables (**SwTimerType**).
+
+**[REQ_VTM_030]** - The OS shall provide an **Os_StartTimer** API.
+
+**[REQ_VTM_040]** - The OS shall provide an **Os_StopTimer** API.
+
+**[REQ_VTM_050]** - The OS shall provide an **Os_GetTimerStatus** API.
+
+**[REQ_VTM_060]** - The OS shall provide an **Os_GetElapsedTime** API.
+
+**[REQ_VTM_070]** - The OS shall provide an **Os_GetRemainingTime** API.
 
 # Logging Requirements
 The following section lists all the **os logging** requirements.
 
-[REQ_LOG_010] - 
+*[REQ_LOG_010]* - The OS shall provide a 'terminal' feature (OS logging) that allow to log the status of the various tasks, schedule table, events, queue, etc...
+
+*[REQ_LOG_020]* -  The OS logging feature must be configurable (as much as possible).
 
 # Error Handling Requirements
 The following section lists all the **os error handling** requirements.
 
-[REQ_ERR_010] - The OS should have a Os_ApiErrorType type for providing returns value for the various OS APIs.
+[REQ_ERR_010] - The OS should have a **Os_ApiReturnType** (**Os_ApiErrorType** for the **ErrorHook**) type for providing returns value for the various OS APIs.
 
-[REQ_ERR_011] - The value E_OS_OK should be used when an API runs without any error (is the universal positive return value).
+[REQ_ERR_020] - General return values (0-10):
+- E_OS_OK: the API returned without any error.
 
-[REQ_ERR_020] - Task related error codes:
+[REQ_ERR_030] - **Kernel** return values (11-30):
+- E_OS_WRONG_START_CONDITION: the Os_Start() API has been called while the OS is already started.
+- E_OS_WRONG_STOP_CONDITION: The Os_Shutdown() API has been called while the OS is stopped.
+- E_OS_WRONG_TASK_PTR: a task ready to be dispatched is a null pointer.
 
-- E_OS_WRONG_STATE_TRANSITION: this error is issued when a wrong task state transition is issued (e.g. trying to activate a RUNNING or YIELD Task).
+[REQ_ERR_040] - **Task** related error codes (31-50):
 - E_OS_WRONG_TASK_ID: this error should be issued when a wrong task ID is passed to the ActivateTask API.
+- E_OS_WRONG_STATE_TRANSITION: this error is issued when a wrong task state transition is issued (e.g. trying to activate a RUNNING or YIELD Task).
+  
+[REQ_ERR_050] - **Schedule Table** related error codes (51-70):
+- E_OS_WRONG_SCH_TBL_ID: this error should be issued when a wrong Scheule Table ID is passed to the StartScheduleTable or StopScheduleTable API.
 
+[REQ_ERR_060] - **IPC** related error codes (71-80):
+
+[REQ_ERR_070] - **Virtual Timing** related error codes (81-90):
+- E_OS_WRONG_VT_PTR: a wrong virtual timer pointer is passed to a VT API.
+- E_OS_WRONG_TMOUT_VALUE: a wrong timeout value is passed to Os_StartTimer API.
 
 # User Hooks
 The following section lists all the **user hooks** requirements.
@@ -168,4 +205,8 @@ Signature of the API: void User_ErrorHook (Os_ApiErrorType ErrorCode); The param
 # Additional Requirements
 The following section lists all the **additional** requirements.
 
-[REQ_ADD_010] - 
+*[REQ_ADD_010]* - The OS shall provide 3 sets of files:
+- OS Kernel/core files: all the OS fixed code implementation.
+- OS Configuration templates: the OS configuration files, in form of user templates.
+- OS User Integration templates: the User integratio files (e.g. Hooks), in form of user templates.
+
