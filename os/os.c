@@ -222,6 +222,25 @@ void SetOsState (OsStateType State)
 }
 
 /************************************************************************   
+* Function:     ActivateAutoStartedTasks
+* Input:        None
+* Output:       None
+* Author:       F.Ficili
+* Description:  Activate all auto-started tasks.
+************************************************************************/
+void ActivateAutoStartedTasks (void)
+{
+  uint16_t TaskIndex;
+  
+  /* Scroll the auto-start task table */  
+  for (TaskIndex = 0u; TaskIndex < AutoStartTaskNumber; TaskIndex++)
+  {
+    /* Activate the task */
+    Os_ActivateTask(AutoStartedTasks[TaskIndex]);
+  }  
+} 
+
+/************************************************************************   
 * Function:     OsInit
 * Input:        None
 * Output:       None
@@ -234,7 +253,10 @@ void OsInit (void)
 #if (SORT_OPTION == SORT_INIT_ONLY)
   /* Sort task table */
   SortTaskTable(Tasks);
-#endif        
+#endif      
+
+  /* Activate auto-started tasks */
+  ActivateAutoStartedTasks();
   
   /* Put OS in RUNNING State */
   SetOsState(OS_RUNNING);

@@ -70,28 +70,88 @@
 ************************************************************************/
 void Os_UpdateSchedTable (void)
 {
+  /* Sched tbl. index */
+  uint16_t SchTblIdx = 0u;  
   /* Sched evt. index */
   uint16_t SchEvtIdx = 0u;
-
-  /* Scroll the schedule table */  
-  for (SchEvtIdx = 0u; SchEvtIdx < SCHED_EVT_NUMBER; SchEvtIdx++)
+  
+  /* Scroll the schedule table list */  
+  for (SchTblIdx = 0u; SchTblIdx < SCH_TBL_NUMB; SchTblIdx++)
   {
-    /* Increment sched. counter for each sched. event */ 
-    SchedTable[SchEvtIdx].Counter++;
-    /* If a schedule event matches... */
-    if (SchedTable[SchEvtIdx].Counter >= (SchedTable[SchEvtIdx].TimeoutMs/SCHED_COUNTER_TH))
+    /* If the schedule table has been activated */
+    if (SchedTableList[SchTblIdx].ScheduleTableState == SCH_TBL_ACTIVE)
     {
-#ifdef TERMINAL_DEBUG_ENABLED
-      if (SchEvtIdx == 0)
+      /* Scroll the schedule table */  
+      for (SchEvtIdx = 0u; SchEvtIdx < SchedTableList[SchTblIdx].SchEvtNumber; SchEvtIdx++)
       {
-        printf("\r\nTimestamp - %d - ", Os_TickCounter);        
-        printf("New Scheduling cycle:\r\n");
-      }
+        /* Increment sched. counter for each sched. event */ 
+        SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].Counter++;
+        /* If a schedule event matches... */
+        if (SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].Counter >= (SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].TimeoutMs/SCHED_COUNTER_TH))
+        {
+#ifdef TERMINAL_DEBUG_ENABLED
+          if (SchEvtIdx == 0)
+          {
+            printf("\r\nTimestamp - %d - ", Os_TickCounter);        
+            printf("New Scheduling cycle:\r\n");
+          }
 #endif      
-      /* ... activate the corresponding task */
-      Os_ActivateTask(SchedTable[SchEvtIdx].TaskID);
-      /* Reset counter */
-      SchedTable[SchEvtIdx].Counter = 0;      
+          /* ... activate the corresponding task */
+          Os_ActivateTask(SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].TaskID);
+          /* Reset counter */
+          SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].Counter = 0;      
+        }      
+      }    
     }
+  }  
+}
+
+/************************************************************************
+* Function:     Os_StartSchedTable
+* Input:        None
+* Output:       uint16_t ID
+* Author:       F.Ficili	
+* Description:  Start a ScheduleTable by ID.   
+************************************************************************/
+void Os_StartSchedTable (uint16_t ID)
+{
+  /* Sched tbl. index */
+  uint16_t SchTblIdx = 0u;  
+  
+  /* Scroll the schedule table list */  
+  for (SchTblIdx = 0u; SchTblIdx < SCH_TBL_NUMB; SchTblIdx++)
+  {
+    /* find the schedule table by ID */
+    if (SchedTableList[SchTblIdx].SchedTblID == ID)
+    {
+      /* Activate Schedule table */
+      SchedTableList[SchTblIdx].ScheduleTableState = SCH_TBL_ACTIVE;
+      break;
+    }   
   }    
+}
+
+/************************************************************************
+* Function:     Os_StopSchedTable
+* Input:        None
+* Output:       uint16_t ID
+* Author:       F.Ficili	
+* Description:  Stop a ScheduleTable by ID.   
+************************************************************************/
+void Os_StopSchedTable (uint16_t ID)
+{
+  /* Sched tbl. index */
+  uint16_t SchTblIdx = 0u;  
+  
+  /* Scroll the schedule table list */  
+  for (SchTblIdx = 0u; SchTblIdx < SCH_TBL_NUMB; SchTblIdx++)
+  {
+    /* Find the schedule table by ID */
+    if (SchedTableList[SchTblIdx].SchedTblID == ID)
+    {
+      /* De-activate Schedule table */
+      SchedTableList[SchTblIdx].ScheduleTableState = SCH_TBL_IDLE;
+      break;
+    }   
+  }   
 }

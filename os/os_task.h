@@ -73,10 +73,15 @@ typedef struct
    uint16_t Priority;      /* The task execution priority */
 } TbcType;
 
+typedef uint16_t AutoStarTaskType;
 /************************************************************************
 * EXPORTED Variables
 ************************************************************************/
+/* Task Table */
 extern TbcType Tasks[];
+
+/* Auto-start task table */
+extern AutoStarTaskType AutoStartedTasks[];
 
 /************************************************************************
 * EXPORTED Functions
