@@ -57,7 +57,7 @@ The best way to get started to make some **CHAOS** is to look at the [examples](
 *Fig. 2 - Microchip Curiosity 2.0 Pic32 MZ EF evalution board*
 
 ## Example List
-Now you can unkork a beer yourself and start making some CHAOS.
+Now you can unkork a beer yourself and start making some **CHAOS**.
 
 [**In the end World begun out of CHAOS...**](https://github.com/ffich/CHAOS/tree/main/examples/10_HelloWorld): Very simple example that blinks two LEDs at different rate. It demonstrates how to create a basic CHAOS configuration with 2 tasks and a schedule table with 2 scheduling events.
 
