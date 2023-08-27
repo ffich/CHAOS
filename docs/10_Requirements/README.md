@@ -113,13 +113,13 @@ The following section lists all the **schedule table** requirements.
 
 **[REQ_STBL_040]** - The OS shall process the Task schedule table inside the Os_Tick() function.
 
-[REQ_STBL_050] - The OS shall provide the possibility to have more than a single schedule table.
+**[REQ_STBL_050]** - The OS shall provide the possibility to have more than a single schedule table.
 
-[REQ_STBL_060] - The OS shall provide the possibility to start and stop each schedule table.
+**[REQ_STBL_060]** - The OS shall provide the possibility to start and stop each schedule table.
 
-[REQ_STBL_061] - The OS shall provide an **Os_StartScheduleTable()** API. This API takes the Schedule table ID as input parameter.
+**[REQ_STBL_061]** - The OS shall provide an **Os_StartScheduleTable()** API. This API takes the Schedule table ID as input parameter.
 
-[REQ_STBL_062] - The OS shall provide an **Os_StopScheduleTable()** API. This API takes the Schedule table ID as input parameter.
+**[REQ_STBL_062]** - The OS shall provide an **Os_StopScheduleTable()** API. This API takes the Schedule table ID as input parameter.
 
 # IPC Requirements
 The following section lists all the **ipc** requirements.
