@@ -91,7 +91,7 @@ TASK(MyTask_1)
 
 **[REQ_TSK_080]** - The OS shall provide an Os_GetTaskPriority API. This API provide the currently running task Priority.
 
-[REQ_TSK_090] - The OS shall provide a means to allow tasks to be autostarted once the OS is launched.
+**[REQ_TSK_090]** - The OS shall provide a means to allow tasks to be autostarted once the OS is launched.
 
 **[REQ_TSK_100]** - The OS shall provide an Os_ActivateTaskAndYield() API. This API activate a specific task and consequently Yield. It's useful to launch an high priority task with a single API.
 
@@ -113,13 +113,13 @@ The following section lists all the **schedule table** requirements.
 
 **[REQ_STBL_040]** - The OS shall process the Task schedule table inside the Os_Tick() function.
 
-[REQ_STBL_050] - The OS shall provide the possibility to have more than a single schedule table.
+**[REQ_STBL_050]** - The OS shall provide the possibility to have more than a single schedule table.
 
-[REQ_STBL_060] - The OS shall provide the possibility to start and stop each schedule table.
+**[REQ_STBL_060]** - The OS shall provide the possibility to start and stop each schedule table.
 
-[REQ_STBL_061] - The OS shall provide an **Os_StartScheduleTable()** API. This API takes the Schedule table ID as input parameter.
+**[REQ_STBL_061]** - The OS shall provide an **Os_StartScheduleTable()** API. This API takes the Schedule table ID as input parameter.
 
-[REQ_STBL_062] - The OS shall provide an **Os_StopScheduleTable()** API. This API takes the Schedule table ID as input parameter.
+**[REQ_STBL_062]** - The OS shall provide an **Os_StopScheduleTable()** API. This API takes the Schedule table ID as input parameter.
 
 # IPC Requirements
 The following section lists all the **ipc** requirements.
@@ -153,6 +153,21 @@ The following section lists all the **virtual timing** requirements.
 The following section lists all the **alarms** requirements.
 
 [REQ_ALRM_010] - The OS shall provide a mechanims to implement alarms.
+
+[REQ_ALRM_020] - Each Alarm must have the following properties associated:
+- ID: unique identifier of an alarm within the system.
+- Timeout: the time after which the alarm fires (expires).
+- Action: the action to do once the alarm fires/expires.
+- Type: the alarm type (one-shot or continous).
+
+[REQ_ALRM_030] - Once a alarm fires, it can make one of the following 3 actions (configurable at runtime for each alarm):
+- Activate a Task (the Task ID must be provided).
+- Send an Event (the Event pointer must be provided).
+- Call an user callback (the user callback function pointer must be provided).
+
+[REQ_ALRM_040] - Alarms can be of two different types:
+- One-shot: once the alarm fires it't not automatically re-armed.
+- Continous: the alarm is re-armed after each fire.
 
 # Logging Requirements
 The following section lists all the **os logging** requirements.
