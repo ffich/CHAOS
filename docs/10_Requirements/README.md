@@ -154,6 +154,21 @@ The following section lists all the **alarms** requirements.
 
 [REQ_ALRM_010] - The OS shall provide a mechanims to implement alarms.
 
+[REQ_ALRM_020] - Each Alarm must have the following properties associated:
+- ID: unique identifier of an alarm within the system.
+- Timeout: the time after which the alarm fires (expires).
+- Action: the action to do once the alarm fires/expires.
+- Type: the alarm type (one-shot or continous).
+
+[REQ_ALRM_030] - Once a alarm fires, it can make one of the following 3 actions (configurable at runtime for each alarm):
+- Activate a Task (the Task ID must be provided).
+- Send an Event (the Event pointer must be provided).
+- Call an user callback (the user callback function pointer must be provided).
+
+[REQ_ALRM_040] - Alarms can be of two different types:
+- One-shot: once the alarm fires it't not automatically re-armed.
+- Continous: the alarm is re-armed after each fire.
+
 # Logging Requirements
 The following section lists all the **os logging** requirements.
 
