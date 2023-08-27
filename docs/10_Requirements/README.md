@@ -91,7 +91,7 @@ TASK(MyTask_1)
 
 **[REQ_TSK_080]** - The OS shall provide an Os_GetTaskPriority API. This API provide the currently running task Priority.
 
-[REQ_TSK_090] - The OS shall provide a means to allow tasks to be autostarted once the OS is launched.
+**[REQ_TSK_090]** - The OS shall provide a means to allow tasks to be autostarted once the OS is launched.
 
 **[REQ_TSK_100]** - The OS shall provide an Os_ActivateTaskAndYield() API. This API activate a specific task and consequently Yield. It's useful to launch an high priority task with a single API.
 
