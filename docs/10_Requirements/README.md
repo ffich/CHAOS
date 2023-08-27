@@ -42,12 +42,12 @@ The following section lists all the **kernel** requirements.
 
 **[REQ_KER_030]** - The OS shall provide the possibility to select between different sorting algorithms to determine the higher priority task to dispatch.
 
-[REQ_KER_040] - The OS shall provide and API that shut the OS down. Once the OS is shut down, it shall optionally call the shutdown hook and then terminate the OS esecution.
+**[REQ_KER_040]** - The OS shall provide and API that shut the OS down. Once the OS is shut down, it shall optionally call the shutdown hook and then terminate the OS esecution.
 The termination behaviour of the OS must be configurable and the following two possibilities must be implemented:
 - The OS calls the Os_Shutdown() function, that stops the execution in a while(1) loop, or...
 - The OS returns from Os_Start() and let the processor continue to execute in its own main() function.
 
-[REQ_KER_050] - The OS shall provide and API that returns OS version.
+**[REQ_KER_050]** - The OS shall provide and API that returns OS version.
 
 # Task Requirements
 The following section lists all the **task** requirements.
@@ -93,7 +93,7 @@ TASK(MyTask_1)
 
 [REQ_TSK_090] - The OS shall provide a means to allow tasks to be autostarted once the OS is launched.
 
-[REQ_TSK_100] - The OS shall provide an Os_ActivateTaskAndYield() API. This API activate a specific task and consequently Yield. It's useful to launch an high priority task with a single API.
+**[REQ_TSK_100]** - The OS shall provide an Os_ActivateTaskAndYield() API. This API activate a specific task and consequently Yield. It's useful to launch an high priority task with a single API.
 
 
 # Schedule Table Requirements
@@ -190,18 +190,18 @@ The following section lists all the **os error handling** requirements.
 # User Hooks
 The following section lists all the **user hooks** requirements.
 
-[REQ_HOOK_010] - All the hooks described in this section must be provided by the user, and the OS is only responsible for calling them in the right place. 
+*[REQ_HOOK_010]* - All the hooks described in this section must be provided by the user, and the OS is only responsible for calling them in the right place. 
 
-[REQ_HOOK_020] - The OS shall provide a **StartupHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not. 
+**[REQ_HOOK_020]** - The OS shall provide a **StartupHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not. 
 Signature of the API: void User_StartupHook (void);
 
-[REQ_HOOK_030] - The OS shall provide a **ShutdownHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not.
+**[REQ_HOOK_030]** - The OS shall provide a **ShutdownHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not.
 Signature of the API: void User_ShutdownHook (void);
 
-[REQ_HOOK_040] - The OS shall provide a **PreTaskHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not.
+**[REQ_HOOK_040]** - The OS shall provide a **PreTaskHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not.
 Signature of the API: void User_PreTaskHook (uint_16 TaskID); The passed parameter is the ID of the Task that is about to run.
 
-[REQ_HOOK_050] - The OS shall provide a **PostTaskHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not.
+**[REQ_HOOK_050]** - The OS shall provide a **PostTaskHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not.
 Signature of the API: void User_PostTaskHook (uint_16 TaskID); The passed parameter is the ID of the Task that just ran.
 
 [REQ_HOOK_060] - The OS shall provide a **ErrorHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not. 
