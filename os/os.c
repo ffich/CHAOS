@@ -28,7 +28,6 @@
 #include "os_sched_tbl.h"
 #include "os_sched_tbl_cfg.h"
 #include "os_timers.h"
-#include "os_cfg.h"
 #include "os_task.h"
 
 /************************************************************************
@@ -40,12 +39,18 @@
 /************************************************************************
 * Typedefs
 ************************************************************************/
-
+/* State Type for the OS */
+typedef enum
+{
+  OS_IDLE     = 0,
+  OS_RUNNING  = 1,
+} OsStateType;
 
 /************************************************************************
 * LOCAL Variables
 ************************************************************************/
-
+/* State Variable for the OS */
+static OsStateType OsState = OS_IDLE;
 
 /************************************************************************
 * GLOBAL Variables
@@ -58,6 +63,25 @@ volatile uint16_t ActiveTaskIndex = 0;
 volatile uint16_t YieldingTaskIndex = 0xFFFF;
 /* Flag to indicate a yield */
 volatile uint8_t SomebodyYielded = 0;
+
+/************************************************************************
+* IMPORTED USER Hooks
+************************************************************************/
+#if (ENABLE_STARTUP_HOOK == STD_TRUE)
+extern void User_StartupHook (void);
+#endif
+
+#if (ENABLE_SHUTDOWN_HOOK == STD_TRUE)
+extern void User_ShutdownHook (void);
+#endif
+
+#if (ENABLE_PRE_TASK_HOOK == STD_TRUE)
+extern void User_PreTaskHook (uint16_t TaskID);
+#endif
+
+#if (ENABLE_POST_TASK_HOOK == STD_TRUE)
+extern void User_PostTaskHook (uint16_t TaskID);
+#endif
 
 /************************************************************************
 * LOCAL Functions
@@ -167,10 +191,81 @@ void UpdateOsCounters (void)
 * Description:  Dispatch a task.
 ************************************************************************/
 void OsDispatch (void)
-{
+{  
+/* REQ_HOOK_010 REQ_HOOK_040 */  
+/* Optionally call the pre-task hook */  
+#if (ENABLE_PRE_TASK_HOOK == STD_TRUE)
+  User_PreTaskHook(Tasks[ActiveTaskIndex].TaskID);
+#endif  
+  
   /* Run the task */
   Tasks[ActiveTaskIndex].Task();
+  
+/* REQ_HOOK_010 REQ_HOOK_050 */ 
+/* Optionally call the post-task hook */   
+#if (ENABLE_POST_TASK_HOOK == STD_TRUE)
+  User_PostTaskHook(Tasks[ActiveTaskIndex].TaskID);
+#endif  
 }
+
+/************************************************************************   
+* Function:     SetOsState
+* Input:        OsStateType State
+* Output:       None
+* Author:       F.Ficili
+* Description:  This function set the OS State.
+************************************************************************/
+void SetOsState (OsStateType State)
+{ 
+  /* Set OS State */
+  OsState = State;
+}
+
+/************************************************************************   
+* Function:     OsInit
+* Input:        None
+* Output:       None
+* Author:       F.Ficili
+* Description:  This function makes all the initialization needed by the OS.
+************************************************************************/
+void OsInit (void)
+{  
+  /* Task table sorting, if requested at startup */  
+#if (SORT_OPTION == SORT_INIT_ONLY)
+  /* Sort task table */
+  SortTaskTable(Tasks);
+#endif        
+  
+  /* Put OS in RUNNING State */
+  SetOsState(OS_RUNNING);
+  
+/* REQ_HOOK_010 REQ_HOOK_020 */   
+/* Optionally call the Startup Hook */  
+#if (ENABLE_STARTUP_HOOK == STD_TRUE)
+  User_StartupHook();
+#endif  
+}
+
+/************************************************************************   
+* Function:     OsShutdown
+* Input:        OsStateType State
+* Output:       None
+* Author:       F.Ficili
+* Description:  Optionally call the ShutdownHook and then stop the OS.
+************************************************************************/
+void OsShutdown (void)
+{  
+/* REQ_HOOK_010 REQ_HOOK_030 */
+/* Optionally call the Shutdown Hook */  
+#if (ENABLE_SHUTDOWN_HOOK == STD_TRUE)
+  /* Call Shutdown Hook */
+  User_ShutdownHook();
+#endif
+ 
+#if (OS_SHUTDOWN_BEHAVIOR == INFINITE_LOOP)
+  while(FOREVER);
+#endif
+} 
 
 /************************************************************************
 * GLOBAL Functions
@@ -185,15 +280,21 @@ void OsDispatch (void)
 ************************************************************************/
 void Os_Start (void)
 {   
-  /* Init block. Here all the OS initialization take place */
+  /* OS Lifecycle: 
+   * - Init
+   * - Running
+   * - Shutdown 
+   */
   
-#if (SORT_OPTION == SORT_INIT_ONLY)
-  /* Sort task table */
-  SortTaskTable(Tasks);
-#endif  
-    
+  /* --------------------- INIT BLOCK --------------------- */
+  
+  /* Here all the OS initialization take place */
+  OsInit();
+  
+  /* -------------------- RUNNING BLOCK ------------------- */
+  
   /* Infinite loop */
-  do
+  while (OsState == OS_RUNNING)
   {
     /* If the scheduler timer has expired */
     if (MainSystemTimebaseFlag == CALL_TASK_PHASE)
@@ -201,14 +302,31 @@ void Os_Start (void)
 #if (SORT_OPTION == SORT_EACH_SCH_CYCLE)      
       /* Sort task table */
       SortTaskTable(Tasks);
-#endif        
-      
+#endif              
       /* Dispatch the activated tasks */
       Os_Schedule();
       /* Reset flag */
       MainSystemTimebaseFlag = WAIT_TRIGGER_PHASE;
     }
-  } while (FOREVER);
+  }
+  
+  /* ------------------- SHUTDOWN BLOCK ------------------ */  
+  
+  /* Call OsShutdown */
+  OsShutdown();  
+}
+
+/************************************************************************
+* Function:     Os_Shutdown
+* Input:        None
+* Output:       None
+* Author:       F.Ficili	
+* Description:  Shut the OS down. 
+************************************************************************/
+void Os_Shutdown (void)
+{
+  /* Put the os in IDLE state */
+  SetOsState(OS_IDLE);
 }
 
 /************************************************************************   
@@ -289,4 +407,19 @@ void Os_ScheduleOnYeld (uint16_t Priority)
       OsDispatch();      
     }
   }  
+}
+
+/************************************************************************
+* Function:     Os_GetVersion
+* Input:        None
+* Output:       uint8_t
+* Author:       F.Ficili	
+* Description:  Shut the OS down. 
+************************************************************************/
+void Os_GetVersion (uint8_t* Major, uint8_t* Minor, uint8_t* Fix)
+{
+  /* Return the OS version */
+  *Major = OS_VERSION_MAJOR;
+  *Minor = OS_VERSION_MINOR;
+  *Fix = OS_VERSION_FIX;
 }

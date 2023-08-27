@@ -161,6 +161,23 @@ void Os_Yield (void)
 #endif    
 }
 
+/* REQ_TSK_100 */
+/************************************************************************   
+* Function:     Os_ActivateTaskAndYield
+* Input:        uint16_t TaskID
+* Output:       None
+* Author:       F.Ficili
+* Description:  This API activate a specific task and consequently Yield. 
+*               It's useful to launch an high priority task with a single API.
+************************************************************************/
+void Os_ActivateTaskAndYield (uint16_t TaskID)
+{
+  /* Activate the new task */
+  Os_ActivateTask(TaskID); 
+  /* Yield */
+  Os_Yield();
+}
+
 /* REQ_TSK_070 */
 /************************************************************************   
 * Function:     Os_GetTaskID

@@ -29,11 +29,15 @@
 ************************************************************************/
 #include "common.h"
 #include "os_timers.h"
+#include "os_cfg.h"
 
 /************************************************************************
 * EXPORTED Defines
 ************************************************************************/
-
+/* OS Version */
+#define OS_VERSION_MAJOR                                          1
+#define OS_VERSION_MINOR                                          0
+#define OS_VERSION_FIX                                            0
 
 /************************************************************************
 * EXPORTED Macros
@@ -66,15 +70,26 @@ extern volatile uint16_t YieldingTaskIndex;
 extern volatile uint8_t SomebodyYielded;
 
 /************************************************************************
+* EXPORTED USER Hooks
+************************************************************************/
+#if (ENABLE_ERROR_HOOK == STD_TRUE)
+extern void User_ErrorHook (Os_ApiErrorType ErrorCode);
+#endif
+
+/************************************************************************
 * EXPORTED Functions
 ************************************************************************/
-/* System main scheduler */
+/* Start the OS */
 void Os_Start (void);
+/* Shut the OS down */
+void Os_Shutdown (void);
 /* Manage the various Scheduler interrupt services */
 void Os_Tick (void);
 /* Dispatch ready tasks*/
 void Os_Schedule (void);
 /* Dipatch after a task yield */
 void Os_ScheduleOnYeld (uint16_t Priority);
+/* Get the OS Major, Minor and Fix version */
+void Os_GetVersion (uint8_t* Major, uint8_t* Minor, uint8_t* Fix);
 
 #endif /* OS_H */

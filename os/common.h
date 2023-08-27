@@ -41,20 +41,21 @@
 #define STD_ON                                           1u
 #define STD_OFF                                          0u
 
-/* Standard STATUS ON and STATUS OFF constants */
-#define STS_ON                                           1u
-#define STS_OFF                                          0u
-
-/* Standard STS_OK and STS_NOT_OK constants */
-#define STS_OK                                           1u
-#define STS_NOT_OK                                       0u
-
 /* Standard TRUE and FALSE constants */
 #define STD_TRUE                                         1u
 #define STD_FALSE                                        0u
 
+/* Standard OK and NOT_OK constants */
 #define STD_OK                                           1u
 #define STD_NOT_OK                                       0u
+
+/* Status ON and OFF constants */
+#define STS_ON                                           1u
+#define STS_OFF                                          0u
+
+/* Status OK and NOT_OK constants */
+#define STS_OK                                           1u
+#define STS_NOT_OK                                       0u
 
 #endif	/* COMMON_H */
 

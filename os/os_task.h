@@ -89,6 +89,8 @@ void Os_TerminateTask (void);
 void Os_ChainTask (uint16_t TaskID);
 /* Yield to higher priority tasks */
 void Os_Yield (void);
+/* This API activate a specific task and consequently Yield */
+void Os_ActivateTaskAndYield (uint16_t TaskID);
 /* Get the ID of the running task */
 void Os_GetTaskID (uint16_t* TaskID);
 /* Get the Priority of the running task */

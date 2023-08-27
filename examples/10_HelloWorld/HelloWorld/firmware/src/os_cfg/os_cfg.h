@@ -36,6 +36,7 @@
 /* Uncomment this define to enable TERMINAL_DEBUG_ENABLED debug (only if printf redirect to UART) */
 //#define TERMINAL_DEBUG_ENABLED
 
+/* -- OS TICK OPTIONS ------------------------------------------------------- */
 /************************************************************************
 * Scheduler timing configuration
 * ------------------------------
@@ -49,6 +50,8 @@
 /* Desired scheduler period */
 #define DESIRED_SCHED_PERIOD_MS                          ((uint16_t)(1))
 
+
+/* -- SORTING ALGORITHM OPTIONS ---------------------------------------------- */
 /* Task table sorting algorithm */
 #define INSERTION_SORT                                   0
 #define MERGE_SORT                                       1
@@ -58,5 +61,28 @@
 #define SORT_INIT_ONLY                                   0
 #define SORT_EACH_SCH_CYCLE                              1
 #define SORT_OPTION                                      SORT_INIT_ONLY
+
+/* -- USER HOOKS OPTIONS ----------------------------------------------------- */
+/* Set STD_TRUE to enable and STD_FALSE to disable Hooks */
+
+/* Enable/disable StartupHook() */
+#define ENABLE_STARTUP_HOOK                              STD_FALSE
+/* Enable/disable ShutdownHook() */
+#define ENABLE_SHUTDOWN_HOOK                             STD_TRUE
+/* Enable/disable PreTaskHook() */
+#define ENABLE_PRE_TASK_HOOK                             STD_FALSE
+/* Enable/disable PostTaskHook() */
+#define ENABLE_POST_TASK_HOOK                            STD_FALSE
+/* Enable/disable ErrorHook() */
+#define ENABLE_ERROR_HOOK                                STD_FALSE
+
+/* -- SHUTDOWN BEHAVIOR OPTIONS ---------------------------------------------- */
+/* Define the OS shutdown behavior */
+
+#define INFINITE_LOOP                                    0
+#define CONTINUE_MAIN_EXECUTION                          1
+#define OS_SHUTDOWN_BEHAVIOR                             INFINITE_LOOP
+
+
 
 #endif /* OS_CFG_H */
