@@ -39,6 +39,53 @@
 #define OS_VERSION_MINOR                                          0
 #define OS_VERSION_FIX                                            0
 
+/* -- Return Values for Os_ApiReturnType and Os_ApiErrorType -- */
+
+/* -- General -- */
+/* REQ_ERR_020 */
+/* Positive return value */
+#define E_OS_OK                                                   1u
+
+/* -- Kernel -- */
+/* REQ_ERR_030 */
+/* The Os_Start() API has been called while the OS is already started */
+#define E_OS_WRONG_START_CONDITION                                11u
+
+/* The Os_Shutdown() API has been called while the OS is already started */
+#define E_OS_WRONG_STOP_CONDITION                                 12u
+
+/* A task ready to be dispatched is a null pointer */
+#define E_OS_WRONG_TASK_PTR                                       13u
+
+/* -- Task -- */
+/* REQ_ERR_040 */
+/* Wrong task ID is passed to the ActivateTask API */
+#define E_OS_WRONG_TASK_ID                                        31u
+
+/* A wrong task state transition is issued (e.g. trying to activate a RUNNING or YIELD Task) */
+#define E_OS_WRONG_STATE_TRANSITION                               32u
+
+/* -- Schedule Table -- */
+/* REQ_ERR_050 */
+/* A wrong Schedule Table ID is passed to the StartScheduleTable or StopScheduleTable API */
+#define E_OS_WRONG_SCH_TBL_ID                                     51u
+
+/* -- IPC -- */
+/* REQ_ERR_060 */
+
+
+/* -- VT -- */
+/* REQ_ERR_060 */
+/* A wrong virtual timer pointer is passed to a VT API */
+#define E_OS_WRONG_VT_PTR                                         81u
+
+/* A wrong timeout value is passed to Os_StartTimer API */
+#define E_OS_WRONG_TMOUT_VALUE                                    82u
+
+/* -- Alarms -- */
+/* REQ_ERR_070 */
+
+
 /************************************************************************
 * EXPORTED Macros
 ************************************************************************/
@@ -56,6 +103,12 @@ typedef enum MainSystemTimebaseEnum
    CALL_TASK_PHASE      = 0,
    WAIT_TRIGGER_PHASE   = 1,
 } MainSystemTimebaseType;
+
+/* OS API return type typedef */
+typedef uint8_t Os_ApiReturnType;
+
+/* Error Hook return type typedef */
+typedef uint8_t Os_ErrorType;
 
 /************************************************************************
 * EXPORTED Variables

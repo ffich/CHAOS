@@ -24,11 +24,9 @@
 /************************************************************************
 * Includes
 ************************************************************************/
-#include "os.h"
-#include "os_cfg.h"
 #include "os_task.h"
+#include "os_cfg.h"
 #include "os_task_cfg.h"
-#include "os_ipc.h"
 
 /************************************************************************
 * Defines
@@ -67,25 +65,67 @@
 * Author:       F.Ficili
 * Description:  Activate a task based on the ID.
 ************************************************************************/
-void Os_ActivateTask (uint16_t TaskID)
+Os_ApiReturnType Os_ActivateTask (uint16_t TaskID)
 {
-  /* Task idx */
+  /* Locals */
   uint16_t TaskIdx = 0u;
+  Os_ApiReturnType OpRes;
+  bool Found = false;
 
   /* Scroll the task table */  
   for (TaskIdx = 0u; TaskIdx < TaskNumber; TaskIdx++)
   {
     if (Tasks[TaskIdx].TaskID == TaskID)
     {
+      /* Set found flag and break */
+      Found = true;      
+      /* Transition check */
+      if (Tasks[TaskIdx].State == IDLE)
+      {        
+        /* Put the task in ready state */
+        Tasks[TaskIdx].State = READY;
+        /* OK */
+        OpRes = E_OS_OK; 
+        /* Optionally call ErrorHook */
+#if (ENABLE_ERROR_HOOK == STD_TRUE)
+        User_ErrorHook(OpRes);
+#endif        
+        
 #ifdef TERMINAL_DEBUG_ENABLED
-      printf("Timestamp - %d - ", Os_TickCounter);      
-      printf("Task %d Activated \r\n", Tasks[TaskIdx].TaskID);
-#endif                    
-      /* Put the task in ready state */
-      Tasks[TaskIdx].State = READY;
+        printf("Timestamp - %d - ", Os_TickCounter);      
+        printf("Task %d Activated \r\n", Tasks[TaskIdx].TaskID);
+#endif             
+      }
+      else
+      {
+        /* Wrong state transition, to be activated a task must be in IDLE state */
+        OpRes = E_OS_WRONG_STATE_TRANSITION;
+        /* Optionally call ErrorHook */
+#if (ENABLE_ERROR_HOOK == STD_TRUE)
+        User_ErrorHook(OpRes);
+#endif           
+#ifdef TERMINAL_DEBUG_ENABLED
+          printf("Timestamp - %d - ", Os_TickCounter);      
+          printf("Task %d Not Activated, wrong state transition \r\n", Tasks[TaskIdx].TaskID);
+#endif            
+      }
       break;
     }
   }
+  
+  /* If we didn't find the task */
+  if (Found == false)
+  {
+    /* Wrong ID */
+    OpRes = E_OS_WRONG_TASK_ID;
+#ifdef TERMINAL_DEBUG_ENABLED
+        printf("Timestamp - %d - ", Os_TickCounter);      
+        printf("Task %d Not Found \r\n", TaskID);
+#endif        
+  }
+  
+  /* Return operation result */
+  return OpRes;
 }
 
 /* REQ_TSK_040 */
@@ -97,14 +137,35 @@ void Os_ActivateTask (uint16_t TaskID)
 * Description:  Terminate the task. The function terminates the currently active
 *               task, so has to be called by the running task itself. 
 ************************************************************************/
-void Os_TerminateTask (void)
+Os_ApiReturnType Os_TerminateTask (void)
 {
-  /* Put the task in IDLE state */
-  Tasks[ActiveTaskIndex].State = IDLE;
-#ifdef TERMINAL_DEBUG_ENABLED
-      printf("Timestamp - %d - ", Os_TickCounter);  
-      printf("Task %d Terminated \r\n", Tasks[ActiveTaskIndex].TaskID);
-#endif     
+  /* Locals */
+  Os_ApiReturnType OpRes;  
+  
+  /* Check task state */
+  if (Tasks[ActiveTaskIndex].State == RUNNING)
+  {
+    /* Put the task in IDLE state */
+    Tasks[ActiveTaskIndex].State = IDLE;
+    /* OK */
+    OpRes = E_OS_OK;
+  #ifdef TERMINAL_DEBUG_ENABLED
+        printf("Timestamp - %d - ", Os_TickCounter);  
+        printf("Task %d Terminated \r\n", Tasks[ActiveTaskIndex].TaskID);
+  #endif    
+  }
+  else
+  {
+    /* Wrong state transition, can't terminate a non-running task */
+    OpRes = E_OS_WRONG_STATE_TRANSITION;
+    /* Optionally call ErrorHook */    
+#if (ENABLE_ERROR_HOOK == STD_TRUE)
+    User_ErrorHook(OpRes);
+#endif      
+  }
+    
+  /* Return operation result */
+  return OpRes;   
 }
 
 /* REQ_TSK_050 */
@@ -115,12 +176,28 @@ void Os_TerminateTask (void)
 * Author:       F.Ficili
 * Description:  Terminate the currently running task and activate a new one.
 ************************************************************************/
-void Os_ChainTask (uint16_t TaskID)
+Os_ApiReturnType Os_ChainTask (uint16_t TaskID)
 {
+  /* Locals */
+  Os_ApiReturnType OpRes;    
+  
   /* Terminate the currently running task */
-  Os_TerminateTask();
-  /* Activate the new task */
-  Os_ActivateTask(TaskID);
+  OpRes = Os_TerminateTask();
+  /* Check Operation result */  
+  if (OpRes == E_OS_OK)
+  {
+    /* Activate the new task */    
+    OpRes = Os_ActivateTask(TaskID);
+    /* Check Operation result */     
+    if (OpRes == E_OS_OK)
+    {
+      /* OK */
+      OpRes = E_OS_OK;
+    }
+  }
+
+  /* Return operation result */
+  return OpRes;     
 }
 
 /* REQ_TSK_060 */
@@ -133,32 +210,51 @@ void Os_ChainTask (uint16_t TaskID)
 *               back to the scheduler. In this way a running task can co-operatively 
 *               ask for pre-emption. This version allow only HiPrio task to preempt.
 ************************************************************************/
-void Os_Yield (void)
+Os_ApiReturnType Os_Yield (void)
 {
+  /* Locals */
+  Os_ApiReturnType OpRes;   
   uint16_t YeldingTaskIdx = 0;
   
   /* Save the currently active task index (it will be changed by the dispatcher) */
   YeldingTaskIdx = ActiveTaskIndex;  
   /* Save the currently yielding task index on a global variable */
   YieldingTaskIndex = YeldingTaskIdx;  
-  /* Put the task in YIELD state */
-  Tasks[YeldingTaskIdx].State = YIELD; 
-  /* Dispatch tasks */
-  Os_ScheduleOnYeld(Tasks[YeldingTaskIdx].Priority);
-  /* Put back the Active task index to the pre-yeld status */
-  ActiveTaskIndex = YeldingTaskIdx;
-  /* Put the task back in RUNNING state */
-  Tasks[ActiveTaskIndex].State = RUNNING;
-#ifdef TERMINAL_DEBUG_ENABLED
-#ifdef TERMINAL_DEBUG_VERBOSE
-  if (SomebodyYielded)
-  {      
-    SomebodyYielded--;
-    printf("Timestamp - %d - ", Os_TickCounter);  
-    printf("Task %d Resuming from Yield \r\n", Tasks[ActiveTaskIndex].TaskID);      
+  /* Check task state */
+  if (Tasks[YeldingTaskIdx].State == RUNNING)
+  {
+    /* Put the task in YIELD state */
+    Tasks[YeldingTaskIdx].State = YIELD; 
+    /* Dispatch tasks */
+    Os_ScheduleOnYeld(Tasks[YeldingTaskIdx].Priority);
+    /* Put back the Active task index to the pre-yeld status */
+    ActiveTaskIndex = YeldingTaskIdx;
+    /* Put the task back in RUNNING state */
+    Tasks[ActiveTaskIndex].State = RUNNING;  
+    #ifdef TERMINAL_DEBUG_ENABLED
+    #ifdef TERMINAL_DEBUG_VERBOSE
+      if (SomebodyYielded)
+      {      
+        SomebodyYielded--;
+        printf("Timestamp - %d - ", Os_TickCounter);  
+        printf("Task %d Resuming from Yield \r\n", Tasks[ActiveTaskIndex].TaskID);      
+      }
+    #endif 
+    #endif   
+    /* OK */
+    OpRes = E_OS_OK;    
   }
-#endif 
-#endif    
+  else
+  {
+    /* Wrong state transition, can't yield a non-running task */
+    OpRes = E_OS_WRONG_STATE_TRANSITION;  
+#if (ENABLE_ERROR_HOOK == STD_TRUE)
+    User_ErrorHook(OpRes);
+#endif        
+  }
+  
+  /* Return operation result */
+  return OpRes;   
 }
 
 /* REQ_TSK_100 */
@@ -170,12 +266,27 @@ void Os_Yield (void)
 * Description:  This API activate a specific task and consequently Yield. 
 *               It's useful to launch an high priority task with a single API.
 ************************************************************************/
-void Os_ActivateTaskAndYield (uint16_t TaskID)
+Os_ApiReturnType Os_ActivateTaskAndYield (uint16_t TaskID)
 {
+  /* Locals */
+  Os_ApiReturnType OpRes;  
+  
   /* Activate the new task */
-  Os_ActivateTask(TaskID); 
-  /* Yield */
-  Os_Yield();
+  OpRes = Os_ActivateTask(TaskID); 
+  /* Check Operation result */
+  if (OpRes == E_OS_OK)
+  {
+    /* Yield */
+    OpRes = Os_Yield();
+    /* Check Operation result */
+    if (OpRes == E_OS_OK)
+    {
+      OpRes = E_OS_OK;
+    }
+  }
+  
+  /* Return operation result */
+  return OpRes;  
 }
 
 /* REQ_TSK_070 */
@@ -186,10 +297,18 @@ void Os_ActivateTaskAndYield (uint16_t TaskID)
 * Author:       F.Ficili
 * Description:  Get the ID of the running task.
 ************************************************************************/
-void Os_GetTaskID (uint16_t* TaskID)
+Os_ApiReturnType Os_GetTaskID (uint16_t* TaskID)
 {
+  /* Locals */
+  Os_ApiReturnType OpRes;    
+  
   /* Return the current Task ID */
   *TaskID = Tasks[ActiveTaskIndex].TaskID;
+  /* OK */
+  OpRes = E_OS_OK;  
+  
+  /* Return operation result */
+  return OpRes;   
 }
 
 /* REQ_TSK_080 */
@@ -200,8 +319,16 @@ void Os_GetTaskID (uint16_t* TaskID)
 * Author:       F.Ficili
 * Description:  Get the Priority of the running task.
 ************************************************************************/
-void Os_GetTaskPriority (uint16_t* Priority)
+Os_ApiReturnType Os_GetTaskPriority (uint16_t* Priority)
 {
+  /* Locals */
+  Os_ApiReturnType OpRes;   
+  
   /* Return the current Task ID */
   *Priority = Tasks[ActiveTaskIndex].Priority;
+  /* OK */
+  OpRes = E_OS_OK;  
+  
+  /* Return operation result */
+  return OpRes;    
 }

@@ -28,6 +28,7 @@
 * Includes
 ************************************************************************/
 #include "common.h"
+#include "os.h"
 #include "os_task_cfg.h"
 
 /************************************************************************
@@ -87,18 +88,18 @@ extern AutoStarTaskType AutoStartedTasks[];
 * EXPORTED Functions
 ************************************************************************/
 /* Activate a task based on its ID */
-void Os_ActivateTask (uint16_t TaskID);
+Os_ApiReturnType Os_ActivateTask (uint16_t TaskID);
 /* Terminate the current running task */
-void Os_TerminateTask (void);
+Os_ApiReturnType Os_TerminateTask (void);
 /* Terminate the currently running task and activate a new one */
-void Os_ChainTask (uint16_t TaskID);
+Os_ApiReturnType Os_ChainTask (uint16_t TaskID);
 /* Yield to higher priority tasks */
-void Os_Yield (void);
+Os_ApiReturnType Os_Yield (void);
 /* This API activate a specific task and consequently Yield */
-void Os_ActivateTaskAndYield (uint16_t TaskID);
+Os_ApiReturnType Os_ActivateTaskAndYield (uint16_t TaskID);
 /* Get the ID of the running task */
-void Os_GetTaskID (uint16_t* TaskID);
+Os_ApiReturnType Os_GetTaskID (uint16_t* TaskID);
 /* Get the Priority of the running task */
-void Os_GetTaskPriority (uint16_t* Priority);
+Os_ApiReturnType Os_GetTaskPriority (uint16_t* Priority);
 
 #endif /* OS_TASK_H */
