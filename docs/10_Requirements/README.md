@@ -60,7 +60,7 @@ A task starts in **IDLE** state. In this state the Scheduler will not select the
 When the task is in **READY** state, at the next dispatching round it will be executed and moved into **RUNNING** state by the Scheduler if it is the higher priority task that is ready to run.
 A task is put back into **IDLE** state when it's terminated (TerminateTask or ChainTask APIs). A task can't be forcibly interrupted by the Scheduler, but it can voluntarily relase control to it by means of a specific Yield API. In this case the Scheudler taks over and execute any higher priority task that is ready to run (cooperative scheduling). During this period, the task is put into the **YIELD** state by the Scheduler. Once there are no higher priority task to be executed, the control is given back to the yielding task, that is put back into the **RUNNING** state.
 
-[REQ_TSK_011] - Before to make any task state transition the OS shall check that the transition is valid. If the transition is not correct, the OS should issue an appropriate error from the API that requested the specific transition.
+*[REQ_TSK_011]* - Before to make any task state transition the OS shall check that the transition is valid. If the transition is not correct, the OS should issue an appropriate error from the API that requested the specific transition.
 
 **[REQ_TSK_020]** - The OS shall provide a task table definition, that contains:
 
@@ -79,7 +79,7 @@ TASK(MyTask_1)
 
 **[REQ_TSK_030]** - The OS shall provide an Os_ActivateTask API. The task activation is made by means of the task ID.
 
-[REQ_TSK_031] - If the ID passed for activating a task is not a valid ID, the API should return an appropriate error code.
+**[REQ_TSK_031]** - If the ID passed for activating or chaining a task is not a valid ID, the API should return an appropriate error code.
 
 **[REQ_TSK_040]** - The OS shall provide an Os_TerminateTask API. This API doesn't have any function parameter.
 
@@ -179,28 +179,30 @@ The following section lists all the **os logging** requirements.
 # Error Handling Requirements
 The following section lists all the **os error handling** requirements.
 
-[REQ_ERR_010] - The OS should have a **Os_ApiReturnType** (**Os_ApiErrorType** for the **ErrorHook**) type for providing returns value for the various OS APIs.
+**[REQ_ERR_010]** - The OS should have a **Os_ApiReturnType** (**Os_ErrorType** for the **ErrorHook**) type for providing returns value for the various OS APIs.
 
-[REQ_ERR_020] - General return values (0-10):
+**[REQ_ERR_020]** - General return values (0-10):
 - E_OS_OK: the API returned without any error.
 
-[REQ_ERR_030] - **Kernel** return values (11-30):
+**[REQ_ERR_030]** - **Kernel** return values (11-30):
 - E_OS_WRONG_START_CONDITION: the Os_Start() API has been called while the OS is already started.
 - E_OS_WRONG_STOP_CONDITION: The Os_Shutdown() API has been called while the OS is stopped.
 - E_OS_WRONG_TASK_PTR: a task ready to be dispatched is a null pointer.
 
-[REQ_ERR_040] - **Task** related error codes (31-50):
+**[REQ_ERR_040]** - **Task** related error codes (31-50):
 - E_OS_WRONG_TASK_ID: this error should be issued when a wrong task ID is passed to the ActivateTask API.
 - E_OS_WRONG_STATE_TRANSITION: this error is issued when a wrong task state transition is issued (e.g. trying to activate a RUNNING or YIELD Task).
   
-[REQ_ERR_050] - **Schedule Table** related error codes (51-70):
+**[REQ_ERR_050]** - **Schedule Table** related error codes (51-70):
 - E_OS_WRONG_SCH_TBL_ID: this error should be issued when a wrong Scheule Table ID is passed to the StartScheduleTable or StopScheduleTable API.
 
 [REQ_ERR_060] - **IPC** related error codes (71-80):
 
-[REQ_ERR_070] - **Virtual Timing** related error codes (81-90):
+**[REQ_ERR_070]** - **Virtual Timing** related error codes (81-90):
 - E_OS_WRONG_VT_PTR: a wrong virtual timer pointer is passed to a VT API.
 - E_OS_WRONG_TMOUT_VALUE: a wrong timeout value is passed to Os_StartTimer API.
+
+[REQ_ERR_080] - **Alarms** related error codes (91-100):
 
 # User Hooks
 The following section lists all the **user hooks** requirements.
@@ -219,7 +221,7 @@ Signature of the API: void User_PreTaskHook (uint_16 TaskID); The passed paramet
 **[REQ_HOOK_050]** - The OS shall provide a **PostTaskHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not.
 Signature of the API: void User_PostTaskHook (uint_16 TaskID); The passed parameter is the ID of the Task that just ran.
 
-[REQ_HOOK_060] - The OS shall provide a **ErrorHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not. 
+*[REQ_HOOK_060]* - The OS shall provide a **ErrorHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not. 
 Signature of the API: void User_ErrorHook (Os_ApiErrorType ErrorCode); The parameter is the specific error code triggered by the OS.
 
 # Additional Requirements
