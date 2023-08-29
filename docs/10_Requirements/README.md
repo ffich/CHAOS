@@ -34,11 +34,11 @@ The following section lists all the **kernel** requirements.
 
 **[REQ_KER_010]** - The OS shall provide a deterministic **Higher Priority First** scheduling implementation.
 
-**[REQ_KER_011]** - For the above purpose the OS shall provide an Os_Start() API.
+**[REQ_KER_011]** - The OS shall provide an Os_Start() API.
 
-**[REQ_KER_020]** - The OK kernel shall provied a method for incrementing all the needed OS counters at a defined and configurable rate (os tick at e.g. 1ms).
+**[REQ_KER_020]** - The OK kernel shall provide a method for incrementing all the needed OS counters at a defined and configurable rate (os tick at e.g. 1ms).
 
-**[REQ_KER_021]** - For the above purpose the OS shall provide an Os_Tick() API.
+**[REQ_KER_021]** - The OS shall provide an Os_Tick() API.
 
 **[REQ_KER_030]** - The OS shall provide the possibility to select between different sorting algorithms to determine the higher priority task to dispatch.
 
@@ -187,14 +187,16 @@ The following section lists all the **os error handling** requirements.
 **[REQ_ERR_030]** - **Kernel** return values (11-30):
 - E_OS_WRONG_START_CONDITION: the Os_Start() API has been called while the OS is already started.
 - E_OS_WRONG_STOP_CONDITION: The Os_Shutdown() API has been called while the OS is stopped.
-- E_OS_WRONG_TASK_PTR: a task ready to be dispatched is a null pointer.
 
 **[REQ_ERR_040]** - **Task** related error codes (31-50):
 - E_OS_WRONG_TASK_ID: this error should be issued when a wrong task ID is passed to the ActivateTask API.
 - E_OS_WRONG_STATE_TRANSITION: this error is issued when a wrong task state transition is issued (e.g. trying to activate a RUNNING or YIELD Task).
+- E_OS_WRONG_TASK_PTR: a task ready to be dispatched is a null pointer.- 
   
 **[REQ_ERR_050]** - **Schedule Table** related error codes (51-70):
 - E_OS_WRONG_SCH_TBL_ID: this error should be issued when a wrong Scheule Table ID is passed to the StartScheduleTable or StopScheduleTable API.
+- E_OS_WRONG_SCH_TBL_STATE_TRANSITION: a wrong schedule table state transition is issued (e.g. trying to activate a RUNNING Schedule Table).
+- E_OS_WRONG_SCH_TBL_PTR: a referenced schedule table is a null pointer.
 
 [REQ_ERR_060] - **IPC** related error codes (71-80):
 
