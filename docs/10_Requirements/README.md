@@ -34,11 +34,11 @@ The following section lists all the **kernel** requirements.
 
 **[REQ_KER_010]** - The OS shall provide a deterministic **Higher Priority First** scheduling implementation.
 
-**[REQ_KER_011]** - For the above purpose the OS shall provide an Os_Start() API.
+**[REQ_KER_011]** - The OS shall provide an Os_Start() API.
 
-**[REQ_KER_020]** - The OK kernel shall provied a method for incrementing all the needed OS counters at a defined and configurable rate (os tick at e.g. 1ms).
+**[REQ_KER_020]** - The OK kernel shall provide a method for incrementing all the needed OS counters at a defined and configurable rate (os tick at e.g. 1ms).
 
-**[REQ_KER_021]** - For the above purpose the OS shall provide an Os_Tick() API.
+**[REQ_KER_021]** - The OS shall provide an Os_Tick() API.
 
 **[REQ_KER_030]** - The OS shall provide the possibility to select between different sorting algorithms to determine the higher priority task to dispatch.
 
