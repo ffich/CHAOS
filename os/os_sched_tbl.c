@@ -25,8 +25,6 @@
 * Includes
 ************************************************************************/
 #include "os_sched_tbl.h"
-#include "os.h"
-#include "common.h"
 #include "os_cfg.h"
 #include "os_sched_tbl_cfg.h"
 #include "os_task.h"
@@ -68,42 +66,60 @@
 * Author:       F.Ficili	
 * Description:  Update the system schedule table.    
 ************************************************************************/
-void Os_UpdateSchedTable (void)
+Os_ApiReturnType Os_UpdateSchedTable (void)
 {
-  /* Sched tbl. index */
+  /* Locals */
+  Os_ApiReturnType OpRes;    
   uint16_t SchTblIdx = 0u;  
-  /* Sched evt. index */
   uint16_t SchEvtIdx = 0u;
   
   /* Scroll the schedule table list */  
   for (SchTblIdx = 0u; SchTblIdx < SCH_TBL_NUMB; SchTblIdx++)
   {
-    /* If the schedule table has been activated */
+    /* If the schedule table has been activated (Configuration or at runtime) */
     if (SchedTableList[SchTblIdx].ScheduleTableState == SCH_TBL_ACTIVE)
     {
       /* Scroll the schedule table */  
       for (SchEvtIdx = 0u; SchEvtIdx < SchedTableList[SchTblIdx].SchEvtNumber; SchEvtIdx++)
       {
-        /* Increment sched. counter for each sched. event */ 
-        SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].Counter++;
-        /* If a schedule event matches... */
-        if (SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].Counter >= (SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].TimeoutMs/SCHED_COUNTER_TH))
+        /* Consistency check of pointed element */
+        if (SchedTableList[SchTblIdx].SchedTblElem != NULL)
         {
-#ifdef TERMINAL_DEBUG_ENABLED
-          if (SchEvtIdx == 0)
+          /* Increment sched. counter for each sched. event */ 
+          SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].Counter++;
+          /* If a schedule event matches... */
+          if (SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].Counter >= (SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].TimeoutMs/SCHED_COUNTER_TH))
           {
-            printf("\r\nTimestamp - %d - ", Os_TickCounter);        
-            printf("New Scheduling cycle:\r\n");
-          }
+#ifdef TERMINAL_DEBUG_ENABLED
+            if (SchEvtIdx == 0)
+            {
+              printf("\r\nTimestamp - %d - ", Os_TickCounter);        
+              printf("New Scheduling cycle:\r\n");
+            }
 #endif      
-          /* ... activate the corresponding task */
-          Os_ActivateTask(SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].TaskID);
-          /* Reset counter */
-          SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].Counter = 0;      
-        }      
+            /* ... activate the corresponding task */
+            Os_ActivateTask(SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].TaskID);
+            /* Reset counter */
+            SchedTableList[SchTblIdx].SchedTblElem[SchEvtIdx].Counter = 0;          
+          }    
+          /* OK */
+          OpRes = E_OS_OK;            
+        }
+        else
+        {
+          /* Bad pointer */
+          OpRes = E_OS_WRONG_SCH_TBL_PTR;
+          /* Optionally call ErrorHook */
+#if (ENABLE_ERROR_HOOK == STD_TRUE)
+          User_ErrorHook(OpRes);
+#endif          
+        }
       }    
     }
   }  
+  
+  /* Return operation result */
+  return OpRes;    
 }
 
 /************************************************************************
@@ -113,22 +129,63 @@ void Os_UpdateSchedTable (void)
 * Author:       F.Ficili	
 * Description:  Start a ScheduleTable by ID.   
 ************************************************************************/
-void Os_StartSchedTable (uint16_t ID)
+Os_ApiReturnType Os_StartSchedTable (uint16_t ID)
 {
-  /* Sched tbl. index */
+  /* Locals */
+  Os_ApiReturnType OpRes;  
   uint16_t SchTblIdx = 0u;  
+  bool Found = false;  
   
   /* Scroll the schedule table list */  
   for (SchTblIdx = 0u; SchTblIdx < SCH_TBL_NUMB; SchTblIdx++)
   {
-    /* find the schedule table by ID */
+    /* Find the schedule table by ID */
     if (SchedTableList[SchTblIdx].SchedTblID == ID)
     {
-      /* Activate Schedule table */
-      SchedTableList[SchTblIdx].ScheduleTableState = SCH_TBL_ACTIVE;
+      /* Set found flag and break */
+      Found = true;      
+      /* Transition check */
+      if (SchedTableList[SchTblIdx].ScheduleTableState == SCH_TBL_IDLE)
+      {                
+        /* Activate Schedule table */
+        SchedTableList[SchTblIdx].ScheduleTableState = SCH_TBL_ACTIVE;
+        /* OK */
+        OpRes = E_OS_OK;
+#ifdef TERMINAL_DEBUG_ENABLED
+        printf("Timestamp - %d - ", Os_TickCounter);      
+        printf("Schedule Table %d Started \r\n", ID);
+#endif          
+      }
+      else
+      {
+        /* Wrong state transition, to be activated a schedule table must be in IDLE state */
+        OpRes = E_OS_WRONG_SCH_TBL_STATE_TRANSITION;
+        /* Optionally call ErrorHook */
+#if (ENABLE_ERROR_HOOK == STD_TRUE)
+        User_ErrorHook(OpRes);
+#endif           
+#ifdef TERMINAL_DEBUG_ENABLED
+          printf("Timestamp - %d - ", Os_TickCounter);      
+          printf("Schedule Table %d Not Started, wrong state transition \r\n", ID);
+#endif       
+      }        
       break;
     }   
-  }    
+  } 
+  
+  /* If we didn't find the schedule table */
+  if (Found == false)
+  {
+    /* Wrong ID */
+    OpRes = E_OS_WRONG_SCH_TBL_ID;
+#ifdef TERMINAL_DEBUG_ENABLED
+        printf("Timestamp - %d - ", Os_TickCounter);      
+        printf("Schedule Table %d Not Found \r\n", ID);
+#endif        
+  }
+  
+  /* Return operation result */
+  return OpRes;  
 }
 
 /************************************************************************
@@ -138,10 +195,12 @@ void Os_StartSchedTable (uint16_t ID)
 * Author:       F.Ficili	
 * Description:  Stop a ScheduleTable by ID.   
 ************************************************************************/
-void Os_StopSchedTable (uint16_t ID)
+Os_ApiReturnType Os_StopSchedTable (uint16_t ID)
 {
-  /* Sched tbl. index */
+  /* Locals */
+  Os_ApiReturnType OpRes;  
   uint16_t SchTblIdx = 0u;  
+  bool Found = false;  
   
   /* Scroll the schedule table list */  
   for (SchTblIdx = 0u; SchTblIdx < SCH_TBL_NUMB; SchTblIdx++)
@@ -149,9 +208,48 @@ void Os_StopSchedTable (uint16_t ID)
     /* Find the schedule table by ID */
     if (SchedTableList[SchTblIdx].SchedTblID == ID)
     {
-      /* De-activate Schedule table */
-      SchedTableList[SchTblIdx].ScheduleTableState = SCH_TBL_IDLE;
+      /* Set found flag and break */
+      Found = true;      
+      /* Transition check */
+      if (SchedTableList[SchTblIdx].ScheduleTableState == SCH_TBL_ACTIVE)
+      {                
+        /* De-Activate Schedule table */
+        SchedTableList[SchTblIdx].ScheduleTableState = SCH_TBL_IDLE;
+        /* OK */
+        OpRes = E_OS_OK;
+#ifdef TERMINAL_DEBUG_ENABLED
+        printf("Timestamp - %d - ", Os_TickCounter);      
+        printf("Schedule Table %d Started \r\n", ID);
+#endif          
+      }
+      else
+      {
+        /* Wrong state transition, to be de-activated a schedule table must be in ACTIVE state */
+        OpRes = E_OS_WRONG_SCH_TBL_STATE_TRANSITION;
+        /* Optionally call ErrorHook */
+#if (ENABLE_ERROR_HOOK == STD_TRUE)
+        User_ErrorHook(OpRes);
+#endif           
+#ifdef TERMINAL_DEBUG_ENABLED
+          printf("Timestamp - %d - ", Os_TickCounter);      
+          printf("Schedule Table %d Not Started, wrong state transition \r\n", ID);
+#endif       
+      }        
       break;
     }   
-  }   
+  } 
+  
+  /* If we didn't find the schedule table */
+  if (Found == false)
+  {
+    /* Wrong ID */
+    OpRes = E_OS_WRONG_SCH_TBL_ID;
+#ifdef TERMINAL_DEBUG_ENABLED
+        printf("Timestamp - %d - ", Os_TickCounter);      
+        printf("Schedule Table %d Not Found \r\n", ID);
+#endif        
+  }
+  
+  /* Return operation result */
+  return OpRes;  
 }

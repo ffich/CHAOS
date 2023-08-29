@@ -68,8 +68,8 @@
 Os_ApiReturnType Os_ActivateTask (uint16_t TaskID)
 {
   /* Locals */
+  Os_ApiReturnType OpRes;  
   uint16_t TaskIdx = 0u;
-  Os_ApiReturnType OpRes;
   bool Found = false;
 
   /* Scroll the task table */  
@@ -85,12 +85,7 @@ Os_ApiReturnType Os_ActivateTask (uint16_t TaskID)
         /* Put the task in ready state */
         Tasks[TaskIdx].State = READY;
         /* OK */
-        OpRes = E_OS_OK; 
-        /* Optionally call ErrorHook */
-#if (ENABLE_ERROR_HOOK == STD_TRUE)
-        User_ErrorHook(OpRes);
-#endif        
-        
+        OpRes = E_OS_OK;            
 #ifdef TERMINAL_DEBUG_ENABLED
         printf("Timestamp - %d - ", Os_TickCounter);      
         printf("Task %d Activated \r\n", Tasks[TaskIdx].TaskID);
@@ -99,7 +94,7 @@ Os_ApiReturnType Os_ActivateTask (uint16_t TaskID)
       else
       {
         /* Wrong state transition, to be activated a task must be in IDLE state */
-        OpRes = E_OS_WRONG_STATE_TRANSITION;
+        OpRes = E_OS_WRONG_TASK_STATE_TRANSITION;
         /* Optionally call ErrorHook */
 #if (ENABLE_ERROR_HOOK == STD_TRUE)
         User_ErrorHook(OpRes);
@@ -118,6 +113,10 @@ Os_ApiReturnType Os_ActivateTask (uint16_t TaskID)
   {
     /* Wrong ID */
     OpRes = E_OS_WRONG_TASK_ID;
+    /* Optionally call ErrorHook */
+#if (ENABLE_ERROR_HOOK == STD_TRUE)
+    User_ErrorHook(OpRes);
+#endif        
 #ifdef TERMINAL_DEBUG_ENABLED
         printf("Timestamp - %d - ", Os_TickCounter);      
         printf("Task %d Not Found \r\n", TaskID);
@@ -157,7 +156,7 @@ Os_ApiReturnType Os_TerminateTask (void)
   else
   {
     /* Wrong state transition, can't terminate a non-running task */
-    OpRes = E_OS_WRONG_STATE_TRANSITION;
+    OpRes = E_OS_WRONG_TASK_STATE_TRANSITION;
     /* Optionally call ErrorHook */    
 #if (ENABLE_ERROR_HOOK == STD_TRUE)
     User_ErrorHook(OpRes);
@@ -247,7 +246,7 @@ Os_ApiReturnType Os_Yield (void)
   else
   {
     /* Wrong state transition, can't yield a non-running task */
-    OpRes = E_OS_WRONG_STATE_TRANSITION;  
+    OpRes = E_OS_WRONG_TASK_STATE_TRANSITION;  
 #if (ENABLE_ERROR_HOOK == STD_TRUE)
     User_ErrorHook(OpRes);
 #endif        

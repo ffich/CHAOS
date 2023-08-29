@@ -28,6 +28,7 @@
 * Includes
 ************************************************************************/
 #include "common.h"
+#include "os.h"
 #include "os_sched_tbl_cfg.h"
 
 /************************************************************************
@@ -102,10 +103,10 @@ extern SchedTblListType SchedTableList[SCH_TBL_NUMB];
 * EXPORTED Functions
 ************************************************************************/
 /* Service used by the OS to run the schedule tables */
-void Os_UpdateSchedTable (void);
+Os_ApiReturnType Os_UpdateSchedTable (void);
 /* Start a schedule table by ID */
-void Os_StartSchedTable (uint16_t ID);
+Os_ApiReturnType Os_StartSchedTable (uint16_t ID);
 /* Stop a schedule table by ID */
-void Os_StopSchedTable (uint16_t ID);
+Os_ApiReturnType Os_StopSchedTable (uint16_t ID);
 
 #endif /* OS_SCHED_TBL_H */

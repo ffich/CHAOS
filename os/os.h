@@ -63,12 +63,18 @@
 #define E_OS_WRONG_TASK_ID                                        31u
 
 /* A wrong task state transition is issued (e.g. trying to activate a RUNNING or YIELD Task) */
-#define E_OS_WRONG_STATE_TRANSITION                               32u
+#define E_OS_WRONG_TASK_STATE_TRANSITION                          32u
 
 /* -- Schedule Table -- */
 /* REQ_ERR_050 */
 /* A wrong Schedule Table ID is passed to the StartScheduleTable or StopScheduleTable API */
 #define E_OS_WRONG_SCH_TBL_ID                                     51u
+
+/* A wrong schedule table state transition is issued (e.g. trying to activate a RUNNING Schedule Table) */
+#define E_OS_WRONG_SCH_TBL_STATE_TRANSITION                       52u
+
+/* A referenced schedule table is a null pointer */
+#define E_OS_WRONG_SCH_TBL_PTR                                    53u
 
 /* -- IPC -- */
 /* REQ_ERR_060 */
