@@ -87,6 +87,7 @@ extern void User_PostTaskHook (uint16_t TaskID);
 * LOCAL Functions
 ************************************************************************/
 
+/* REQ_KER_010 REQ_KER_030 */
 /* 
  * The following function implements the sorting algorithm that decide which task run first.
  * This is a crucial part of the Scheduler and the OS, and thus the first chosen algorithm (Insertion Sort) may not be optimal.
@@ -103,7 +104,7 @@ extern void User_PostTaskHook (uint16_t TaskID);
 * Description:  Function used to sort the task table basing on priority.
 *               Algorithm version: Insertion Sort. 
 ************************************************************************/
-void SortTaskTable(TbcType Tbc[])
+Os_VoidReturnType SortTaskTable(TbcType Tbc[])
 {
   int16_t i,j;
   uint16_t Priority;
@@ -153,7 +154,7 @@ void SortTaskTable(TbcType Tbc[])
 * Author:       F.Ficili
 * Description:  Update the schedule flag.
 ************************************************************************/
-void UpdateSchFlag (void)
+Os_VoidReturnType UpdateSchFlag (void)
 {
   /* Tick event counter  */
   static volatile uint16_t TickCounter = 0;
@@ -170,6 +171,7 @@ void UpdateSchFlag (void)
   }   
 }
 
+/* REQ_KER_020 */
 /************************************************************************   
 * Function:     UpdateOsCounters
 * Input:        None
@@ -177,7 +179,7 @@ void UpdateSchFlag (void)
 * Author:       F.Ficili
 * Description:  Function used to increment Os-related counters.
 ************************************************************************/
-void UpdateOsCounters (void)
+Os_VoidReturnType UpdateOsCounters (void)
 {
   /* Increment Os tick counter, this counter wraps after 4.294.967.296 counts */
   Os_TickCounter++;
@@ -190,7 +192,7 @@ void UpdateOsCounters (void)
 * Author:       F.Ficili
 * Description:  Dispatch a task.
 ************************************************************************/
-void OsDispatch (void)
+Os_VoidReturnType OsDispatch (void)
 {  
 /* REQ_HOOK_010 REQ_HOOK_040 */  
 /* Optionally call the pre-task hook */  
@@ -198,8 +200,18 @@ void OsDispatch (void)
   User_PreTaskHook(Tasks[ActiveTaskIndex].TaskID);
 #endif  
   
-  /* Run the task */
-  Tasks[ActiveTaskIndex].Task();
+  /* Sanity check on Task Pointer */
+  if (Tasks[ActiveTaskIndex].Task != NULL)
+  {
+    /* Run the task */
+    Tasks[ActiveTaskIndex].Task();  
+  }
+  else
+  {
+#if (ENABLE_ERROR_HOOK == STD_TRUE)
+    User_ErrorHook(E_OS_WRONG_TASK_PTR);
+#endif     
+  }
   
 /* REQ_HOOK_010 REQ_HOOK_050 */ 
 /* Optionally call the post-task hook */   
@@ -215,7 +227,7 @@ void OsDispatch (void)
 * Author:       F.Ficili
 * Description:  This function set the OS State.
 ************************************************************************/
-void SetOsState (OsStateType State)
+Os_VoidReturnType SetOsState (OsStateType State)
 { 
   /* Set OS State */
   OsState = State;
@@ -228,7 +240,7 @@ void SetOsState (OsStateType State)
 * Author:       F.Ficili
 * Description:  Activate all auto-started tasks.
 ************************************************************************/
-void ActivateAutoStartedTasks (void)
+Os_VoidReturnType ActivateAutoStartedTasks (void)
 {
   uint16_t TaskIndex;
   
@@ -258,9 +270,19 @@ void OsInit (void)
   /* Activate auto-started tasks */
   ActivateAutoStartedTasks();
   
-  /* Put OS in RUNNING State */
-  SetOsState(OS_RUNNING);
-  
+  /* Check that the OS is in the right initial state */
+  if (OsState == OS_IDLE)
+  {
+    /* Put OS in RUNNING State */
+    SetOsState(OS_RUNNING);  
+  }
+  else
+  {
+#if (ENABLE_ERROR_HOOK == STD_TRUE)
+    User_ErrorHook(E_OS_WRONG_START_CONDITION);
+#endif       
+  }
+
 /* REQ_HOOK_010 REQ_HOOK_020 */   
 /* Optionally call the Startup Hook */  
 #if (ENABLE_STARTUP_HOOK == STD_TRUE)
@@ -268,6 +290,7 @@ void OsInit (void)
 #endif  
 }
 
+#if (OS_SHUTDOWN_BEHAVIOR == CONTINUE_MAIN_EXECUTION)
 /************************************************************************   
 * Function:     OsShutdown
 * Input:        OsStateType State
@@ -275,24 +298,52 @@ void OsInit (void)
 * Author:       F.Ficili
 * Description:  Optionally call the ShutdownHook and then stop the OS.
 ************************************************************************/
-void OsShutdown (void)
+Os_VoidReturnType OsShutdown (void)
 {  
-/* REQ_HOOK_010 REQ_HOOK_030 */
-/* Optionally call the Shutdown Hook */  
+  /* REQ_HOOK_010 REQ_HOOK_030 */
+  /* Optionally call the Shutdown Hook */  
 #if (ENABLE_SHUTDOWN_HOOK == STD_TRUE)
   /* Call Shutdown Hook */
   User_ShutdownHook();
 #endif
- 
-#if (OS_SHUTDOWN_BEHAVIOR == INFINITE_LOOP)
-  while(FOREVER);
-#endif
+  /* REQ_KER_040 */  
+  /* If the shutdown behavior is set to CONTINUE_MAIN_EXECUTION this function 
+   * call return to Os_Start that will complete the execution and return control to main().
+  */ 
 } 
+#endif
+
+/************************************************************************
+* Function:     OsSchedule
+* Input:        None
+* Output:       None
+* Author:       F.Ficili	
+* Description:  Dispatch ready tasks.  
+************************************************************************/
+Os_VoidReturnType OsSchedule (void)
+{
+  /* Scroll the task table */  
+  for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
+  {
+    if (Tasks[ActiveTaskIndex].State == READY)
+    {
+      /* Change task state */
+      Tasks[ActiveTaskIndex].State = RUNNING;
+#ifdef TERMINAL_DEBUG_ENABLED
+      printf("Timestamp - %d - ", Os_TickCounter);
+      printf("Task %d Running \r\n", Tasks[ActiveTaskIndex].TaskID);
+#endif      
+      /* Call dispatcher  */
+      OsDispatch();    
+    }
+  }    
+}
 
 /************************************************************************
 * GLOBAL Functions
 ************************************************************************/
 
+/* REQ_KER_011 */
 /************************************************************************
 * Function:     Os_Start
 * Input:        None
@@ -300,7 +351,7 @@ void OsShutdown (void)
 * Author:       F.Ficili	
 * Description:  Start the OS.       
 ************************************************************************/
-void Os_Start (void)
+Os_VoidReturnType Os_Start (void)
 {   
   /* OS Lifecycle: 
    * - Init
@@ -326,16 +377,18 @@ void Os_Start (void)
       SortTaskTable(Tasks);
 #endif              
       /* Dispatch the activated tasks */
-      Os_Schedule();
+      OsSchedule();
       /* Reset flag */
       MainSystemTimebaseFlag = WAIT_TRIGGER_PHASE;
     }
   }
   
+#if (OS_SHUTDOWN_BEHAVIOR == CONTINUE_MAIN_EXECUTION)  
   /* ------------------- SHUTDOWN BLOCK ------------------ */  
   
   /* Call OsShutdown */
   OsShutdown();  
+#endif  
 }
 
 /************************************************************************
@@ -345,12 +398,47 @@ void Os_Start (void)
 * Author:       F.Ficili	
 * Description:  Shut the OS down. 
 ************************************************************************/
-void Os_Shutdown (void)
+Os_ApiReturnType Os_Shutdown (void)
 {
-  /* Put the os in IDLE state */
-  SetOsState(OS_IDLE);
+  /* Locals */
+  Os_ApiReturnType OpRes; 
+  
+#if (OS_SHUTDOWN_BEHAVIOR == IMMEDIATE_INFINITE_LOOP)
+  /* REQ_HOOK_010 REQ_HOOK_030 */
+  /* Optionally call the Shutdown Hook */  
+#if (ENABLE_SHUTDOWN_HOOK == STD_TRUE)
+  /* Call Shutdown Hook */
+  User_ShutdownHook();
+#endif
+  /* REQ_KER_040 */  
+  /* If the shutdown behavior is set to INFINITE_LOOP we stop here, otherwise 
+  * we led the OS complete the current scheduling cycle and after that return control to main().
+  */ 
+#if (OS_SHUTDOWN_BEHAVIOR == INFINITE_LOOP)
+  while(FOREVER);
+#endif  
+#elif (OS_SHUTDOWN_BEHAVIOR == CONTINUE_MAIN_EXECUTION)  
+  
+  /* Check if the OS is in the right state */
+  if (OsState == OS_RUNNING)
+  {  
+    /* Put the os in IDLE state */
+    SetOsState(OS_IDLE);
+  }
+  else
+  {
+    /* Wrong OS stop condition */
+    OpRes = E_OS_WRONG_STOP_CONDITION;
+#if (ENABLE_ERROR_HOOK == STD_TRUE)
+    User_ErrorHook(OpRes);
+#endif       
+  }
+#endif  
+  /* Return operation result */
+  return OpRes; 
 }
 
+/* REQ_KER_021 */
 /************************************************************************   
 * Function:     Os_Tick
 * Input:        None
@@ -359,7 +447,7 @@ void Os_Shutdown (void)
 * Description:  Manage the OS base tick. This service must be called inside 
 *               the system tick timer interrupt.
 ************************************************************************/
-void Os_Tick (void)
+Os_VoidReturnType Os_Tick (void)
 {
   /* Update scheduler flag */
   UpdateSchFlag();
@@ -370,39 +458,13 @@ void Os_Tick (void)
 }
 
 /************************************************************************
-* Function:     Os_Schedule
-* Input:        None
-* Output:       None
-* Author:       F.Ficili	
-* Description:  Dispatch ready tasks.  
-************************************************************************/
-void Os_Schedule (void)
-{
-  /* Scroll the task table */  
-  for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
-  {
-    if (Tasks[ActiveTaskIndex].State == READY)
-    {
-      /* Change task state */
-      Tasks[ActiveTaskIndex].State = RUNNING;
-#ifdef TERMINAL_DEBUG_ENABLED
-      printf("Timestamp - %d - ", Os_TickCounter);
-      printf("Task %d Running \r\n", Tasks[ActiveTaskIndex].TaskID);
-#endif      
-      /* Call dispatcher  */
-      OsDispatch();    
-    }
-  }    
-}
-
-/************************************************************************
 * Function:     Os_ScheduleOnYeld
 * Input:        uint16_t Priority
 * Output:       None
 * Author:       F.Ficili	
 * Description:  Dispatch after a task yield.  
 ************************************************************************/
-void Os_ScheduleOnYeld (uint16_t Priority)
+Os_VoidReturnType Os_ScheduleOnYeld (uint16_t Priority)
 {  
   /* Scroll the task table */  
   for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
@@ -431,17 +493,29 @@ void Os_ScheduleOnYeld (uint16_t Priority)
   }  
 }
 
+/* REQ_KER_050 */
 /************************************************************************
 * Function:     Os_GetVersion
 * Input:        None
-* Output:       uint8_t
+* Output:       uint8_t* Major --> OS Version Major 
+*               uint8_t* Minor --> OS Version Minor 
+*               uint8_t* Fix --> OS Version Fix   
 * Author:       F.Ficili	
-* Description:  Shut the OS down. 
+* Description:  Return the OS Version Major, Minor and Fix.
 ************************************************************************/
-void Os_GetVersion (uint8_t* Major, uint8_t* Minor, uint8_t* Fix)
+Os_ApiReturnType Os_GetVersion (uint8_t* Major, uint8_t* Minor, uint8_t* Fix)
 {
+  /* Locals */
+  Os_ApiReturnType OpRes;    
+  
   /* Return the OS version */
   *Major = OS_VERSION_MAJOR;
   *Minor = OS_VERSION_MINOR;
   *Fix = OS_VERSION_FIX;
+  
+  /* OK */
+  OpRes = E_OS_OK;    
+  
+  /* Return operation result */
+  return OpRes;  
 }

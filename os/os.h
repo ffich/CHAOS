@@ -54,9 +54,6 @@
 /* The Os_Shutdown() API has been called while the OS is already started */
 #define E_OS_WRONG_STOP_CONDITION                                 12u
 
-/* A task ready to be dispatched is a null pointer */
-#define E_OS_WRONG_TASK_PTR                                       13u
-
 /* -- Task -- */
 /* REQ_ERR_040 */
 /* Wrong task ID is passed to the ActivateTask API */
@@ -64,6 +61,9 @@
 
 /* A wrong task state transition is issued (e.g. trying to activate a RUNNING or YIELD Task) */
 #define E_OS_WRONG_TASK_STATE_TRANSITION                          32u
+
+/* A task ready to be dispatched is a null pointer */
+#define E_OS_WRONG_TASK_PTR                                       33u
 
 /* -- Schedule Table -- */
 /* REQ_ERR_050 */
@@ -116,6 +116,9 @@ typedef uint8_t Os_ApiReturnType;
 /* Error Hook return type typedef */
 typedef uint8_t Os_ErrorType;
 
+/* Os Void Return Typedef */
+typedef void Os_VoidReturnType;
+
 /************************************************************************
 * EXPORTED Variables
 ************************************************************************/
@@ -139,16 +142,16 @@ extern void User_ErrorHook (Os_ApiErrorType ErrorCode);
 * EXPORTED Functions
 ************************************************************************/
 /* Start the OS */
-void Os_Start (void);
+Os_VoidReturnType Os_Start (void);
 /* Shut the OS down */
-void Os_Shutdown (void);
+Os_ApiReturnType Os_Shutdown (void);
 /* Manage the various Scheduler interrupt services */
-void Os_Tick (void);
-/* Dispatch ready tasks*/
-void Os_Schedule (void);
-/* Dipatch after a task yield */
-void Os_ScheduleOnYeld (uint16_t Priority);
+Os_VoidReturnType Os_Tick (void);
+/* Dispatch ready tasks */
+Os_VoidReturnType Os_Schedule (void);
+/* Dispatch after a task yield */
+Os_VoidReturnType Os_ScheduleOnYeld (uint16_t Priority);
 /* Get the OS Major, Minor and Fix version */
-void Os_GetVersion (uint8_t* Major, uint8_t* Minor, uint8_t* Fix);
+Os_ApiReturnType Os_GetVersion (uint8_t* Major, uint8_t* Minor, uint8_t* Fix);
 
 #endif /* OS_H */
