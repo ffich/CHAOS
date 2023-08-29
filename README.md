@@ -9,6 +9,10 @@ The idea behind **CHAOS** is to have a **very simple RTOS** that can be used wit
 - Schedule tables for periodic Task scheduling
 - Inter-Task communication
 - Virtual Timing
+- Alarms
+
+![image](https://github.com/ffich/CHAOS/assets/59200746/d1283f5f-15ec-4d75-b3e5-5123b68c807e)
+
 
 ## Main Characteristics
 The main characteristics of **CHAOS** are described in the below sections:
