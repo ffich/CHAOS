@@ -150,7 +150,7 @@ Os_VoidReturnType Os_Tick (void);
 /* Dispatch ready tasks */
 Os_VoidReturnType Os_Schedule (void);
 /* Dispatch after a task yield */
-Os_VoidReturnType Os_ScheduleOnYeld (uint16_t Priority);
+Os_VoidReturnType Os_Schedule (uint16_t Priority);
 /* Get the OS Major, Minor and Fix version */
 Os_ApiReturnType Os_GetVersion (uint8_t* Major, uint8_t* Minor, uint8_t* Fix);
 

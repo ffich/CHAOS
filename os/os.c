@@ -203,6 +203,8 @@ Os_VoidReturnType OsDispatch (void)
   /* Sanity check on Task Pointer */
   if (Tasks[ActiveTaskIndex].Task != NULL)
   {
+    /* Change task state */
+    Tasks[ActiveTaskIndex].State = RUNNING;    
     /* Run the task */
     Tasks[ActiveTaskIndex].Task();  
   }
@@ -327,12 +329,6 @@ Os_VoidReturnType OsSchedule (void)
   {
     if (Tasks[ActiveTaskIndex].State == READY)
     {
-      /* Change task state */
-      Tasks[ActiveTaskIndex].State = RUNNING;
-#ifdef TERMINAL_DEBUG_ENABLED
-      printf("Timestamp - %d - ", Os_TickCounter);
-      printf("Task %d Running \r\n", Tasks[ActiveTaskIndex].TaskID);
-#endif      
       /* Call dispatcher  */
       OsDispatch();    
     }
@@ -389,6 +385,28 @@ Os_VoidReturnType Os_Start (void)
   /* Call OsShutdown */
   OsShutdown();  
 #endif  
+}
+
+/************************************************************************
+* Function:     Os_Schedule
+* Input:        uint16_t Priority
+* Output:       None
+* Author:       F.Ficili	
+* Description:  Schedule when a task yield. This schedule happens in the calling
+*               context of the yielding task.  
+************************************************************************/
+Os_VoidReturnType Os_Schedule (uint16_t Priority)
+{  
+  /* Scroll the task table */  
+  for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
+  {
+    /* If there is a task with higher priority ready to run, we can run it */
+    if ((Tasks[ActiveTaskIndex].State == READY) && (Tasks[ActiveTaskIndex].Priority >= Priority))
+    {         
+      /* Call dispatcher  */
+      OsDispatch();      
+    }
+  }  
 }
 
 /************************************************************************
@@ -455,42 +473,6 @@ Os_VoidReturnType Os_Tick (void)
   UpdateOsCounters();
   /* Update schedule table */
   Os_UpdateSchedTable();  
-}
-
-/************************************************************************
-* Function:     Os_ScheduleOnYeld
-* Input:        uint16_t Priority
-* Output:       None
-* Author:       F.Ficili	
-* Description:  Dispatch after a task yield.  
-************************************************************************/
-Os_VoidReturnType Os_ScheduleOnYeld (uint16_t Priority)
-{  
-  /* Scroll the task table */  
-  for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
-  {
-    if ((Tasks[ActiveTaskIndex].State == READY) && (Tasks[ActiveTaskIndex].Priority >= Priority))
-    {
-#ifdef TERMINAL_DEBUG_ENABLED
-#ifdef TERMINAL_DEBUG_VERBOSE      
-      if (!SomebodyYielded)
-      {
-        SomebodyYielded++;
-        printf("Timestamp - %d - ", Os_TickCounter);  
-        printf("Task %d Yelding \r\n", Tasks[YieldingTaskIndex].TaskID);        
-      }
-#endif 
-#endif        
-      /* Change task state */
-      Tasks[ActiveTaskIndex].State = RUNNING;
-#ifdef TERMINAL_DEBUG_ENABLED
-      printf("Timestamp - %d - ", Os_TickCounter);      
-      printf("Task %d Running \r\n", Tasks[ActiveTaskIndex].TaskID);
-#endif          
-      /* Call dispatcher  */
-      OsDispatch();      
-    }
-  }  
 }
 
 /* REQ_KER_050 */
