@@ -365,8 +365,10 @@ Os_VoidReturnType Os_Start (void)
   /* Infinite loop */
   while (OsState == OS_RUNNING)
   {
+#if (SCHEDULE_AT_TICK == STD_TRUE)    
     /* If the scheduler timer has expired */
     if (MainSystemTimebaseFlag == CALL_TASK_PHASE)
+#endif      
     {   
 #if (SORT_OPTION == SORT_EACH_SCH_CYCLE)      
       /* Sort task table */

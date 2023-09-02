@@ -147,8 +147,6 @@ Os_VoidReturnType Os_Start (void);
 Os_ApiReturnType Os_Shutdown (void);
 /* Manage the various Scheduler interrupt services */
 Os_VoidReturnType Os_Tick (void);
-/* Dispatch ready tasks */
-Os_VoidReturnType Os_Schedule (void);
 /* Dispatch after a task yield */
 Os_VoidReturnType Os_Schedule (uint16_t Priority);
 /* Get the OS Major, Minor and Fix version */
