@@ -60,7 +60,7 @@ typedef struct EventStructure
 } EventType;
 
 /* Evt queue control structure */
-typedef struct _QueueCtrlStrType
+typedef struct 
 {
    uint16_t QueueSize;
    uint8_t* QueuePtr; 
@@ -94,5 +94,7 @@ uint16_t Os_GetQueueItemCount (QueueCtrlStrType* QueueCfg);
 uint8_t Os_QueueInsert (QueueCtrlStrType* QueueCfg, void* DataElemIn);
 /* Extract event */
 uint8_t Os_QueueExtract (QueueCtrlStrType* QueueCfg, void* DataElemOut);
+/* Extract an element from the FIFO queue and shift all the elements */
+uint8_t Os_QueueExtractAndShift (QueueCtrlStrType* QueueCfg, void* DataElemOut);
 
 #endif /* OS_IPC_H */

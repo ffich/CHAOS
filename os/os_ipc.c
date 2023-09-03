@@ -270,3 +270,43 @@ uint8_t Os_QueueExtract (QueueCtrlStrType* QueueCfg, void* DataElemOut)
 
    return Ret;
 }
+
+/************************************************************************
+* Function:     Os_QueueExtractAndShift
+* Input:        QueueCtrlStrType* QueueCfg
+*               uint8_t* DataElemOut 
+* Output:       EventType
+* Author:       F.Ficili	 
+* Description:  Extract an element from the FIFO queue and shift all the elements.
+************************************************************************/
+uint8_t Os_QueueExtractAndShift (QueueCtrlStrType* QueueCfg, void* DataElemOut)
+{
+   uint8_t Ret;
+   uint16_t ElmIdx;
+   uint16_t QueueIdx = 0;
+ 
+   if (QueueCfg->QueueItemCount > 0)
+   {
+      /* Extract element */
+      memcpy(DataElemOut, &(QueueCfg->QueuePtr[QueueCfg->QueueFrontIdx]), QueueCfg->ElemSize);
+      /* Shift all remaining elements */       
+      for (ElmIdx = 0; ElmIdx < QueueCfg->QueueItemCount; ElmIdx++)
+      {
+        memcpy(&(QueueCfg->QueuePtr[QueueIdx]), &(QueueCfg->QueuePtr[(QueueIdx + QueueCfg->ElemSize)]), QueueCfg->ElemSize);
+        QueueIdx += QueueCfg->ElemSize; 
+      }
+      /* Decrement count */
+      QueueCfg->QueueItemCount--;      
+      /* Decrement queue front index */
+      QueueCfg->QueueRearIdx -= QueueCfg->ElemSize;            
+      /* Return event present */
+      Ret = QUEUE_EVT_PRESENT;  
+   }
+   else
+   {
+      /* Return queue empty */
+      Ret = QUEUE_EMPTY;
+   }
+
+   return Ret;
+}

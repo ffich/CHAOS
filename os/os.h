@@ -30,6 +30,7 @@
 #include "common.h"
 #include "os_timers.h"
 #include "os_cfg.h"
+#include "os_ipc.h"
 
 /************************************************************************
 * EXPORTED Defines
@@ -91,7 +92,6 @@
 /* -- Alarms -- */
 /* REQ_ERR_070 */
 
-
 /************************************************************************
 * EXPORTED Macros
 ************************************************************************/
@@ -109,6 +109,13 @@ typedef enum MainSystemTimebaseEnum
    CALL_TASK_PHASE      = 0,
    WAIT_TRIGGER_PHASE   = 1,
 } MainSystemTimebaseType;
+
+/* Task ready queue typedef */
+typedef struct
+{
+   uint16_t TaskID;        /* The task ID */   
+   uint16_t Priority;      /* The task execution priority */   
+} TaskReadyQueueType;
 
 /* OS API return type typedef */
 typedef uint8_t Os_ApiReturnType;
@@ -130,6 +137,10 @@ extern volatile uint16_t ActiveTaskIndex;
 extern volatile uint16_t YieldingTaskIndex;
 /* Flag to indicate a yield */
 extern volatile uint8_t SomebodyYielded;
+/* Tasks ready queue */
+extern TaskReadyQueueType TaskReadyQueue[MAX_READY_TASKS];
+/* Task ready queue control structure */
+extern QueueCtrlStrType TaskReadyQueueCtrl;
 
 /************************************************************************
 * EXPORTED USER Hooks
@@ -149,6 +160,8 @@ Os_ApiReturnType Os_Shutdown (void);
 Os_VoidReturnType Os_Tick (void);
 /* Dispatch after a task yield */
 Os_VoidReturnType Os_Schedule (uint16_t Priority);
+/* Sort the task ready queue */
+Os_VoidReturnType Os_SortReadyQueue (TaskReadyQueueType Trq[]);
 /* Get the OS Major, Minor and Fix version */
 Os_ApiReturnType Os_GetVersion (uint8_t* Major, uint8_t* Minor, uint8_t* Fix);
 

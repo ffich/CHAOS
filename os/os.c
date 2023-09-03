@@ -27,7 +27,6 @@
 #include "os.h"
 #include "os_sched_tbl.h"
 #include "os_sched_tbl_cfg.h"
-#include "os_timers.h"
 #include "os_task.h"
 
 /************************************************************************
@@ -35,6 +34,8 @@
 ************************************************************************/
 /* Forever define for main while loop */
 #define FOREVER                                                     1u
+/* First element of an array/queue */
+#define FIRST_ELEM                                                  0u
 
 /************************************************************************
 * Typedefs
@@ -63,6 +64,10 @@ volatile uint16_t ActiveTaskIndex = 0;
 volatile uint16_t YieldingTaskIndex = 0xFFFF;
 /* Flag to indicate a yield */
 volatile uint8_t SomebodyYielded = 0;
+/* Tasks ready queue */
+TaskReadyQueueType TaskReadyQueue[MAX_READY_TASKS];
+/* Task ready queue control structure */
+QueueCtrlStrType TaskReadyQueueCtrl;
 
 /************************************************************************
 * IMPORTED USER Hooks
@@ -86,66 +91,6 @@ extern void User_PostTaskHook (uint16_t TaskID);
 /************************************************************************
 * LOCAL Functions
 ************************************************************************/
-
-/* REQ_KER_010 REQ_KER_030 */
-/* 
- * The following function implements the sorting algorithm that decide which task run first.
- * This is a crucial part of the Scheduler and the OS, and thus the first chosen algorithm (Insertion Sort) may not be optimal.
- * Then the idea is to postpone the problematic of choose the optimal algorithm and provide option  for changing them at compile time.
- */
-
-#if (SORT_ALGORITHM == INSERTION_SORT)
-#warning "The chosen sorting algorithm is INSERTION_SORT"
-/************************************************************************   
-* Function:     SortTaskTable
-* Input:        TbcType Tbc[]
-* Output:       None
-* Author:       F.Ficili
-* Description:  Function used to sort the task table basing on priority.
-*               Algorithm version: Insertion Sort. 
-************************************************************************/
-Os_VoidReturnType SortTaskTable(TbcType Tbc[])
-{
-  int16_t i,j;
-  uint16_t Priority;
-  TbcType TbcBackup;
-  
-  /* Start sorting algorithm */
-  for (i = 1; i < TaskNumber; i++) 
-  {
-    Priority = Tbc[i].Priority;
-    j = i - 1;
-
-    /* Move elements of Tbc[0..i-1], that are greater than Priority, to one position ahead
-      of their current position */
-    while (j >= 0 && Tbc[j].Priority < Priority) 
-    {
-      TbcBackup = Tbc[j + 1];
-      Tbc[j + 1] = Tbc[j];
-      /* Restore Task backup */
-      Tbc[j] = TbcBackup;         
-      j = j - 1;
-    }
-
-    /* Update priority */
-    Tbc[j + 1].Priority = Priority;
-  }
-}
-#elif (SORT_ALGORITHM == MERGE_SORT)
-#warning "The chosen sorting algorithm is MERGE_SORT"
-/************************************************************************   
-* Function:     SortTaskTable
-* Input:        TbcType Tbc[]
-* Output:       None
-* Author:       F.Ficili
-* Description:  Function used to sort the task table basing on priority.
-*               Algorithm version: Merge Sort. 
-************************************************************************/
-void SortTaskTable(TbcType Tbc[])
-{
-  /* To be implemented */
-}
-#endif
 
 /************************************************************************   
 * Function:     UpdateSchFlag
@@ -187,26 +132,26 @@ Os_VoidReturnType UpdateOsCounters (void)
 
 /************************************************************************   
 * Function:     OsDispatch
-* Input:        None
+* Input:        uint16_t TaskIndex
 * Output:       None
 * Author:       F.Ficili
 * Description:  Dispatch a task.
 ************************************************************************/
-Os_VoidReturnType OsDispatch (void)
+Os_VoidReturnType OsDispatch (uint16_t TaskIndex)
 {  
 /* REQ_HOOK_010 REQ_HOOK_040 */  
 /* Optionally call the pre-task hook */  
 #if (ENABLE_PRE_TASK_HOOK == STD_TRUE)
-  User_PreTaskHook(Tasks[ActiveTaskIndex].TaskID);
+  User_PreTaskHook(Tasks[TaskIndex].TaskID);
 #endif  
   
   /* Sanity check on Task Pointer */
-  if (Tasks[ActiveTaskIndex].Task != NULL)
+  if (Tasks[TaskIndex].Task != NULL)
   {
     /* Change task state */
-    Tasks[ActiveTaskIndex].State = RUNNING;    
+    Tasks[TaskIndex].State = RUNNING;    
     /* Run the task */
-    Tasks[ActiveTaskIndex].Task();  
+    Tasks[TaskIndex].Task();  
   }
   else
   {
@@ -218,7 +163,7 @@ Os_VoidReturnType OsDispatch (void)
 /* REQ_HOOK_010 REQ_HOOK_050 */ 
 /* Optionally call the post-task hook */   
 #if (ENABLE_POST_TASK_HOOK == STD_TRUE)
-  User_PostTaskHook(Tasks[ActiveTaskIndex].TaskID);
+  User_PostTaskHook(Tasks[TaskIndex].TaskID);
 #endif  
 }
 
@@ -263,12 +208,9 @@ Os_VoidReturnType ActivateAutoStartedTasks (void)
 ************************************************************************/
 void OsInit (void)
 {  
-  /* Task table sorting, if requested at startup */  
-#if (SORT_OPTION == SORT_INIT_ONLY)
-  /* Sort task table */
-  SortTaskTable(Tasks);
-#endif      
-
+  /* Init task ready queue */
+  Os_InitEvtQueue(&TaskReadyQueueCtrl, MAX_READY_TASKS, sizeof(TaskReadyQueueType), TaskReadyQueue);
+    
   /* Activate auto-started tasks */
   ActivateAutoStartedTasks();
   
@@ -324,15 +266,26 @@ Os_VoidReturnType OsShutdown (void)
 ************************************************************************/
 Os_VoidReturnType OsSchedule (void)
 {
-  /* Scroll the task table */  
-  for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
+  TaskReadyQueueType Task;     
+  
+  /* If the ready queue is not empty */
+  if (!Os_IsEvtQueueEmpty(&TaskReadyQueueCtrl))
   {
-    if (Tasks[ActiveTaskIndex].State == READY)
+    /* Extract tasks from the ready queue */
+    if (Os_QueueExtractAndShift(&TaskReadyQueueCtrl, &Task))
     {
-      /* Call dispatcher  */
-      OsDispatch();    
-    }
-  }    
+      /* Scroll the task table */  
+      for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
+      {
+        /* If the task ID matches */
+        if (Tasks[ActiveTaskIndex].TaskID == Task.TaskID)
+        {
+          /* Call dispatcher  */
+          OsDispatch(ActiveTaskIndex);   
+        }
+      }
+    }  
+  }
 }
 
 /************************************************************************
@@ -369,11 +322,7 @@ Os_VoidReturnType Os_Start (void)
     /* If the scheduler timer has expired */
     if (MainSystemTimebaseFlag == CALL_TASK_PHASE)
 #endif      
-    {   
-#if (SORT_OPTION == SORT_EACH_SCH_CYCLE)      
-      /* Sort task table */
-      SortTaskTable(Tasks);
-#endif              
+    {           
       /* Dispatch the activated tasks */
       OsSchedule();
       /* Reset flag */
@@ -389,6 +338,7 @@ Os_VoidReturnType Os_Start (void)
 #endif  
 }
 
+/* !!!!!!!!!!!!!!!!!!!!!! Must be carefully checked !!!!!!!!!!!!!!!!!!!!!! */
 /************************************************************************
 * Function:     Os_Schedule
 * Input:        uint16_t Priority
@@ -399,6 +349,36 @@ Os_VoidReturnType Os_Start (void)
 ************************************************************************/
 Os_VoidReturnType Os_Schedule (uint16_t Priority)
 {  
+  /* Locals */
+  TaskReadyQueueType Task;    
+  
+  /* If the ready queue is not empty */
+  if (!Os_IsEvtQueueEmpty(&TaskReadyQueueCtrl))
+  {
+    /* If the next ready to go task has an higher priority that the current active one, we yield, otherwise no. 
+     * The ready queue is sorted by priority, so we are sure that the next ready to go is the current system-wide
+     * higher priority task ready to run.
+     */
+    if (TaskReadyQueue[FIRST_ELEM].Priority > Tasks[ActiveTaskIndex].Priority)
+    {
+      /* Extract the task from the ready queue */
+      if (Os_QueueExtractAndShift(&TaskReadyQueueCtrl, &Task))
+      {
+        /* Scroll the task table until we find the task */  
+        for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
+        {
+          /* If the task ID matches */
+          if (Tasks[ActiveTaskIndex].TaskID == Task.TaskID)
+          {
+            /* Call dispatcher  */
+            OsDispatch(ActiveTaskIndex);   
+          }
+        }
+      }      
+    }
+  }  
+  
+#if OLD_IMPLEMENTATION
   /* Scroll the task table */  
   for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
   {
@@ -406,10 +386,12 @@ Os_VoidReturnType Os_Schedule (uint16_t Priority)
     if ((Tasks[ActiveTaskIndex].State == READY) && (Tasks[ActiveTaskIndex].Priority >= Priority))
     {         
       /* Call dispatcher  */
-      OsDispatch();      
+      OsDispatch(ActiveTaskIndex);      
     }
   }  
+#endif  
 }
+/* !!!!!!!!!!!!!!!!!!!!!! Must be carefully checked !!!!!!!!!!!!!!!!!!!!!! */
 
 /************************************************************************
 * Function:     Os_Shutdown
@@ -476,6 +458,66 @@ Os_VoidReturnType Os_Tick (void)
   /* Update schedule table */
   Os_UpdateSchedTable();  
 }
+
+/* REQ_KER_010 REQ_KER_030 */
+/* 
+ * The following function implements the sorting algorithm that decide which task run first.
+ * This is a crucial part of the Scheduler and the OS, and thus the first chosen algorithm (Insertion Sort) may not be optimal.
+ * Then the idea is to postpone the problematic of choose the optimal algorithm and provide option  for changing them at compile time.
+ */
+
+#if (SORT_ALGORITHM == INSERTION_SORT)
+#warning "The chosen sorting algorithm is INSERTION_SORT"
+/************************************************************************   
+* Function:     Os_SortReadyQueue
+* Input:        TaskReadyQueueType Trq[]
+* Output:       None
+* Author:       F.Ficili
+* Description:  Function used to sort the task ready queue basing on priority.
+*               Algorithm version: Insertion Sort. 
+************************************************************************/
+Os_VoidReturnType Os_SortReadyQueue (TaskReadyQueueType Trq[])
+{
+  int16_t i,j;
+  uint16_t Priority;
+  TaskReadyQueueType TrqBackup;
+  
+  /* Start sorting algorithm */
+  for (i = 1; i < Os_GetQueueItemCount(&TaskReadyQueueCtrl); i++) 
+  {
+    Priority = Trq[i].Priority;
+    j = i - 1;
+
+    /* Move elements of Trq[0..i-1], that are greater than Priority, to one position ahead
+      of their current position */
+    while (j >= 0 && Trq[j].Priority < Priority) 
+    {
+      TrqBackup = Trq[j + 1];
+      Trq[j + 1] = Trq[j];
+      /* Restore Task backup */
+      Trq[j] = TrqBackup;         
+      j = j - 1;
+    }
+
+    /* Update priority */
+    Trq[j + 1].Priority = Priority;
+  }
+}
+#elif (SORT_ALGORITHM == MERGE_SORT)
+#warning "The chosen sorting algorithm is MERGE_SORT"
+/************************************************************************   
+* Function:     Os_SortReadyQueue
+* Input:        TaskReadyQueueType Trq[]
+* Output:       None
+* Author:       F.Ficili
+* Description:  Function used to sort the task table basing on priority.
+*               Algorithm version: Merge Sort. 
+************************************************************************/
+void Os_SortReadyQueue (TaskReadyQueueType Trq[])
+{
+  /* To be implemented */
+}
+#endif
 
 /* REQ_KER_050 */
 /************************************************************************

@@ -69,7 +69,7 @@
 Os_ApiReturnType Os_UpdateSchedTable (void)
 {
   /* Locals */
-  Os_ApiReturnType OpRes;    
+  Os_ApiReturnType OpRes = E_OS_OK;    
   uint16_t SchTblIdx = 0u;  
   uint16_t SchEvtIdx = 0u;
   

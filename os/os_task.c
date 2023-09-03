@@ -71,6 +71,7 @@ Os_ApiReturnType Os_ActivateTask (uint16_t TaskID)
   Os_ApiReturnType OpRes;  
   uint16_t TaskIdx = 0u;
   bool Found = false;
+  TaskReadyQueueType Task;  
 
   /* Scroll the task table */  
   for (TaskIdx = 0u; TaskIdx < TaskNumber; TaskIdx++)
@@ -83,7 +84,14 @@ Os_ApiReturnType Os_ActivateTask (uint16_t TaskID)
       if (Tasks[TaskIdx].State == IDLE)
       {        
         /* Put the task in ready state */
-        Tasks[TaskIdx].State = READY;
+        Tasks[TaskIdx].State = READY;        
+        /* Insert the task in the queue */
+        Task.TaskID = TaskID;
+        Task.Priority = Tasks[TaskIdx].Priority;
+        Os_QueueInsert(&TaskReadyQueueCtrl, &Task);
+        /* Sort the queue by priority */
+        //Os_SortReadyQueue(&TaskReadyQueue[TaskReadyQueueCtrl.QueueFrontIdx/TaskReadyQueueCtrl.ElemSize]);   
+        Os_SortReadyQueue(TaskReadyQueue); 
         /* OK */
         OpRes = E_OS_OK;            
 #ifdef TERMINAL_DEBUG_ENABLED
