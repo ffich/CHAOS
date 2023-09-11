@@ -31,9 +31,9 @@ The main characteristics of **CHAOS** are described in the below sections:
 **CHAOS** implements a **4-state task model**. Each task can exists in one of the following states:
 
 - **IDLE**: the task is inactive, as nobody (another task, an ISR or a schedule event) has requested the task to be activated.
-- **READY**: the task is ready to run, and will be launched at the next dispatch event if is the higher priorty task in the schedule list.
-- **RUNNING**: the task is currently running, and, since CHAOS is non-preemptive, could not be interrupted. Nevertheless, the task can cooperatively release the processor if it wants issuing a yield.
-- **YIELD**: the task has released the control to the scheduler, that will then check if there is an higher priority task to run. If this is the case, the scheduler will launch the higher priorty task and the yielding task will be resumed at the end of the execution of the higher priority task. 
+- **READY**: the task is ready to run, and will be launched at the next dispatch event if is the higher priorty task in the ready queue.
+- **RUNNING**: the task is currently running, and, since CHAOS is non-preemptive, could not be interrupted. Nevertheless, the task can cooperatively release the processor resource, if it wants, issuing a yield.
+- **YIELD**: the task has released the control to the scheduler, that will then check if there is an higher priority task ready to run. If this is the case, the scheduler will launch the higher priorty task and the yielding task will be resumed at the end of the execution.
 
 The image below illustrate the task state machine:
 
@@ -42,7 +42,7 @@ The image below illustrate the task state machine:
 *Fig. 2 - The Task State Machine*
 
 ## The Configuration Model
-The CHAOS configuration model is relatively simple. The user need to configure:
+The **CHAOS** configuration model is relatively simple. The user need to configure:
 
 - **A Task Table**: which contains the list of the task in the system. Tasks are simple void - void functions (the OS provide a TASK macro for definition). The list has to include also the task priority and the task ID, which is the numerical value used to address a specific task during execution (e.g. for task activation or as a reference on a schedule table).
 
