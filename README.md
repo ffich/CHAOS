@@ -61,7 +61,7 @@ The best way to get started to make some **CHAOS** is to look at the [examples](
 
 ![image](https://github.com/ffich/CHAOS/assets/59200746/33cdfd6b-bde9-4cc2-b57a-0d35b5831352)
 
-*Fig. 2 - Microchip Curiosity 2.0 Pic32 MZ EF evalution board*
+*Fig. 3 - Microchip Curiosity 2.0 Pic32 MZ EF evalution board*
 
 ## Example List
 Now you can unkork a beer yourself and start making some **CHAOS**.
