@@ -68,17 +68,17 @@ Now you can unkork a beer yourself and start making some **CHAOS**.
 
 [**In the end World begun out of CHAOS...**](https://github.com/ffich/CHAOS/tree/main/examples/10_HelloWorld): Very simple example that blinks two LEDs at different rate. It demonstrates how to create a basic CHAOS configuration with 2 tasks and a schedule table with 2 scheduling events.
 
-[**CHAOS can be cooperative as well**](https://github.com/ffich/CHAOS/tree/main/examples/20_CooperativeScheduling): Example on the usage of cooperative scheduling (yield option) to yield execution control to higher priority tasks.
+[**Cooperative CHAOS**](https://github.com/ffich/CHAOS/tree/main/examples/20_CooperativeScheduling): Example on the usage of cooperative scheduling (yield option) to yield execution control to higher priority tasks.
 
 **Lifecycle of CHAOS**: Example on the CHAOS Lifecycle management.
 
-**Also CHAOS needs some timing**: Example on usage of CHAOS virtual timing features.
+**Timing CHAOS**: Example on usage of CHAOS virtual timing features.
 
 **In the event of CHAOS**: Example on usage of events.
 
-**CHAOS Queue**: Example on usage of queues.
+**Queueing CHAOS**: Example on usage of queues.
 
-**Hook on CHAOS**: Example on usage of User Hooks.
+**Hooking on CHAOS**: Example on usage of User Hooks.
 
-**Error and Chaos**: Error Handling in CHAOS.
+**Messing with Chaos**: Error Handling in CHAOS.
 
