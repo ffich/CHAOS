@@ -89,8 +89,7 @@ Os_ApiReturnType Os_ActivateTask (uint16_t TaskID)
         Task.TaskID = TaskID;
         Task.Priority = Tasks[TaskIdx].Priority;
         Os_QueueInsert(&TaskReadyQueueCtrl, &Task);
-        /* Sort the queue by priority */
-        //Os_SortReadyQueue(&TaskReadyQueue[TaskReadyQueueCtrl.QueueFrontIdx/TaskReadyQueueCtrl.ElemSize]);   
+        /* Sort the queue by priority */ 
         Os_SortReadyQueue(TaskReadyQueue); 
         /* OK */
         OpRes = E_OS_OK;            
