@@ -262,7 +262,7 @@ Os_VoidReturnType OsShutdown (void)
 * Input:        None
 * Output:       None
 * Author:       F.Ficili	
-* Description:  Dispatch ready tasks.  
+* Description:  Extract and run ready tasks from the queue.  
 ************************************************************************/
 Os_VoidReturnType OsSchedule (void)
 {
@@ -338,16 +338,15 @@ Os_VoidReturnType Os_Start (void)
 #endif  
 }
 
-/* !!!!!!!!!!!!!!!!!!!!!! Must be carefully checked !!!!!!!!!!!!!!!!!!!!!! */
 /************************************************************************
 * Function:     Os_Schedule
-* Input:        uint16_t Priority
+* Input:        None
 * Output:       None
 * Author:       F.Ficili	
 * Description:  Schedule when a task yield. This schedule happens in the calling
 *               context of the yielding task.  
 ************************************************************************/
-Os_VoidReturnType Os_Schedule (uint16_t Priority)
+Os_VoidReturnType Os_Schedule (void)
 {  
   /* Locals */
   TaskReadyQueueType Task;    
@@ -355,7 +354,7 @@ Os_VoidReturnType Os_Schedule (uint16_t Priority)
   /* If the ready queue is not empty */
   if (!Os_IsEvtQueueEmpty(&TaskReadyQueueCtrl))
   {
-    /* If the next ready to go task has an higher priority that the current active one, we yield, otherwise no. 
+    /* If the next ready to go task has an higher priority than the current active one, we yield, otherwise no. 
      * The ready queue is sorted by priority, so we are sure that the next ready to go is the current system-wide
      * higher priority task ready to run.
      */
@@ -377,21 +376,7 @@ Os_VoidReturnType Os_Schedule (uint16_t Priority)
       }      
     }
   }  
-  
-#if OLD_IMPLEMENTATION
-  /* Scroll the task table */  
-  for (ActiveTaskIndex = 0u; ActiveTaskIndex < TaskNumber; ActiveTaskIndex++)
-  {
-    /* If there is a task with higher priority ready to run, we can run it */
-    if ((Tasks[ActiveTaskIndex].State == READY) && (Tasks[ActiveTaskIndex].Priority >= Priority))
-    {         
-      /* Call dispatcher  */
-      OsDispatch(ActiveTaskIndex);      
-    }
-  }  
-#endif  
 }
-/* !!!!!!!!!!!!!!!!!!!!!! Must be carefully checked !!!!!!!!!!!!!!!!!!!!!! */
 
 /************************************************************************
 * Function:     Os_Shutdown
@@ -481,9 +466,13 @@ Os_VoidReturnType Os_SortReadyQueue (TaskReadyQueueType Trq[])
   int16_t i,j;
   uint16_t Priority;
   TaskReadyQueueType TrqBackup;
+  uint16_t QueueItemsCount;
+  
+  /* Get the number of elements in the queue */
+  Os_GetQueueItemCount(&TaskReadyQueueCtrl, &QueueItemsCount);
   
   /* Start sorting algorithm */
-  for (i = 1; i < Os_GetQueueItemCount(&TaskReadyQueueCtrl); i++) 
+  for (i = 1; i < QueueItemsCount; i++) 
   {
     Priority = Trq[i].Priority;
     j = i - 1;

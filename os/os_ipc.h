@@ -32,34 +32,49 @@
 /************************************************************************
 * EXPORTED Defines
 ************************************************************************/
-#define QUEUE_STS_FULL                                          0u 
-#define QUEUE_STS_OK                                            1u
-        
-#define QUEUE_EMPTY                                             0u 
-#define QUEUE_EVT_PRESENT                                       1u
 
-#define NO_EVT_FLAG                                             0u 
-#define EVT_FLAG                                                1u
 
 /************************************************************************
 * EXPORTED Typedef
 ************************************************************************/
 /* Event Status */
-typedef enum EventStatusEnum
+typedef enum 
 {
-   EVENT_IDLE        = 0,
-   EVENT_RECEIVED    = 1,
-   EVENT_SENT        = 2,
-   EVENT_NOT_SENT    = 3,
-} EventStatusType;
+   EVENT_IDLE           = 0,
+   EVENT_RECEIVED       = 1,
+   EVENT_SENT           = 2,
+   EVENT_NOT_SENT       = 3,
+} Os_EventStatusType;
 
 /* Event Structure */
-typedef struct EventStructure
+typedef struct 
 {
-   EventStatusType EventStatus;
+   Os_EventStatusType EventStatus;
 } EventType;
 
-/* Evt queue control structure */
+/* Queue extraction return type */
+typedef enum 
+{
+   QUEUE_NOT_EMPTY_OR_FULL = 0,
+   QUEUE_IS_EMPTY          = 1,
+   QUEUE_IS_FULL           = 2,           
+} Os_QueueStsType;
+
+/* Queue insertion return type */
+typedef enum 
+{
+   QUEUE_FULL           = 0,
+   QUEUE_NOT_FULL       = 1,
+} Os_QueueFullStsType;
+
+/* Queue extraction return type */
+typedef enum 
+{
+   QUEUE_EMPTY          = 0,
+   QUEUE_NOT_EMPTY      = 1,
+} Os_QueueEmptyStsType;
+
+/* Queue control structure */
 typedef struct 
 {
    uint16_t QueueSize;
@@ -79,22 +94,22 @@ typedef struct
 * EXPORTED Functions
 ************************************************************************/
 /* Generate events */
-EventStatusType Os_GenerateEvt (EventType *Event);
+Os_EventStatusType Os_GenerateEvt (EventType *Event);
 /* Receive events */
-EventStatusType Os_ReceiveEvt (EventType *Event);
+Os_EventStatusType Os_ReceiveEvt (EventType *Event);
 /* Init an event queue */
-void Os_InitEvtQueue (QueueCtrlStrType* QueueCfg, uint16_t QueueSize, uint8_t ElemSize, void* QueuePtr);
+Os_VoidReturnType Os_InitEvtQueue (QueueCtrlStrType* QueueCfg, uint16_t QueueSize, uint8_t ElemSize, void* QueuePtr);
 /* Empty check */
-uint8_t Os_IsEvtQueueEmpty (QueueCtrlStrType* QueueCfg);
+Os_QueueStsType Os_IsEvtQueueEmpty (QueueCtrlStrType* QueueCfg);
 /* Full check */
-uint8_t Os_IsEvtQueueFull (QueueCtrlStrType* QueueCfg);
+Os_QueueStsType Os_IsEvtQueueFull (QueueCtrlStrType* QueueCfg);
 /* Get item count */
-uint16_t Os_GetQueueItemCount (QueueCtrlStrType* QueueCfg);
+Os_VoidReturnType Os_GetQueueItemCount (QueueCtrlStrType* QueueCfg, uint16_t* QueueItems);
 /* Insert event */
-uint8_t Os_QueueInsert (QueueCtrlStrType* QueueCfg, void* DataElemIn);
+Os_QueueFullStsType Os_QueueInsert (QueueCtrlStrType* QueueCfg, void* DataElemIn);
 /* Extract event */
-uint8_t Os_QueueExtract (QueueCtrlStrType* QueueCfg, void* DataElemOut);
+Os_QueueEmptyStsType Os_QueueExtract (QueueCtrlStrType* QueueCfg, void* DataElemOut);
 /* Extract an element from the FIFO queue and shift all the elements */
-uint8_t Os_QueueExtractAndShift (QueueCtrlStrType* QueueCfg, void* DataElemOut);
+Os_QueueEmptyStsType Os_QueueExtractAndShift (QueueCtrlStrType* QueueCfg, void* DataElemOut);
 
 #endif /* OS_IPC_H */

@@ -57,5 +57,18 @@
 #define STS_OK                                           1u
 #define STS_NOT_OK                                       0u
 
+/************************************************************************
+* Basic Types
+************************************************************************/
+
+/* OS API return type typedef */
+typedef uint8_t Os_ApiReturnType;
+
+/* Error Hook return type typedef */
+typedef uint8_t Os_ErrorType;
+
+/* Os Void Return Typedef */
+typedef void Os_VoidReturnType;
+
 #endif	/* COMMON_H */
 

@@ -117,15 +117,6 @@ typedef struct
    uint16_t Priority;      /* The task execution priority */   
 } TaskReadyQueueType;
 
-/* OS API return type typedef */
-typedef uint8_t Os_ApiReturnType;
-
-/* Error Hook return type typedef */
-typedef uint8_t Os_ErrorType;
-
-/* Os Void Return Typedef */
-typedef void Os_VoidReturnType;
-
 /************************************************************************
 * EXPORTED Variables
 ************************************************************************/
@@ -159,7 +150,7 @@ Os_ApiReturnType Os_Shutdown (void);
 /* Manage the various Scheduler interrupt services */
 Os_VoidReturnType Os_Tick (void);
 /* Dispatch after a task yield */
-Os_VoidReturnType Os_Schedule (uint16_t Priority);
+Os_VoidReturnType Os_Schedule (void);
 /* Sort the task ready queue */
 Os_VoidReturnType Os_SortReadyQueue (TaskReadyQueueType Trq[]);
 /* Get the OS Major, Minor and Fix version */
