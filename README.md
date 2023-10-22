@@ -17,13 +17,6 @@ A bulding block view of the OS is depicted in Fig.1.
 
 *Fig. 1 - OS Structure*
 
-## Main Characteristics
-The main characteristics of **CHAOS** are described in the below sections:
-- Scheduling Policy
-- Task Model
-- Configuration Model
-- Integration
-
 ## Inspiration
 Main inspiration source for **CHAOS** are:
 
@@ -31,6 +24,13 @@ Main inspiration source for **CHAOS** are:
 - **AUTOSAR OS** (https://www.autosar.org/fileadmin/standards/R22-11/CP/AUTOSAR_SWS_OS.pdf) for the general structure and the configuration model.
 
 Obviously **CHAOS** is **NOT** and AUTOSAR compliant OS, and many features are not implemented.
+
+## Main Characteristics
+The main characteristics of **CHAOS** are described in the below sections:
+- Scheduling Policy
+- Task Model
+- Configuration Model
+- Integration
 
 ## The Scheduling Policy
 **CHAOS** implements an **higher priority first** scheduling policy. This means that each task is given a priority value and the OS will always **run the task** with the **highest priorty value that is ready to run**. All the other tasks will be run after, in decreasing priority order. Task can be made ready to run either programmatically (calling the Os_ActivateTask API) or at pre-defined point in time via other OS objects (e.g., using ScheduleTables or Alarms).
