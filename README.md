@@ -18,7 +18,7 @@ A bulding block view of the OS is depicted in Fig.1.
 *Fig. 1 - OS Structure*
 
 ## Inspiration
-Main inspiration source for **CHAOS** are:
+Main inspiration sources for **CHAOS** are:
 
 - **LWSF** (https://github.com/ffich/LWSF) starting point for the kernel and the implementation of some other features
 - **AUTOSAR OS** (https://www.autosar.org/fileadmin/standards/R22-11/CP/AUTOSAR_SWS_OS.pdf) for the general structure and the configuration model.
