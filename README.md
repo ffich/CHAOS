@@ -23,7 +23,7 @@ Main inspiration sources for **CHAOS** are:
 - **LWSF** (https://github.com/ffich/LWSF) starting point for the kernel and the implementation of some other features
 - **AUTOSAR OS** (https://www.autosar.org/fileadmin/standards/R22-11/CP/AUTOSAR_SWS_OS.pdf) for the general structure and the configuration model.
 
-Obviously **CHAOS** is **NOT** and AUTOSAR compliant OS, and many features are not implemented.
+Obviously **CHAOS** is **NOT** an AUTOSAR compliant OS, and many features are not implemented.
 
 ## Main Characteristics
 The main characteristics of **CHAOS** are described in the below sections:
