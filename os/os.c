@@ -65,7 +65,7 @@ volatile uint16_t YieldingTaskIndex = 0xFFFF;
 /* Flag to indicate a yield */
 volatile uint8_t SomebodyYielded = 0;
 /* Tasks ready queue */
-TaskReadyQueueType TaskReadyQueue[MAX_READY_TASKS];
+volatile TaskReadyQueueType TaskReadyQueue[MAX_READY_TASKS];
 /* Task ready queue control structure */
 QueueCtrlStrType TaskReadyQueueCtrl;
 
@@ -461,7 +461,7 @@ Os_VoidReturnType Os_Tick (void)
 * Description:  Function used to sort the task ready queue basing on priority.
 *               Algorithm version: Insertion Sort. 
 ************************************************************************/
-Os_VoidReturnType Os_SortReadyQueue (TaskReadyQueueType Trq[])
+Os_VoidReturnType Os_SortReadyQueue (volatile TaskReadyQueueType Trq[])
 {
   int16_t i,j;
   uint16_t Priority;

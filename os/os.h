@@ -129,7 +129,7 @@ extern volatile uint16_t YieldingTaskIndex;
 /* Flag to indicate a yield */
 extern volatile uint8_t SomebodyYielded;
 /* Tasks ready queue */
-extern TaskReadyQueueType TaskReadyQueue[MAX_READY_TASKS];
+extern volatile TaskReadyQueueType TaskReadyQueue[MAX_READY_TASKS];
 /* Task ready queue control structure */
 extern QueueCtrlStrType TaskReadyQueueCtrl;
 
@@ -152,7 +152,7 @@ Os_VoidReturnType Os_Tick (void);
 /* Dispatch after a task yield */
 Os_VoidReturnType Os_Schedule (void);
 /* Sort the task ready queue */
-Os_VoidReturnType Os_SortReadyQueue (TaskReadyQueueType Trq[]);
+Os_VoidReturnType Os_SortReadyQueue (volatile TaskReadyQueueType Trq[]);
 /* Get the OS Major, Minor and Fix version */
 Os_ApiReturnType Os_GetVersion (uint8_t* Major, uint8_t* Minor, uint8_t* Fix);
 

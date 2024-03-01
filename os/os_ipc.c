@@ -121,7 +121,7 @@ Os_EventStatusType Os_ReceiveEvt (EventType *Event)
 *               be previously declared. The size of the queue and the size of the single element must
 *               be passed over to allow the Os to locally store this informations.  
 ************************************************************************/
-Os_VoidReturnType Os_InitEvtQueue (QueueCtrlStrType* QueueCfg, uint16_t QueueSize, uint8_t ElemSize, void* QueuePtr)
+Os_VoidReturnType Os_InitEvtQueue (QueueCtrlStrType* QueueCfg, uint16_t QueueSize, uint8_t ElemSize, volatile void* QueuePtr)
 {
   /* Configure the queue structure */
   QueueCfg->QueueSize = QueueSize;

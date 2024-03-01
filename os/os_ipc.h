@@ -98,7 +98,7 @@ Os_EventStatusType Os_GenerateEvt (EventType *Event);
 /* Receive events */
 Os_EventStatusType Os_ReceiveEvt (EventType *Event);
 /* Init an event queue */
-Os_VoidReturnType Os_InitEvtQueue (QueueCtrlStrType* QueueCfg, uint16_t QueueSize, uint8_t ElemSize, void* QueuePtr);
+Os_VoidReturnType Os_InitEvtQueue (QueueCtrlStrType* QueueCfg, uint16_t QueueSize, uint8_t ElemSize, volatile void* QueuePtr);
 /* Empty check */
 Os_QueueStsType Os_IsEvtQueueEmpty (QueueCtrlStrType* QueueCfg);
 /* Full check */
