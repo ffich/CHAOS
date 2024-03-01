@@ -17,6 +17,14 @@ A bulding block view of the OS is depicted in Fig.1.
 
 *Fig. 1 - OS Structure*
 
+## Inspiration
+Main inspiration sources for **CHAOS** are:
+
+- **LWSF** (https://github.com/ffich/LWSF) starting point for the kernel and the implementation of some other features
+- **AUTOSAR OS** (https://www.autosar.org/fileadmin/standards/R22-11/CP/AUTOSAR_SWS_OS.pdf) for the general structure and the configuration model.
+
+Obviously **CHAOS** is **NOT** an AUTOSAR compliant OS, and many features are not implemented.
+
 ## Main Characteristics
 The main characteristics of **CHAOS** are described in the below sections:
 - Scheduling Policy
@@ -25,7 +33,8 @@ The main characteristics of **CHAOS** are described in the below sections:
 - Integration
 
 ## The Scheduling Policy
-**CHAOS** implements an **higher priority first** scheduling policy. This means that each task is given a priority value and the OS will always **run the task** with the **highest priorty value that is ready to run**. All the other tasks will be run after, in decreasing priority order. This ensure that the developers can determine quite accurately which will be the next task that will be run, basing on the priority order. Nevertheless, since there is **no pre-emption**, is an user responsibility to cooperatively release the control within tasks if there is something more urgent to execute (**Yield**). **CHAOS** handles a **task ready queue** to keep track of all the task that are ready to run and a **task table** which holds all the other tasks information (like priority, ID, etc..).
+**CHAOS** implements an **higher priority first** scheduling policy. This means that each task is given a priority value and the OS will always **run the task** with the **highest priorty value that is ready to run**. All the other tasks will be run after, in decreasing priority order. Task can be made ready to run either programmatically (calling the Os_ActivateTask API) or at pre-defined point in time via other OS objects (e.g., using ScheduleTables or Alarms).
+This ensure that the developers can determine quite accurately which will be the next task that will be run, basing on the priority order. Nevertheless, since there is **no pre-emption**, is an user responsibility to cooperatively release the control within tasks if there is something more urgent to execute (**Yield**). **CHAOS** handles a **task ready queue** to keep track of all the task that are ready to run and a **task control block (TBC)** which holds all the other tasks information (like priority, ID, etc..).
 
 ## The Task Model
 **CHAOS** implements a **4-state task model**. Each task can exists in one of the following states:
@@ -42,22 +51,22 @@ The image below illustrate the task state machine:
 *Fig. 2 - The Task State Machine*
 
 ## The Configuration Model
-The **CHAOS** configuration model is relatively simple. The user need to configure:
+The **CHAOS** configuration model is made by general an specific configuration sets:
 
-- **A Task Table**: which contains the list of the task in the system. Tasks are simple void - void functions (the OS provide a TASK macro for definition). The list has to include also the task priority and the task ID, which is the numerical value used to address a specific task during execution (e.g. for task activation or as a reference on a schedule table).
+- **General OS Configuration**: this includes all the OS general configuration options (e.g. the OS tick, the User Hooks to call, the level og logging, etc.)
 
-- **A Scheduling Table**: which determine the periodic behavior of the tasks in the system. Not all the tasks need to have a reference in this table, only the ones that needs periodic execution.
-
-- **General OS Configuration**: this includes the OS tick definition (depending on how fast the timer interrupt that calls the Os_Tick() runs) and other general configuraiton.
+- **OS Objects Configuration**: this section includes all the specific OS objects configuration, like the Tasks, Schedule Tables, Alarms, etc..
 
 ## OS integration
-Integration of **CHAOS** is straightforward. In order to run, the user needs to:
+Integration of **CHAOS** is straightforward. In order to run, the user needs at least to call the following two OS API:
 
 - **OS_Start()**: to be called in the program main function after the system basic initialization.
 - **OS_Tick()**: to be called inside a periodic timer interrupt (Typically a core tick timer or something similar).
 
+Additional APIs are optional and they may be needed to have a better defined OS lifecycle, error handling via User Hooks and other additional features.
+
 ## Getting Started
-The best way to get started to make some **CHAOS** is to look at the [examples](https://github.com/ffich/CHAOS/tree/main/examples) sections. Normally all the basic feature of an OS can be showed using LEDs and printf, so basically any evaluation board that has this characteristics is good enough for the job. I've used a [Microchip Curiosity 2.0 Pic32 MZ EF](https://www.microchip.com/en-us/development-tool/dm320209) evalution board and [MPLAB X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide) + [MPLAB Harmony V3](https://www.microchip.com/en-us/tools-resources/configure/mplab-harmony) code generator, but everything is easily portable to other platform, following the examples guides. 
+The best way to get started to make some **CHAOS** is to look at the [examples](https://github.com/ffich/CHAOS/tree/main/examples) section. Normally all the basic feature of an OS can be showed using LEDs and printf, so basically any evaluation board that has this characteristics is good enough for the job. I've used a [Microchip Curiosity 2.0 Pic32 MZ EF](https://www.microchip.com/en-us/development-tool/dm320209) evalution board and [MPLAB X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide) + [MPLAB Harmony V3](https://www.microchip.com/en-us/tools-resources/configure/mplab-harmony) code generator, but everything is easily portable to other platform, following the examples guides. 
 
 ![image](https://github.com/ffich/CHAOS/assets/59200746/33cdfd6b-bde9-4cc2-b57a-0d35b5831352)
 
