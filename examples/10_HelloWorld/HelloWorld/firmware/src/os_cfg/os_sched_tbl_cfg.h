@@ -32,8 +32,14 @@
 /************************************************************************
 * EXPORTED Defines
 ************************************************************************/
-/* NUmber of scheduling events */
+/* ID of the Schedute Table */
+#define SCHED_TBL_ID                                                 1u
+
+/* Number of scheduling events */
 #define SCHED_EVT_NUMBER                                             3u
+
+/* Number of Schedule table */
+#define SCH_TBL_NUMB                                                 1u
 
 /************************************************************************
 * EXPORTED Macros

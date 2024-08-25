@@ -53,6 +53,9 @@
 /* Auto-calculation of task number */
 extern const uint16_t TaskNumber; 
 
+/* Auto-calculation of auto-started task number */
+extern const uint16_t AutoStartTaskNumber;
+
 /************************************************************************
 * EXPORTED Functions
 ************************************************************************/

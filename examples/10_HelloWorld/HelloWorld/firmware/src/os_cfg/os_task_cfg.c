@@ -62,6 +62,14 @@ TbcType Tasks[] =
 /* Auto-calculation of task number */
 const uint16_t TaskNumber = (uint16_t)(sizeof(Tasks)/sizeof(TbcType));  
 
+/* List of auto-started Tasks */
+AutoStarTaskType AutoStartedTasks[] =
+{
+};
+
+/* Auto-calculation of auto-started task number */
+const uint16_t AutoStartTaskNumber = (uint16_t)(sizeof(AutoStartedTasks)/sizeof(AutoStarTaskType));  
+
 /************************************************************************
 * LOCAL Functions
 ************************************************************************/

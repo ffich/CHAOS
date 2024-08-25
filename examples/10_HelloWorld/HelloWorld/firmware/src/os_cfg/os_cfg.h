@@ -50,6 +50,13 @@
 /* Desired scheduler period */
 #define DESIRED_SCHED_PERIOD_MS                          ((uint16_t)(1))
 
+/* Schedule every tick or continously */
+#define SCHEDULE_AT_TICK                                 STD_FALSE
+
+/* -- OS TASK READY QUEUE OPTIONS -------------------------------------------- */
+/* Max number of tasks that can reside in the ready queue */
+#define MAX_READY_TASKS                                  10u
+
 
 /* -- SORTING ALGORITHM OPTIONS ---------------------------------------------- */
 /* Task table sorting algorithm */
