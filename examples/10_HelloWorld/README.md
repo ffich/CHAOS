@@ -40,6 +40,7 @@ After having imported all the OS files in our project, we need to create the fol
 
 Let's start with **os_task_cfg.c**. Thi file must contains the task table definition, that basically describe each task is present in the system, his ID and priority.
 If we want to implement the initial requirement we need two tasks, let's say MyTask_1 and MyTask_2. The priority is not much important here, but let's define that MyTask_2 will have priority 20 and MyTask_1 priority 10 (so MyTask_2 has an higher execution priority of MyTask_1).
+Addiotanally you need to specify if you want to autostart some tasks (this is needed if you want to do some task-specific initializations). We don't have this need in this example, we will just add an empty autostart task list. 
 
 The corresponding task table for this configuration would be something like:
 
@@ -65,10 +66,18 @@ TbcType Tasks[] =
 };
 
 /* Auto-calculation of task number */
-const uint16_t TaskNumber = (uint16_t)(sizeof(Tasks)/sizeof(TbcType)); 
+const uint16_t TaskNumber = (uint16_t)(sizeof(Tasks)/sizeof(TbcType));
+
+/* List of auto-started Tasks */
+AutoStarTaskType AutoStartedTasks[] =
+{
+};
+
+/* Auto-calculation of auto-started task number */
+const uint16_t AutoStartTaskNumber = (uint16_t)(sizeof(AutoStartedTasks)/sizeof(AutoStarTaskType));  
 ```
 
-As you can see this table contains (starting from left):
+As you can see the task table contains (starting from left):
 
 **ID**: the ID of the task. This can be an arbitrary 16-bit number. The only constraints is that each ID must be unique for each task, and the OS doesn't do any check for this, so the user has to ensure to use unique IDs for each task.
 
@@ -90,6 +99,8 @@ The last line is only needed for automatically calculate the number of tasks (it
 
 The file **os_task_cfg.h** is only needed to export the ID (MY_TASK_1_ID and MY_TASK_2_ID) and make them visible to other files. It's needed by the OS again, but also to the user, as the task ID is how the task is identified in the various OS API (so for example, if the user has to call the Os_ActivateTask, it needs the Task ID of the task to be activated).
 
+We'll also put in this file the extern decalrations for TaskNumber and AutoStartTaskNumber variables.
+
 ```
 /************************************************************************
 * EXPORTED Defines
@@ -97,6 +108,12 @@ The file **os_task_cfg.h** is only needed to export the ID (MY_TASK_1_ID and MY_
 /* Task IDs */
 #define MY_TASK_1_ID                                              1u
 #define MY_TASK_2_ID                                              2u
+
+/* Auto-calculation of task number */
+extern const uint16_t TaskNumber; 
+
+/* Auto-calculation of auto-started task number */
+extern const uint16_t AutoStartTaskNumber;
 ```
 
 ## STEP 2: Schedule Table Configuration
@@ -120,6 +137,16 @@ SchedTblType SchedTable[SCHED_EVT_NUMBER] =
   {MY_TASK_2_ID,     COUNTER_INIT,    PERIOD_1000_MS},   
   /* ------------------------------------------------ */
 };
+
+SchedTblListType SchedTableList[SCH_TBL_NUMB] =
+{
+  /* ----------------------------- Sched. Table List ------------------------------ */   
+  /* ------------------------------------------------------------------------------ */
+  /* SchTblID         SchEvtNumb                SchTblState         SchTblPtr       */
+  /* ------------------------------------------------------------------------------ */     
+  {SCHED_TBL_ID,   SCHED_EVT_NUMBER,  SCH_TBL_ACTIVE,     SchedTable},  
+  /* ------------------------------------------------------------------------------ */
+};  
 ```
 
 As you can see this table contains (starting from left):
@@ -130,16 +157,24 @@ As you can see this table contains (starting from left):
 
 **Timeout**: timing value at which the scheduling event will activate the task.
 
+Since CHAOS support multiple Schedule Tables, we have a second table (SchedTableList) containing the list of the system-wide schedules tables (only one entry in this example).
+
 So, per our requirement, we have MyTask_1 scheduled every 500ms (controls LED_1) and MyTask_2 scheduled every 1000ms (controls LED_2).
 
-The file **os_sched_tbl_cfg.h**, simply export the number of scheduling events configured (SCHED_EVT_NUMBER):
+The file **os_sched_tbl_cfg.h**, simply export the number of scheduling events configured (SCHED_EVT_NUMBER), the ID of our ScheduleTable (SCHED_TBL_ID) and the number of implemented ScheduleTables (SCH_TBL_NUMB).
 
 ```
 /************************************************************************
 * EXPORTED Defines
 ************************************************************************/
+/* ID of the Schedute Table */
+#define SCHED_TBL_ID                                                 1u
+
 /* NUmber of scheduling events */
 #define SCHED_EVT_NUMBER                                             2u
+
+/* Number of Schedule table */
+#define SCH_TBL_NUMB                                                 1u
 ```
 
 ## STEP 3: OS General configuration
@@ -166,6 +201,13 @@ Finally we have to create the file **os_cfg.h**. This file contains some general
 /* Desired scheduler period */
 #define DESIRED_SCHED_PERIOD_MS                          ((uint16_t)(1))
 
+/* Schedule every tick or continously */
+#define SCHEDULE_AT_TICK                                 STD_FALSE
+
+/* -- OS TASK READY QUEUE OPTIONS -------------------------------------------- */
+/* Max number of tasks that can reside in the ready queue */
+#define MAX_READY_TASKS                                  10u
+
 /* Task table sorting algorithm */
 #define INSERTION_SORT                                   0
 #define MERGE_SORT                                       1
@@ -175,6 +217,27 @@ Finally we have to create the file **os_cfg.h**. This file contains some general
 #define SORT_INIT_ONLY                                   0
 #define SORT_EACH_SCH_CYCLE                              1
 #define SORT_OPTION                                      SORT_INIT_ONLY
+
+/* -- USER HOOKS OPTIONS ----------------------------------------------------- */
+/* Set STD_TRUE to enable and STD_FALSE to disable Hooks */
+
+/* Enable/disable StartupHook() */
+#define ENABLE_STARTUP_HOOK                              STD_FALSE
+/* Enable/disable ShutdownHook() */
+#define ENABLE_SHUTDOWN_HOOK                             STD_TRUE
+/* Enable/disable PreTaskHook() */
+#define ENABLE_PRE_TASK_HOOK                             STD_FALSE
+/* Enable/disable PostTaskHook() */
+#define ENABLE_POST_TASK_HOOK                            STD_FALSE
+/* Enable/disable ErrorHook() */
+#define ENABLE_ERROR_HOOK                                STD_FALSE
+
+/* -- SHUTDOWN BEHAVIOR OPTIONS ---------------------------------------------- */
+/* Define the OS shutdown behavior */
+
+#define INFINITE_LOOP                                    0
+#define CONTINUE_MAIN_EXECUTION                          1
+#define OS_SHUTDOWN_BEHAVIOR                             INFINITE_LOOP
 ```
 
 The most important defines in this configuration file are: 
@@ -298,7 +361,7 @@ TASK(MyTask_2)
 We can also see how MyTask_2 (controlling LED_2) is always executyed first (it has higher priority) in the scheduling cycle that happens at 1s multiples. The 2ms delay on the execution of MyTask_1 is determied by the execution time of MyTask_2 (not much for the LED toggling but for UART transmission at the rate of 115200 baud).
 
 ## Closing the circle
-To close the circle we can implement [REQ_2] and see how easy we can do this without any modification to the existing code.
+To close the circle we can implement [REQ_2] and see how easy we can do this without any modification to the existing code (please note we only updated the relevant part of the configuration).
 
 First update **os_task_cfg.h** and **os_task_cfg.c** as below:
 
@@ -371,8 +434,14 @@ SchedTblType SchedTable[SCHED_EVT_NUMBER] =
 /************************************************************************
 * EXPORTED Defines
 ************************************************************************/
-/* NUmber of scheduling events */
+/* ID of the Schedule Table */
+#define SCHED_TBL_ID                                                 1u
+
+/* Number of scheduling events */
 #define SCHED_EVT_NUMBER                                             3u
+
+/* Number of Schedule table */
+#define SCH_TBL_NUMB                                                 1uu
 ```
 
 And, finally, add MyTask_3 implementation in main.c:
