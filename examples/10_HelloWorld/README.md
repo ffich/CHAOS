@@ -30,12 +30,14 @@ The separate 'main function' is nothing more than the abstraction of the task co
 We can do this with **CHAOS**, let's see how.
 
 ## STEP 1: Task Configuration
-After having imported all the OS files in our project, we need to create the following 5 configuration files:
+After having imported all the OS files in our project, we need to create the following 7 configuration files:
 
 - os_task_cfg.h
 - os_task_cfg.c
 - os_sched_tbl_cfg.h
 - os_sched_tbl_cfg.c
+- os_alarms_cfg.h
+- os_alarms_cfg.c
 - os_cfg.h
 
 Let's start with **os_task_cfg.c**. Thi file must contains the task table definition, that basically describe each task is present in the system, his ID and priority.
@@ -177,7 +179,10 @@ The file **os_sched_tbl_cfg.h**, simply export the number of scheduling events c
 #define SCH_TBL_NUMB                                                 1u
 ```
 
-## STEP 3: OS General configuration
+## STEP 3: OS Alarms
+In this step you are supposed to configure the OS alarms, but we don't have alarms in this project so we simply need to copy/paste the empty alarms templates (you can find them in the repository template folder).
+
+## STEP 4: OS General configuration
 Finally we have to create the file **os_cfg.h**. This file contains some general OS configuration. For this example you can copy the following sample:
 
 ```
