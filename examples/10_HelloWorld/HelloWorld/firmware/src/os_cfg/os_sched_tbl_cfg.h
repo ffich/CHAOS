@@ -32,7 +32,7 @@
 /************************************************************************
 * EXPORTED Defines
 ************************************************************************/
-/* ID of the Schedute Table */
+/* ID of the Schedule Table */
 #define SCHED_TBL_ID                                                 1u
 
 /* Number of scheduling events */

@@ -1,7 +1,7 @@
 /************************************************************************
-*                               OS Schedule Table                         
+*                               OS Alarms                         
 *************************************************************************
-* FileName:         os_sched_tbl.h                                                                           
+* FileName:         os_alarms.h                                                                           
 * Author:           F.Ficili                                            
 *                                                                       
 * Software License Agreement:                                           
@@ -18,18 +18,18 @@
 * --------------------------------------------------------------------- 
 * Author       Date        Version      Comment                         
 * ---------------------------------------------------------------------	
-* F.Ficili     15/08/23    1.0          First release.                  
+* F.Ficili     15/09/24    1.0          First release.                  
 ************************************************************************/
 
-#ifndef OS_SCHED_TBL_H
-#define OS_SCHED_TBL_H
+#ifndef OS_ALARMS_H
+#define OS_ALARMS_H
 
 /************************************************************************
 * Includes
 ************************************************************************/
 #include "common.h"
 #include "os.h"
-#include "os_sched_tbl_cfg.h"
+#include "os_alarms_cfg.h"
 
 /************************************************************************
 * EXPORTED Defines
@@ -44,45 +44,62 @@
 /************************************************************************
 * EXPORTED Typedef
 ************************************************************************/
-
-/* Schedule table state type */
+/* Alarm state type */
 typedef enum
 {
-   SCH_TBL_IDLE = 0,
-   SCH_TBL_ACTIVE = 1   
-} ScheduleTableStateType;
+   ALARM_IDLE     = 0,
+   ALARM_ACTIVE   = 1   
+} AlarmStateType;
 
-/* Schedule Table Type */
-typedef struct 
+/* Alarm action */
+typedef enum
 {
-   uint16_t TaskID;
-   uint16_t Counter;
-   const uint32_t TimeoutMs;
-} SchedTblType;
+   ALRM_ACTIVATE_TASK   = 0,
+   ALRM_CALLBACK        = 1           
+} AlarmActionType;
 
-/* Schedule table list type */
+/* Alarm Type */
+typedef enum
+{
+   ALRM_ONE_SHOT     = 0,
+   ALRM_CYCLIC       = 1           
+} AlarmFiringType;
+
+/* Alarm Type */
+typedef struct 
+{   
+   AlarmActionType Action;
+   uint16_t Counter;
+   uint32_t TimeoutMs;
+   AlarmFiringType Type;
+   uint16_t TaskID;
+   void (*Callback) (void);
+} AlarmType;
+
+/* Alarm list type */
 typedef struct
 {
-   uint16_t SchedTblID;
-   uint16_t SchEvtNumber;
-   ScheduleTableStateType ScheduleTableState;
-   SchedTblType * SchedTblElem;
-} SchedTblListType;
+   uint16_t AlarmID;
+   AlarmStateType AlarmState;
+   AlarmType * AlarmElem;
+} AlarmListType;
 
 /************************************************************************
 * EXPORTED Variables
 ************************************************************************/
-/* Sched. Table List */
-extern SchedTblListType SchedTableList[SCH_TBL_NUMB];
+/* Alarm List */
+extern AlarmListType AlarmList[ALARMS_NUMB];
 
 /************************************************************************
 * EXPORTED Functions
 ************************************************************************/
-/* Service used by the OS to run the schedule tables */
-Os_ApiReturnType Os_UpdateSchedTable (void);
-/* Start a schedule table by ID */
-Os_ApiReturnType Os_StartSchedTable (uint16_t ID);
-/* Stop a schedule table by ID */
-Os_ApiReturnType Os_StopSchedTable (uint16_t ID);
+/* Service used by the OS to run the Alarms */
+Os_ApiReturnType Os_UpdateAlarms (void);
+/* Start an alarm by ID */
+Os_ApiReturnType Os_StartAlarm (uint16_t ID);
+/* Stop an alarm by ID */
+Os_ApiReturnType Os_StopAlarm (uint16_t ID);
+/* Set Alarm period by ID */
+Os_ApiReturnType Os_SetAlarmPeriod (uint16_t ID, uint32_t TimeoutMs);
 
-#endif /* OS_SCHED_TBL_H */
+#endif /* OS_ALARM_H */

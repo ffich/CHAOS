@@ -37,11 +37,13 @@
         <itemPath>../../../../../os/os_sched_tbl.h</itemPath>
         <itemPath>../../../../../os/os_task.h</itemPath>
         <itemPath>../../../../../os/os_timers.h</itemPath>
+        <itemPath>../../../../../os/os_alarms.h</itemPath>
       </logicalFolder>
       <logicalFolder name="os_cfg" displayName="os_cfg" projectFiles="true">
         <itemPath>../src/os_cfg/os_cfg.h</itemPath>
         <itemPath>../src/os_cfg/os_sched_tbl_cfg.h</itemPath>
         <itemPath>../src/os_cfg/os_task_cfg.h</itemPath>
+        <itemPath>../src/os_cfg/os_alarms_cfg.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -89,10 +91,12 @@
         <itemPath>../../../../../os/os_sched_tbl.c</itemPath>
         <itemPath>../../../../../os/os_task.c</itemPath>
         <itemPath>../../../../../os/os_timers.c</itemPath>
+        <itemPath>../../../../../os/os_alarms.c</itemPath>
       </logicalFolder>
       <logicalFolder name="os_cfg" displayName="os_cfg" projectFiles="true">
         <itemPath>../src/os_cfg/os_sched_tbl_cfg.c</itemPath>
         <itemPath>../src/os_cfg/os_task_cfg.c</itemPath>
+        <itemPath>../src/os_cfg/os_alarms_cfg.c</itemPath>
       </logicalFolder>
       <itemPath>../src/main.c</itemPath>
     </logicalFolder>

@@ -1,7 +1,7 @@
 /************************************************************************
-*                               OS Schedule Table                         
+*                               OS Alarms Cfg                         
 *************************************************************************
-* FileName:         os_sched_tbl.h                                                                           
+* FileName:         os_alarms_cfg.c                                                                                
 * Author:           F.Ficili                                            
 *                                                                       
 * Software License Agreement:                                           
@@ -14,75 +14,71 @@
 * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.                     
 *                                                                       
 * --------------------------------------------------------------------- 
-* File History:                                                                                       
+* File History:                                                                                            
 * --------------------------------------------------------------------- 
 * Author       Date        Version      Comment                         
 * ---------------------------------------------------------------------	
-* F.Ficili     15/08/23    1.0          First release.                  
+* F.Ficili     15/09/24    1.0          First release.              
 ************************************************************************/
-
-#ifndef OS_SCHED_TBL_H
-#define OS_SCHED_TBL_H
 
 /************************************************************************
 * Includes
 ************************************************************************/
-#include "common.h"
+#include "os_alarms.h"
 #include "os.h"
-#include "os_sched_tbl_cfg.h"
+#include "common.h"
+#include "os_task_cfg.h"
+#include "os_alarms_cfg.h"
 
 /************************************************************************
-* EXPORTED Defines
+* Defines
 ************************************************************************/
 
 
 /************************************************************************
-* EXPORTED Macros
+* Typedefs
 ************************************************************************/
 
 
 /************************************************************************
-* EXPORTED Typedef
+* LOCAL Variables
 ************************************************************************/
 
-/* Schedule table state type */
-typedef enum
+
+/************************************************************************
+* CALLBACKS
+************************************************************************/
+
+
+/************************************************************************
+* GLOBAL Variables
+************************************************************************/
+/* Alarm structure initialization */
+AlarmType MyAlarm =
+
+  /* --------------------------------------- Alarm ------------------------------------------- */     
+  /* ----------------------------------------------------------------------------------------- */
+  /* Action          Counter          Timeout           Type          TaskID          Callback */
+  /* ----------------------------------------------------------------------------------------- */   
+  {};   
+  /* ----------------------------------------------------------------------------------------- */
+
+AlarmListType AlarmList[ALARMS_NUMB] =
 {
-   SCH_TBL_IDLE = 0,
-   SCH_TBL_ACTIVE = 1   
-} ScheduleTableStateType;
+  /* ---------------- Alarm List --------------- */   
+  /* ------------------------------------------- */
+  /* AlarmID         AlarmState         AlarmPtr */
+  /* ------------------------------------------- */     
+  /* ------------------------------------------- */
+};        
 
-/* Schedule Table Type */
-typedef struct 
-{
-   uint16_t TaskID;
-   uint16_t Counter;
-   const uint32_t TimeoutMs;
-} SchedTblType;
-
-/* Schedule table list type */
-typedef struct
-{
-   uint16_t SchedTblID;
-   uint16_t SchEvtNumber;
-   ScheduleTableStateType ScheduleTableState;
-   SchedTblType * SchedTblElem;
-} SchedTblListType;
 
 /************************************************************************
-* EXPORTED Variables
+* LOCAL Functions
 ************************************************************************/
-/* Sched. Table List */
-extern SchedTblListType SchedTableList[SCH_TBL_NUMB];
+
 
 /************************************************************************
-* EXPORTED Functions
+* GLOBAL Functions
 ************************************************************************/
-/* Service used by the OS to run the schedule tables */
-Os_ApiReturnType Os_UpdateSchedTable (void);
-/* Start a schedule table by ID */
-Os_ApiReturnType Os_StartSchedTable (uint16_t ID);
-/* Stop a schedule table by ID */
-Os_ApiReturnType Os_StopSchedTable (uint16_t ID);
 
-#endif /* OS_SCHED_TBL_H */

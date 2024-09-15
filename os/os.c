@@ -28,6 +28,8 @@
 #include "os_sched_tbl.h"
 #include "os_sched_tbl_cfg.h"
 #include "os_task.h"
+#include "os_alarms.h"
+#include "os_alarms_cfg.h"
 
 /************************************************************************
 * Defines
@@ -442,6 +444,8 @@ Os_VoidReturnType Os_Tick (void)
   UpdateOsCounters();
   /* Update schedule table */
   Os_UpdateSchedTable();  
+  /* Update system alarms */
+  Os_UpdateAlarms();
 }
 
 /* REQ_KER_010 REQ_KER_030 */

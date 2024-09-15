@@ -1,7 +1,7 @@
 /************************************************************************
-*                               OS Schedule Table                         
+*                              OS Alarms Cfg                        
 *************************************************************************
-* FileName:         os_sched_tbl.h                                                                           
+* FileName:         os_alarms_cfg.h                                                                             
 * Author:           F.Ficili                                            
 *                                                                       
 * Software License Agreement:                                           
@@ -14,27 +14,26 @@
 * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.                     
 *                                                                       
 * --------------------------------------------------------------------- 
-* File History:                                                                                       
+* File History:                                                                                    
 * --------------------------------------------------------------------- 
 * Author       Date        Version      Comment                         
 * ---------------------------------------------------------------------	
-* F.Ficili     15/08/23    1.0          First release.                  
+* F.Ficili     15/09/24    1.0          First release.                 
 ************************************************************************/
 
-#ifndef OS_SCHED_TBL_H
-#define OS_SCHED_TBL_H
+#ifndef OS_ALARM_CFG_H
+#define OS_ALARM_CFG_H
 
 /************************************************************************
 * Includes
 ************************************************************************/
-#include "common.h"
-#include "os.h"
-#include "os_sched_tbl_cfg.h"
+#include "os_alarms.h"
 
 /************************************************************************
 * EXPORTED Defines
 ************************************************************************/
-
+/* Number of Alarms */
+#define ALARMS_NUMB                                                  0u
 
 /************************************************************************
 * EXPORTED Macros
@@ -45,44 +44,16 @@
 * EXPORTED Typedef
 ************************************************************************/
 
-/* Schedule table state type */
-typedef enum
-{
-   SCH_TBL_IDLE = 0,
-   SCH_TBL_ACTIVE = 1   
-} ScheduleTableStateType;
-
-/* Schedule Table Type */
-typedef struct 
-{
-   uint16_t TaskID;
-   uint16_t Counter;
-   const uint32_t TimeoutMs;
-} SchedTblType;
-
-/* Schedule table list type */
-typedef struct
-{
-   uint16_t SchedTblID;
-   uint16_t SchEvtNumber;
-   ScheduleTableStateType ScheduleTableState;
-   SchedTblType * SchedTblElem;
-} SchedTblListType;
 
 /************************************************************************
 * EXPORTED Variables
 ************************************************************************/
-/* Sched. Table List */
-extern SchedTblListType SchedTableList[SCH_TBL_NUMB];
+
 
 /************************************************************************
 * EXPORTED Functions
 ************************************************************************/
-/* Service used by the OS to run the schedule tables */
-Os_ApiReturnType Os_UpdateSchedTable (void);
-/* Start a schedule table by ID */
-Os_ApiReturnType Os_StartSchedTable (uint16_t ID);
-/* Stop a schedule table by ID */
-Os_ApiReturnType Os_StopSchedTable (uint16_t ID);
 
-#endif /* OS_SCHED_TBL_H */
+
+#endif /* OS_ALARM_CFG_H */
+

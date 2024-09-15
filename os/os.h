@@ -90,7 +90,18 @@
 #define E_OS_WRONG_TMOUT_VALUE                                    82u
 
 /* -- Alarms -- */
-/* REQ_ERR_070 */
+/* REQ_ERR_080 */
+/* A referenced alarm is a null pointer */
+#define E_OS_WRONG_ALARM_PTR                                      91u
+
+/* A wrong Alarm callback (null pointer) has been passed to the alarm processing function */
+#define E_OS_WRONG_ALARM_CBK                                      92u
+
+/* A wrong alarm state transition is issued (e.g. trying to activate a RUNNING Alarm) */
+#define E_OS_WRONG_ALARM_STATE_TRANSITION                         93u
+
+/* A wrong Alarm ID is passed to the StartAlarm or StopAlarm API */
+#define E_OS_WRONG_ALARM_ID                                       94u
 
 /************************************************************************
 * EXPORTED Macros
