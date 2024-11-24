@@ -60,7 +60,7 @@ A task starts in **IDLE** state. In this state the Scheduler will not select the
 When the task is in **READY** state, at the next dispatching round it will be executed and moved into **RUNNING** state by the Scheduler if it is the higher priority task that is ready to run.
 A task is put back into **IDLE** state when it's terminated (TerminateTask or ChainTask APIs). A task can't be forcibly interrupted by the Scheduler, but it can voluntarily relase control to it by means of a specific Yield API. In this case the Scheudler taks over and execute any higher priority task that is ready to run (cooperative scheduling). During this period, the task is put into the **YIELD** state by the Scheduler. Once there are no higher priority task to be executed, the control is given back to the yielding task, that is put back into the **RUNNING** state.
 
-*[REQ_TSK_011]* - Before to make any task state transition the OS shall check that the transition is valid. If the transition is not correct, the OS should issue an appropriate error from the API that requested the specific transition.
+**[REQ_TSK_011]** - Before to make any task state transition the OS shall check that the transition is valid. If the transition is not correct, the OS should issue an appropriate error from the API that requested the specific transition.
 
 **[REQ_TSK_020]** - The OS shall provide a task table definition, that contains:
 
@@ -171,9 +171,9 @@ The following section lists all the **alarms** requirements.
 # Logging Requirements
 The following section lists all the **os logging** requirements.
 
-*[REQ_LOG_010]* - The OS shall provide a 'terminal' feature (OS logging) that allow to log the status of the various tasks, schedule table, events, queue, etc...
+**[REQ_LOG_010]** - The OS shall provide a 'terminal' feature (OS logging) that allow to log the status of the various tasks, schedule table, events, queue, etc...
 
-*[REQ_LOG_020]* -  The OS logging feature must be configurable (as much as possible).
+**[REQ_LOG_020]** -  The OS logging feature must be configurable (as much as possible).
 
 # Error Handling Requirements
 The following section lists all the **os error handling** requirements.
@@ -226,7 +226,7 @@ Signature of the API: void User_PreTaskHook (uint_16 TaskID); The passed paramet
 **[REQ_HOOK_050]** - The OS shall provide a **PostTaskHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not.
 Signature of the API: void User_PostTaskHook (uint_16 TaskID); The passed parameter is the ID of the Task that just ran.
 
-*[REQ_HOOK_060]* - The OS shall provide a **ErrorHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not. 
+**[REQ_HOOK_060]** - The OS shall provide a **ErrorHook** API. It must be configurable if this API will be used (i.e. called by the OS) or not. 
 Signature of the API: void User_ErrorHook (Os_ApiErrorType ErrorCode); The parameter is the specific error code triggered by the OS.
 
 # Additional Requirements
