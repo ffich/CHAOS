@@ -104,3 +104,4 @@ Port List:
 | S32K1           | S32K144 EVB       | S32 Studio                               | Planned     |
 | RP2040          | Raspberry Pico    | Eclipse + Extension                      | Planned     |
 | ESP32           | Node MCU          | Eclipse + Extension                      | Planned     |
+| Tricore Aurix   | TC375 Lite kit    | Aurix Studio                             | Planned     |
