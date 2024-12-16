@@ -94,3 +94,13 @@ Now you can unkork a beer yourself and start making some **CHAOS**.
 ## Porting
 I'm currently working on porting the Hello World example on some common architecture, like Microchip PIC18, PIC24, STM STM32, ExpressIf ESP8266/ESP32, NXP S32K, Infineon Tricore, etc...
 
+Port List:
+
+| Device family   | Board             | Conf./Build Environment                  | Status      |
+|-----------------|-------------------|------------------------------------------|--------------
+| STM32F1         | Blue Pill         | STM32 Cube MX                            | Completed   |
+| STM32L0         | Nucleo-32         | STM32 Cube MX                            | Planned     |
+| MCXA156         | FRDM              | MCUxpresso                               | Planned     |
+| S32K1           | S32K144 EVB       | S32 Studio                               | Planned     |
+| RP2040          | Raspberry Pico    | Eclipse + Extension                      | Planned     |
+| ESP32           | Node MCU          | Eclipse + Extension                      | Planned     |
