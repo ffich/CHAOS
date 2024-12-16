@@ -1,0 +1,13 @@
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c:104:19:UpdateSchFlag	4	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c:129:19:UpdateOsCounters	4	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c:142:19:OsDispatch	16	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c:179:19:SetOsState	16	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c:192:19:ActivateAutoStartedTasks	16	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c:211:6:OsInit	8	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c:269:19:OsSchedule	16	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c:305:19:Os_Start	8	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c:351:19:Os_Schedule	16	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c:390:18:Os_Shutdown	4	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c:439:19:Os_Tick	8	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c:468:19:Os_SortReadyQueue	32	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os.c:525:18:Os_GetVersion	32	static

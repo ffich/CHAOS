@@ -1,0 +1,7 @@
+os_timers.c:67:10:GetOsTickCounter	1
+os_timers.c:80:10:GetElapsedTime	2
+os_timers.c:113:6:Os_StartTimer	1
+os_timers.c:132:6:Os_StopTimer	1
+os_timers.c:145:19:Os_GetTimerStatus	3
+os_timers.c:180:10:Os_GetElapsedTime	2
+os_timers.c:208:10:Os_GetRemainingTime	2

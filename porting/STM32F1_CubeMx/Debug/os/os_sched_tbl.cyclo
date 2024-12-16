@@ -1,0 +1,3 @@
+os_sched_tbl.c:69:18:Os_UpdateSchedTable	6
+os_sched_tbl.c:132:18:Os_StartSchedTable	5
+os_sched_tbl.c:198:18:Os_StopSchedTable	5

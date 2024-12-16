@@ -1,0 +1,3 @@
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_sched_tbl.c:69:18:Os_UpdateSchedTable	16	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_sched_tbl.c:132:18:Os_StartSchedTable	24	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_sched_tbl.c:198:18:Os_StopSchedTable	24	static

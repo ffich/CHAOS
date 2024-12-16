@@ -1,0 +1,7 @@
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_timers.c:67:10:GetOsTickCounter	4	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_timers.c:80:10:GetElapsedTime	24	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_timers.c:113:6:Os_StartTimer	16	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_timers.c:132:6:Os_StopTimer	16	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_timers.c:145:19:Os_GetTimerStatus	16	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_timers.c:180:10:Os_GetElapsedTime	24	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_timers.c:208:10:Os_GetRemainingTime	24	static

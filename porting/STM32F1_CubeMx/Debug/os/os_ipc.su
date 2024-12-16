@@ -1,0 +1,9 @@
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_ipc.c:68:20:Os_GenerateEvt	24	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_ipc.c:89:20:Os_ReceiveEvt	24	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_ipc.c:124:19:Os_InitEvtQueue	24	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_ipc.c:142:17:Os_IsEvtQueueEmpty	24	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_ipc.c:167:17:Os_IsEvtQueueFull	24	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_ipc.c:193:19:Os_GetQueueItemCount	16	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_ipc.c:208:21:Os_QueueInsert	24	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_ipc.c:248:22:Os_QueueExtract	24	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_ipc.c:292:22:Os_QueueExtractAndShift	24	static

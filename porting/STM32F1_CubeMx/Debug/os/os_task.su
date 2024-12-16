@@ -1,0 +1,7 @@
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_task.c:68:18:Os_ActivateTask	32	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_task.c:146:18:Os_TerminateTask	16	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_task.c:185:18:Os_ChainTask	24	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_task.c:219:18:Os_Yield	16	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_task.c:275:18:Os_ActivateTaskAndYield	24	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_task.c:306:18:Os_GetTaskID	24	static
+D:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/os/os_task.c:328:18:Os_GetTaskPriority	24	static
