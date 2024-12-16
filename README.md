@@ -91,3 +91,6 @@ Now you can unkork a beer yourself and start making some **CHAOS**.
 
 **Messing with Chaos**: Error Handling in CHAOS.
 
+## Porting
+I'm currently working on porting the Hello World example on some common architecture, like Microchip PIC18, PIC24, STM STM32, ExpressIf ESP8266/ESP32, NXP S32K, Infineon Tricore, etc...
+
