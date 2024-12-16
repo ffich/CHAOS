@@ -1,0 +1,98 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
+	.compiler_invocation	"ctc -f cc13556a --dep-file=Libraries/Infra/Platform/Tricore/Compilers/CompilerDcc.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tom/PwmHl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Platform/Tricore/Compilers -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Platform -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Iom/Iom -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/If/Ccu6If -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Iom/Driver -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Sent -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gpt12/IncrEnc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/I2c -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Psi5s/Psi5s -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/SysSe/Comm -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/SysSe/Math -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Platform/Tricore -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Sent/Sent -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Msc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/Icu -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Qspi -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Ssw/TC37A -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Qspi/SpiMaster -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/_Lib -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Dma/Dma -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/SysSe -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/TPwm -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gpt12/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/If -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Msc/Msc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Atom/Dtm_PwmHl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/_Lib/DataHandling -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Asclin/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Edsadc/Edsadc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Sent/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/Timer -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gpt12 -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Convctrl/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Psi5/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Stm -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Edsadc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Sfr/TC37A -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Ssw/TC37A/Tricore -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Psi5 -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Sfr/TC37A/_Reg -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Flash -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Scu -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Eray -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Hssl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Msc/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Asclin -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Fce -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Smu/Smu -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Port/Io -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Convctrl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Geth/Eth -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tom -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Sfr -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/TimerWithTrigger -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/_PinMap -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/_Lib/InternalMux -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/SysSe/Bsp -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/SysSe/General -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Smu -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Evadc/Adc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tim/Timer -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Port -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Configurations -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Flash/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Cpu/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tom/Pwm -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Asclin/Lin -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Fce/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Port/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Dts -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Src -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tom/Dtm_PwmHl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Dma -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Stm/Timer -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Atom/PwmHl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/PwmHl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Smu/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Iom -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6 -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Evadc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Hssl/Hssl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tim -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/SysSe/Time -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Geth -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Qspi/SpiSlave -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Atom -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Pms/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Pms -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Asclin/Spi -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Eray/Eray -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Hssl/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/I2c/I2c -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Dts/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Can/Can -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Mtu/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Eray/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Cpu -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Scu/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Stm/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Atom/Pwm -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Psi5s -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Cpu/Irq -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/PwmBc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Cpu/Trap -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Ssw -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/StdIf -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Trig -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Mtu -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Edsadc/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Fce/Crc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Psi5/Psi5 -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tim/In -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Qspi/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Configurations/Debug -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Can/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Src/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Dma/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Psi5s/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/_Utilities -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Atom/Timer -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Iom/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Asclin/Asc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/I2c/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Geth/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tom/Timer -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Can -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Dts/Dts -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Evadc/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/_Impl -I..\\\\..\\\\..\\\\os -I..\\\\os_cfg -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o Libraries/Infra/Platform/Tricore/Compilers/CompilerDcc.src ../Libraries/Infra/Platform/Tricore/Compilers/CompilerDcc.c"
+	.compiler_name		"ctc"
+	;source	'../Libraries/Infra/Platform/Tricore/Compilers/CompilerDcc.c'
+
+	
+$TC162
+	
+	.sdecl	'.debug_info',debug
+	.sect	'.debug_info'
+.L3:
+	.word	602
+	.half	3
+	.word	.L4
+	.byte	4
+.L2:
+	.byte	1
+	.byte	'../Libraries/Infra/Platform/Tricore/Compilers/CompilerDcc.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'D:\\60_Repositories\\10_Public\\PR202301_CHAOS\\CHAOS\\porting\\Aurix_TC3xx_ADS\\Debug\\',0,12,1
+	.word	.L5
+	.byte	2
+	.byte	'short int',0,2,5,3
+	.byte	'__wchar_t',0,1,1,1
+	.word	236
+	.byte	2
+	.byte	'unsigned int',0,4,7,3
+	.byte	'__size_t',0,1,1,1
+	.word	267
+	.byte	2
+	.byte	'int',0,4,5,3
+	.byte	'__ptrdiff_t',0,1,1,1
+	.word	300
+	.byte	4,1,5
+	.word	327
+	.byte	3
+	.byte	'__codeptr',0,1,1,1
+	.word	329
+	.byte	2
+	.byte	'unsigned char',0,1,8,3
+	.byte	'uint8',0,2,108,29
+	.word	352
+	.byte	2
+	.byte	'unsigned short int',0,2,7,3
+	.byte	'uint16',0,2,112,29
+	.word	383
+	.byte	2
+	.byte	'unsigned long int',0,4,7,3
+	.byte	'uint32',0,2,116,29
+	.word	420
+	.byte	3
+	.byte	'sint16',0,2,129,1,29
+	.word	236
+	.byte	2
+	.byte	'long int',0,4,5,3
+	.byte	'sint32',0,2,134,1,29
+	.word	472
+	.byte	2
+	.byte	'long long int',0,8,5,3
+	.byte	'sint64',0,2,141,1,29
+	.word	500
+	.byte	2
+	.byte	'float',0,4,4,3
+	.byte	'float32',0,2,170,1,29
+	.word	533
+	.byte	6
+	.byte	'void',0,5
+	.word	559
+	.byte	3
+	.byte	'pvoid',0,3,54,28
+	.word	565
+	.byte	3
+	.byte	'Ifx_TickTime',0,3,76,28
+	.word	500
+	.byte	0
+	.sdecl	'.debug_abbrev',debug
+	.sect	'.debug_abbrev'
+.L4:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,22,0,3,8,58,15,59,15,57,15
+	.byte	73,19,0,0,4,21,0,54,15,0,0,5,15,0,73,19,0,0,6,59,0,3,8,0,0,0
+	.sdecl	'.debug_line',debug
+	.sect	'.debug_line'
+.L5:
+	.word	.L7-.L6
+.L6:
+	.half	3
+	.word	.L9-.L8
+.L8:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'D:\\60_Repositories\\10_Public\\PR202301_CHAOS\\CHAOS\\porting\\Aurix_TC3xx_ADS\\Libraries\\iLLD\\TC37A\\Tricore\\Cpu\\Std',0
+	.byte	0
+	.byte	'../Libraries/Infra/Platform/Tricore/Compilers/CompilerDcc.c',0,0,0,0
+	.byte	'Platform_Types.h',0,1,0,0
+	.byte	'Ifx_Types.h',0,1,0,0,0
+.L9:
+.L7:
+	; Module end

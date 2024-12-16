@@ -1,0 +1,1667 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
+	.compiler_invocation	"ctc -f cc12568a --dep-file=os/os_ipc.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tom/PwmHl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Platform/Tricore/Compilers -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Platform -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Iom/Iom -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/If/Ccu6If -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Iom/Driver -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Sent -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gpt12/IncrEnc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/I2c -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Psi5s/Psi5s -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/SysSe/Comm -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/SysSe/Math -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Platform/Tricore -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Sent/Sent -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Msc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/Icu -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Qspi -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Ssw/TC37A -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Qspi/SpiMaster -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/_Lib -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Dma/Dma -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/SysSe -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/TPwm -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gpt12/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/If -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Msc/Msc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Atom/Dtm_PwmHl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/_Lib/DataHandling -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Asclin/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Edsadc/Edsadc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Sent/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/Timer -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gpt12 -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Convctrl/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Psi5/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Stm -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Edsadc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Sfr/TC37A -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Ssw/TC37A/Tricore -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Psi5 -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Sfr/TC37A/_Reg -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Flash -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Scu -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Eray -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Hssl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Msc/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Asclin -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Fce -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Smu/Smu -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Port/Io -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Convctrl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Geth/Eth -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tom -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Sfr -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/TimerWithTrigger -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/_PinMap -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/_Lib/InternalMux -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/SysSe/Bsp -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/SysSe/General -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Smu -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Evadc/Adc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tim/Timer -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Port -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Configurations -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Flash/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Cpu/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tom/Pwm -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Asclin/Lin -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Fce/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Port/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Dts -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Src -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tom/Dtm_PwmHl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Dma -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Stm/Timer -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Atom/PwmHl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/PwmHl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Smu/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Iom -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6 -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Evadc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Hssl/Hssl -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tim -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/SysSe/Time -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Geth -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Qspi/SpiSlave -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Atom -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Pms/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Pms -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Asclin/Spi -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Eray/Eray -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Hssl/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/I2c/I2c -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Dts/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Can/Can -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Mtu/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Eray/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Cpu -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Scu/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Stm/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Atom/Pwm -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Psi5s -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Cpu/Irq -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/PwmBc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Cpu/Trap -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Infra/Ssw -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/StdIf -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Trig -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Mtu -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Edsadc/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Fce/Crc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Psi5/Psi5 -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tim/In -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Qspi/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Configurations/Debug -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Can/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Src/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Dma/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Psi5s/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/Service/CpuGeneric/_Utilities -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Atom/Timer -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Iom/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Asclin/Asc -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/I2c/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Ccu6/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Geth/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Gtm/Tom/Timer -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Can -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Dts/Dts -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/Evadc/Std -ID:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Libraries/iLLD/TC37A/Tricore/_Impl -I..\\\\..\\\\..\\\\os -I..\\\\os_cfg -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o os/os_ipc.src ../os/os_ipc.c"
+	.compiler_name		"ctc"
+	;source	'../os/os_ipc.c'
+
+	
+$TC162
+	
+	.sdecl	'.text.os_ipc.Os_GenerateEvt',code,cluster('Os_GenerateEvt')
+	.sect	'.text.os_ipc.Os_GenerateEvt'
+	.align	2
+	
+	.global	Os_GenerateEvt
+; Function Os_GenerateEvt
+.L26:
+Os_GenerateEvt:	.type	func
+	mov	d15,#2
+.L168:
+	st.b	[a4],d15
+.L169:
+	mov	d2,#2
+.L137:
+	j	.L2
+.L2:
+	ret
+.L93:
+	
+__Os_GenerateEvt_function_end:
+	.size	Os_GenerateEvt,__Os_GenerateEvt_function_end-Os_GenerateEvt
+.L51:
+	; End of function
+	
+	.sdecl	'.text.os_ipc.Os_ReceiveEvt',code,cluster('Os_ReceiveEvt')
+	.sect	'.text.os_ipc.Os_ReceiveEvt'
+	.align	2
+	
+	.global	Os_ReceiveEvt
+; Function Os_ReceiveEvt
+.L28:
+Os_ReceiveEvt:	.type	func
+	ld.bu	d15,[a4]
+.L174:
+	jne	d15,#2,.L3
+.L175:
+	mov	d15,#1
+.L176:
+	st.b	[a4],d15
+.L177:
+	mov	d2,#1
+.L138:
+	j	.L4
+.L3:
+	mov	d2,#0
+.L4:
+	j	.L5
+.L5:
+	ret
+.L97:
+	
+__Os_ReceiveEvt_function_end:
+	.size	Os_ReceiveEvt,__Os_ReceiveEvt_function_end-Os_ReceiveEvt
+.L56:
+	; End of function
+	
+	.sdecl	'.text.os_ipc.Os_InitEvtQueue',code,cluster('Os_InitEvtQueue')
+	.sect	'.text.os_ipc.Os_InitEvtQueue'
+	.align	2
+	
+	.global	Os_InitEvtQueue
+; Function Os_InitEvtQueue
+.L30:
+Os_InitEvtQueue:	.type	func
+	st.h	[a4],d4
+.L182:
+	st.b	[a4]8,d5
+.L183:
+	st.a	[a4]4,a5
+.L184:
+	mov	d15,#0
+.L185:
+	st.h	[a4]10,d15
+.L186:
+	ld.bu	d15,[a4]8
+.L187:
+	rsub	d15,#0
+.L188:
+	st.h	[a4]12,d15
+.L189:
+	mov	d15,#0
+.L190:
+	st.h	[a4]14,d15
+.L191:
+	ret
+.L100:
+	
+__Os_InitEvtQueue_function_end:
+	.size	Os_InitEvtQueue,__Os_InitEvtQueue_function_end-Os_InitEvtQueue
+.L61:
+	; End of function
+	
+	.sdecl	'.text.os_ipc.Os_IsEvtQueueEmpty',code,cluster('Os_IsEvtQueueEmpty')
+	.sect	'.text.os_ipc.Os_IsEvtQueueEmpty'
+	.align	2
+	
+	.global	Os_IsEvtQueueEmpty
+; Function Os_IsEvtQueueEmpty
+.L32:
+Os_IsEvtQueueEmpty:	.type	func
+	ld.hu	d15,[a4]14
+.L196:
+	jne	d15,#0,.L6
+.L197:
+	mov	d2,#1
+.L139:
+	j	.L7
+.L6:
+	mov	d2,#0
+.L7:
+	j	.L8
+.L8:
+	ret
+.L110:
+	
+__Os_IsEvtQueueEmpty_function_end:
+	.size	Os_IsEvtQueueEmpty,__Os_IsEvtQueueEmpty_function_end-Os_IsEvtQueueEmpty
+.L66:
+	; End of function
+	
+	.sdecl	'.text.os_ipc.Os_IsEvtQueueFull',code,cluster('Os_IsEvtQueueFull')
+	.sect	'.text.os_ipc.Os_IsEvtQueueFull'
+	.align	2
+	
+	.global	Os_IsEvtQueueFull
+; Function Os_IsEvtQueueFull
+.L34:
+Os_IsEvtQueueFull:	.type	func
+	ld.hu	d15,[a4]14
+.L202:
+	ld.hu	d0,[a4]0
+.L203:
+	jne	d15,d0,.L9
+.L204:
+	mov	d2,#2
+.L140:
+	j	.L10
+.L9:
+	mov	d2,#0
+.L10:
+	j	.L11
+.L11:
+	ret
+.L113:
+	
+__Os_IsEvtQueueFull_function_end:
+	.size	Os_IsEvtQueueFull,__Os_IsEvtQueueFull_function_end-Os_IsEvtQueueFull
+.L71:
+	; End of function
+	
+	.sdecl	'.text.os_ipc.Os_GetQueueItemCount',code,cluster('Os_GetQueueItemCount')
+	.sect	'.text.os_ipc.Os_GetQueueItemCount'
+	.align	2
+	
+	.global	Os_GetQueueItemCount
+; Function Os_GetQueueItemCount
+.L36:
+Os_GetQueueItemCount:	.type	func
+	ld.hu	d15,[a4]14
+.L209:
+	st.h	[a5],d15
+.L210:
+	ret
+.L116:
+	
+__Os_GetQueueItemCount_function_end:
+	.size	Os_GetQueueItemCount,__Os_GetQueueItemCount_function_end-Os_GetQueueItemCount
+.L76:
+	; End of function
+	
+	.sdecl	'.text.os_ipc.Os_QueueInsert',code,cluster('Os_QueueInsert')
+	.sect	'.text.os_ipc.Os_QueueInsert'
+	.align	2
+	
+	.global	Os_QueueInsert
+; Function Os_QueueInsert
+.L38:
+Os_QueueInsert:	.type	func
+	mov.aa	a15,a4
+.L142:
+	mov.aa	a12,a5
+.L143:
+	mov.aa	a4,a15
+	call	Os_IsEvtQueueFull
+.L141:
+	jne	d2,#0,.L12
+.L215:
+	ld.hu	d0,[a15]12
+.L216:
+	ld.hu	d1,[a15]0
+.L217:
+	ld.bu	d15,[a15]8
+.L218:
+	mul	d1,d15
+.L219:
+	ld.bu	d15,[a15]8
+.L220:
+	sub	d1,d15
+.L221:
+	jne	d0,d1,.L13
+.L222:
+	ld.bu	d15,[a15]8
+.L223:
+	rsub	d15,#0
+.L224:
+	st.h	[a15]12,d15
+.L13:
+	ld.hu	d0,[a15]12
+.L225:
+	ld.bu	d15,[a15]8
+.L226:
+	add	d0,d15
+	st.h	[a15]12,d0
+.L227:
+	ld.a	a2,[a15]4
+.L228:
+	ld.hu	d15,[a15]12
+.L229:
+	addsc.a	a4,a2,d15,#0
+.L230:
+	ld.bu	d4,[a15]8
+	mov.aa	a5,a12
+.L144:
+	call	memcpy
+.L145:
+	ld.hu	d15,[a15]14
+.L231:
+	add	d15,#1
+	st.h	[a15]14,d15
+.L232:
+	mov	d2,#1
+.L146:
+	j	.L14
+.L12:
+	mov	d2,#0
+.L14:
+	j	.L15
+.L15:
+	ret
+.L121:
+	
+__Os_QueueInsert_function_end:
+	.size	Os_QueueInsert,__Os_QueueInsert_function_end-Os_QueueInsert
+.L81:
+	; End of function
+	
+	.sdecl	'.text.os_ipc.Os_QueueExtract',code,cluster('Os_QueueExtract')
+	.sect	'.text.os_ipc.Os_QueueExtract'
+	.align	2
+	
+	.global	Os_QueueExtract
+; Function Os_QueueExtract
+.L40:
+Os_QueueExtract:	.type	func
+	mov.aa	a15,a4
+.L149:
+	ld.hu	d15,[a15]14
+.L237:
+	jlt.u	d15,#1,.L16
+.L238:
+	ld.a	a2,[a15]4
+.L239:
+	ld.hu	d15,[a15]10
+.L240:
+	addsc.a	a2,a2,d15,#0
+.L241:
+	ld.bu	d4,[a15]8
+	mov.aa	a4,a5
+.L148:
+	mov.aa	a5,a2
+.L147:
+	call	memcpy
+.L150:
+	ld.a	a2,[a15]4
+.L242:
+	ld.hu	d15,[a15]10
+.L243:
+	addsc.a	a4,a2,d15,#0
+.L244:
+	mov	d4,#0
+.L245:
+	ld.bu	d5,[a15]8
+	call	memset
+.L246:
+	ld.hu	d0,[a15]10
+.L247:
+	ld.bu	d15,[a15]8
+.L248:
+	add	d0,d15
+	st.h	[a15]10,d0
+.L249:
+	ld.hu	d1,[a15]10
+.L250:
+	ld.hu	d0,[a15]0
+.L251:
+	ld.bu	d15,[a15]8
+.L252:
+	mul	d0,d15
+.L253:
+	jlt	d1,d0,.L17
+.L254:
+	mov	d15,#0
+.L255:
+	st.h	[a15]10,d15
+.L17:
+	ld.hu	d15,[a15]14
+.L256:
+	add	d15,#-1
+	st.h	[a15]14,d15
+.L257:
+	mov	d2,#1
+.L151:
+	j	.L18
+.L16:
+	mov	d2,#0
+.L18:
+	j	.L19
+.L19:
+	ret
+.L127:
+	
+__Os_QueueExtract_function_end:
+	.size	Os_QueueExtract,__Os_QueueExtract_function_end-Os_QueueExtract
+.L86:
+	; End of function
+	
+	.sdecl	'.text.os_ipc.Os_QueueExtractAndShift',code,cluster('Os_QueueExtractAndShift')
+	.sect	'.text.os_ipc.Os_QueueExtractAndShift'
+	.align	2
+	
+	.global	Os_QueueExtractAndShift
+; Function Os_QueueExtractAndShift
+.L42:
+Os_QueueExtractAndShift:	.type	func
+	mov.aa	a15,a4
+.L154:
+	mov	d9,#0
+.L155:
+	ld.hu	d0,[a15]14
+.L262:
+	jlt.u	d0,#1,.L20
+.L263:
+	ld.a	a2,[a15]4
+.L264:
+	ld.hu	d15,[a15]10
+.L265:
+	addsc.a	a2,a2,d15,#0
+.L266:
+	ld.bu	d4,[a15]8
+	mov.aa	a4,a5
+.L153:
+	mov.aa	a5,a2
+.L152:
+	call	memcpy
+.L156:
+	mov	d8,#0
+.L157:
+	j	.L21
+.L22:
+	ld.a	a2,[a15]4
+.L267:
+	addsc.a	a4,a2,d9,#0
+.L268:
+	ld.a	a2,[a15]4
+.L269:
+	ld.bu	d15,[a15]8
+.L270:
+	add	d15,d9
+.L271:
+	addsc.a	a5,a2,d15,#0
+.L272:
+	ld.bu	d4,[a15]8
+	call	memcpy
+.L273:
+	ld.bu	d15,[a15]8
+.L274:
+	add	d15,d9
+	extr.u	d9,d15,#0,#16
+.L275:
+	add	d8,#1
+.L158:
+	extr.u	d8,d8,#0,#16
+.L21:
+	ld.hu	d15,[a15]14
+.L276:
+	jlt.u	d8,d15,.L22
+.L277:
+	ld.hu	d15,[a15]14
+.L278:
+	add	d15,#-1
+	st.h	[a15]14,d15
+.L279:
+	ld.hu	d0,[a15]12
+.L280:
+	ld.bu	d15,[a15]8
+.L281:
+	sub	d0,d15
+	st.h	[a15]12,d0
+.L282:
+	mov	d2,#1
+.L159:
+	j	.L23
+.L20:
+	mov	d2,#0
+.L23:
+	j	.L24
+.L24:
+	ret
+.L131:
+	
+__Os_QueueExtractAndShift_function_end:
+	.size	Os_QueueExtractAndShift,__Os_QueueExtractAndShift_function_end-Os_QueueExtractAndShift
+.L91:
+	; End of function
+	
+	.calls	'Os_QueueInsert','Os_IsEvtQueueFull'
+	.calls	'Os_QueueInsert','memcpy'
+	.calls	'Os_QueueExtract','memcpy'
+	.calls	'Os_QueueExtract','memset'
+	.calls	'Os_QueueExtractAndShift','memcpy'
+	.calls	'Os_GenerateEvt','',0
+	.calls	'Os_ReceiveEvt','',0
+	.calls	'Os_InitEvtQueue','',0
+	.calls	'Os_IsEvtQueueEmpty','',0
+	.calls	'Os_IsEvtQueueFull','',0
+	.calls	'Os_GetQueueItemCount','',0
+	.calls	'Os_QueueInsert','',0
+	.calls	'Os_QueueExtract','',0
+	.extern	memcpy
+	.extern	memset
+	.calls	'Os_QueueExtractAndShift','',0
+	.sdecl	'.debug_info',debug
+	.sect	'.debug_info'
+.L44:
+	.word	1140
+	.half	3
+	.word	.L45
+	.byte	4
+.L43:
+	.byte	1
+	.byte	'../os/os_ipc.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'D:\\60_Repositories\\10_Public\\PR202301_CHAOS\\CHAOS\\porting\\Aurix_TC3xx_ADS\\Debug\\',0,12,1
+	.word	.L46
+	.byte	2
+	.byte	'void',0
+.L123:
+	.byte	3
+	.word	191
+	.byte	4
+	.word	197
+	.byte	5
+	.word	191
+	.byte	3
+	.word	207
+	.byte	4
+	.word	212
+	.byte	6
+	.byte	'unsigned int',0,4,7,7
+	.byte	'memcpy',0,1,53,17
+	.word	197
+	.byte	1,1,1,1,8,1,53,33
+	.word	202
+	.byte	8,1,53,56
+	.word	217
+	.byte	8,1,53,68
+	.word	222
+	.byte	0,6
+	.byte	'int',0,4,5,7
+	.byte	'memset',0,1,56,17
+	.word	197
+	.byte	1,1,1,1,8,1,56,33
+	.word	197
+	.byte	8,1,56,36
+	.word	282
+	.byte	8,1,56,41
+	.word	222
+	.byte	0
+.L92:
+	.byte	9,2,41,9,1,10
+	.byte	'EVENT_IDLE',0,0,10
+	.byte	'EVENT_RECEIVED',0,1,10
+	.byte	'EVENT_SENT',0,2,10
+	.byte	'EVENT_NOT_SENT',0,3,0,11,2,50,9,1,12
+	.byte	'EventStatus',0
+	.word	333
+	.byte	1,2,35,0,0
+.L94:
+	.byte	3
+	.word	399
+.L103:
+	.byte	6
+	.byte	'unsigned short int',0,2,7
+.L105:
+	.byte	6
+	.byte	'unsigned char',0,1,8,3
+	.word	453
+	.byte	11,2,78,9,16,12
+	.byte	'QueueSize',0
+	.word	431
+	.byte	2,2,35,0,12
+	.byte	'QueuePtr',0
+	.word	470
+	.byte	4,2,35,4,12
+	.byte	'ElemSize',0
+	.word	453
+	.byte	1,2,35,8,12
+	.byte	'QueueFrontIdx',0
+	.word	431
+	.byte	2,2,35,10,12
+	.byte	'QueueRearIdx',0
+	.word	431
+	.byte	2,2,35,12,12
+	.byte	'QueueItemCount',0
+	.word	431
+	.byte	2,2,35,14,0
+.L101:
+	.byte	3
+	.word	475
+	.byte	13
+	.word	191
+.L107:
+	.byte	3
+	.word	610
+.L109:
+	.byte	9,2,56,9,1,10
+	.byte	'QUEUE_NOT_EMPTY_OR_FULL',0,0,10
+	.byte	'QUEUE_IS_EMPTY',0,1,10
+	.byte	'QUEUE_IS_FULL',0,2,0
+.L118:
+	.byte	3
+	.word	431
+.L120:
+	.byte	9,2,64,9,1,10
+	.byte	'QUEUE_FULL',0,0,10
+	.byte	'QUEUE_NOT_FULL',0,1,0
+.L126:
+	.byte	9,2,71,9,1,10
+	.byte	'QUEUE_EMPTY',0,0,10
+	.byte	'QUEUE_NOT_EMPTY',0,1,0,6
+	.byte	'short int',0,2,5,14
+	.byte	'__wchar_t',0,3,1,1
+	.word	764
+	.byte	14
+	.byte	'__size_t',0,3,1,1
+	.word	222
+	.byte	14
+	.byte	'__ptrdiff_t',0,3,1,1
+	.word	282
+	.byte	15,1,3
+	.word	832
+	.byte	14
+	.byte	'__codeptr',0,3,1,1
+	.word	834
+	.byte	14
+	.byte	'__intptr_t',0,3,1,1
+	.word	282
+	.byte	14
+	.byte	'__uintptr_t',0,3,1,1
+	.word	222
+	.byte	14
+	.byte	'size_t',0,4,24,25
+	.word	222
+	.byte	14
+	.byte	'uint8_t',0,5,242,1,41
+	.word	453
+	.byte	14
+	.byte	'uint16_t',0,5,246,1,41
+	.word	431
+	.byte	14
+	.byte	'_iob_flag_t',0,6,82,25
+	.word	431
+	.byte	14
+	.byte	'Os_VoidReturnType',0,7,96,14
+	.word	191
+	.byte	14
+	.byte	'Os_EventStatusType',0,2,47,3
+	.word	333
+	.byte	14
+	.byte	'EventType',0,2,53,3
+	.word	399
+	.byte	14
+	.byte	'Os_QueueStsType',0,2,61,3
+	.word	620
+	.byte	14
+	.byte	'Os_QueueFullStsType',0,2,68,3
+	.word	690
+	.byte	14
+	.byte	'Os_QueueEmptyStsType',0,2,75,3
+	.word	726
+	.byte	14
+	.byte	'QueueCtrlStrType',0,2,86,3
+	.word	475
+	.byte	0
+	.sdecl	'.debug_abbrev',debug
+	.sect	'.debug_abbrev'
+.L45:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,59,0,3,8,0,0,3,15,0,73,19,0,0,4,55,0,73,19,0,0,5,38,0
+	.byte	73,19,0,0,6,36,0,3,8,11,15,62,15,0,0,7,46,1,3,8,58,15,59,15,57,15,73,19,54,15,39,12,63,12,60,12,0,0,8
+	.byte	5,0,58,15,59,15,57,15,73,19,0,0,9,4,1,58,15,59,15,57,15,11,15,0,0,10,40,0,3,8,28,13,0,0,11,19,1,58,15
+	.byte	59,15,57,15,11,15,0,0,12,13,0,3,8,73,19,11,15,56,9,0,0,13,53,0,73,19,0,0,14,22,0,3,8,58,15,59,15,57,15
+	.byte	73,19,0,0,15,21,0,54,15,0,0,0
+	.sdecl	'.debug_line',debug
+	.sect	'.debug_line'
+.L46:
+	.word	.L161-.L160
+.L160:
+	.half	3
+	.word	.L163-.L162
+.L162:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\Infineon\\AURIX-Studio-1.10.6\\tools\\Compilers\\Tasking_1.1r8\\ctc\\include\\',0,0
+	.byte	'string.h',0,1,0,0
+	.byte	'..\\os\\os_ipc.h',0,0,0,0
+	.byte	'../os/os_ipc.c',0,0,0,0
+	.byte	'stddef.h',0,1,0,0
+	.byte	'stdint.h',0,1,0,0
+	.byte	'stdio.h',0,1,0,0
+	.byte	'..\\os\\common.h',0,0,0,0,0
+.L163:
+.L161:
+	.sdecl	'.debug_info',debug,cluster('Os_GenerateEvt')
+	.sect	'.debug_info'
+.L47:
+	.word	288
+	.half	3
+	.word	.L48
+	.byte	4,1
+	.byte	'../os/os_ipc.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'D:\\60_Repositories\\10_Public\\PR202301_CHAOS\\CHAOS\\porting\\Aurix_TC3xx_ADS\\Debug\\',0,12,1
+	.word	.L50,.L49
+	.byte	2
+	.word	.L43
+	.byte	3
+	.byte	'Os_GenerateEvt',0,1,68,20
+	.word	.L92
+	.byte	1,1,1
+	.word	.L26,.L93,.L25
+	.byte	4
+	.byte	'Event',0,1,68,47
+	.word	.L94,.L95
+	.byte	5
+	.word	.L26,.L93
+	.byte	6
+	.byte	'EventStatus',0,1,71,22
+	.word	.L92,.L96
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('Os_GenerateEvt')
+	.sect	'.debug_abbrev'
+.L48:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('Os_GenerateEvt')
+	.sect	'.debug_line'
+.L49:
+	.word	.L165-.L164
+.L164:
+	.half	3
+	.word	.L167-.L166
+.L166:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../os/os_ipc.c',0,0,0,0,0
+.L167:
+	.byte	5,24,7,0,5,2
+	.word	.L26
+	.byte	3,201,0,1,5,22,9
+	.half	.L168-.L26
+	.byte	1,5,15,9
+	.half	.L169-.L168
+	.byte	3,2,1,5,3,9
+	.half	.L137-.L169
+	.byte	3,3,1,5,1,9
+	.half	.L2-.L137
+	.byte	3,1,1,7,9
+	.half	.L51-.L2
+	.byte	0,1,1
+.L165:
+	.sdecl	'.debug_ranges',debug,cluster('Os_GenerateEvt')
+	.sect	'.debug_ranges'
+.L50:
+	.word	-1,.L26,0,.L51-.L26,0,0
+	.sdecl	'.debug_info',debug,cluster('Os_ReceiveEvt')
+	.sect	'.debug_info'
+.L52:
+	.word	287
+	.half	3
+	.word	.L53
+	.byte	4,1
+	.byte	'../os/os_ipc.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'D:\\60_Repositories\\10_Public\\PR202301_CHAOS\\CHAOS\\porting\\Aurix_TC3xx_ADS\\Debug\\',0,12,1
+	.word	.L55,.L54
+	.byte	2
+	.word	.L43
+	.byte	3
+	.byte	'Os_ReceiveEvt',0,1,89,20
+	.word	.L92
+	.byte	1,1,1
+	.word	.L28,.L97,.L27
+	.byte	4
+	.byte	'Event',0,1,89,46
+	.word	.L94,.L98
+	.byte	5
+	.word	.L28,.L97
+	.byte	6
+	.byte	'EventStatus',0,1,92,22
+	.word	.L92,.L99
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('Os_ReceiveEvt')
+	.sect	'.debug_abbrev'
+.L53:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('Os_ReceiveEvt')
+	.sect	'.debug_line'
+.L54:
+	.word	.L171-.L170
+.L170:
+	.half	3
+	.word	.L173-.L172
+.L172:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../os/os_ipc.c',0,0,0,0,0
+.L173:
+	.byte	5,12,7,0,5,2
+	.word	.L28
+	.byte	3,222,0,1,5,3,9
+	.half	.L174-.L28
+	.byte	1,5,26,7,9
+	.half	.L175-.L174
+	.byte	3,3,1,5,24,9
+	.half	.L176-.L175
+	.byte	1,5,17,9
+	.half	.L177-.L176
+	.byte	3,2,1,5,40,9
+	.half	.L138-.L177
+	.byte	3,126,1,5,17,9
+	.half	.L3-.L138
+	.byte	3,7,1,5,3,9
+	.half	.L4-.L3
+	.byte	3,4,1,5,1,9
+	.half	.L5-.L4
+	.byte	3,1,1,7,9
+	.half	.L56-.L5
+	.byte	0,1,1
+.L171:
+	.sdecl	'.debug_ranges',debug,cluster('Os_ReceiveEvt')
+	.sect	'.debug_ranges'
+.L55:
+	.word	-1,.L28,0,.L56-.L28,0,0
+	.sdecl	'.debug_info',debug,cluster('Os_InitEvtQueue')
+	.sect	'.debug_info'
+.L57:
+	.word	327
+	.half	3
+	.word	.L58
+	.byte	4,1
+	.byte	'../os/os_ipc.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'D:\\60_Repositories\\10_Public\\PR202301_CHAOS\\CHAOS\\porting\\Aurix_TC3xx_ADS\\Debug\\',0,12,1
+	.word	.L60,.L59
+	.byte	2
+	.word	.L43
+	.byte	3
+	.byte	'Os_InitEvtQueue',0,1,124,19,1,1,1
+	.word	.L30,.L100,.L29
+	.byte	4
+	.byte	'QueueCfg',0,1,124,54
+	.word	.L101,.L102
+	.byte	4
+	.byte	'QueueSize',0,1,124,73
+	.word	.L103,.L104
+	.byte	4
+	.byte	'ElemSize',0,1,124,92
+	.word	.L105,.L106
+	.byte	4
+	.byte	'QueuePtr',0,1,124,117
+	.word	.L107,.L108
+	.byte	5
+	.word	.L30,.L100
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('Os_InitEvtQueue')
+	.sect	'.debug_abbrev'
+.L58:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('Os_InitEvtQueue')
+	.sect	'.debug_line'
+.L59:
+	.word	.L179-.L178
+.L178:
+	.half	3
+	.word	.L181-.L180
+.L180:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../os/os_ipc.c',0,0,0,0,0
+.L181:
+	.byte	5,23,7,0,5,2
+	.word	.L30
+	.byte	3,254,0,1,5,22,9
+	.half	.L182-.L30
+	.byte	3,1,1,9
+	.half	.L183-.L182
+	.byte	3,1,1,5,29,9
+	.half	.L184-.L183
+	.byte	3,1,1,5,27,9
+	.half	.L185-.L184
+	.byte	1,5,38,9
+	.half	.L186-.L185
+	.byte	3,1,1,5,28,9
+	.half	.L187-.L186
+	.byte	1,5,26,9
+	.half	.L188-.L187
+	.byte	1,5,30,9
+	.half	.L189-.L188
+	.byte	3,1,1,5,28,9
+	.half	.L190-.L189
+	.byte	1,5,1,9
+	.half	.L191-.L190
+	.byte	3,1,1,7,9
+	.half	.L61-.L191
+	.byte	0,1,1
+.L179:
+	.sdecl	'.debug_ranges',debug,cluster('Os_InitEvtQueue')
+	.sect	'.debug_ranges'
+.L60:
+	.word	-1,.L30,0,.L61-.L30,0,0
+	.sdecl	'.debug_info',debug,cluster('Os_IsEvtQueueEmpty')
+	.sect	'.debug_info'
+.L62:
+	.word	290
+	.half	3
+	.word	.L63
+	.byte	4,1
+	.byte	'../os/os_ipc.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'D:\\60_Repositories\\10_Public\\PR202301_CHAOS\\CHAOS\\porting\\Aurix_TC3xx_ADS\\Debug\\',0,12,1
+	.word	.L65,.L64
+	.byte	2
+	.word	.L43
+	.byte	3
+	.byte	'Os_IsEvtQueueEmpty',0,1,142,1,17
+	.word	.L109
+	.byte	1,1,1
+	.word	.L32,.L110,.L31
+	.byte	4
+	.byte	'QueueCfg',0,1,142,1,55
+	.word	.L101,.L111
+	.byte	5
+	.word	.L32,.L110
+	.byte	6
+	.byte	'Ret',0,1,145,1,11
+	.word	.L105,.L112
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('Os_IsEvtQueueEmpty')
+	.sect	'.debug_abbrev'
+.L63:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('Os_IsEvtQueueEmpty')
+	.sect	'.debug_line'
+.L64:
+	.word	.L193-.L192
+.L192:
+	.half	3
+	.word	.L195-.L194
+.L194:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../os/os_ipc.c',0,0,0,0,0
+.L195:
+	.byte	5,15,7,0,5,2
+	.word	.L32
+	.byte	3,147,1,1,5,3,9
+	.half	.L196-.L32
+	.byte	1,5,9,7,9
+	.half	.L197-.L196
+	.byte	3,2,1,5,25,9
+	.half	.L139-.L197
+	.byte	1,5,9,9
+	.half	.L6-.L139
+	.byte	3,4,1,5,3,9
+	.half	.L7-.L6
+	.byte	3,3,1,5,1,9
+	.half	.L8-.L7
+	.byte	3,1,1,7,9
+	.half	.L66-.L8
+	.byte	0,1,1
+.L193:
+	.sdecl	'.debug_ranges',debug,cluster('Os_IsEvtQueueEmpty')
+	.sect	'.debug_ranges'
+.L65:
+	.word	-1,.L32,0,.L66-.L32,0,0
+	.sdecl	'.debug_info',debug,cluster('Os_IsEvtQueueFull')
+	.sect	'.debug_info'
+.L67:
+	.word	289
+	.half	3
+	.word	.L68
+	.byte	4,1
+	.byte	'../os/os_ipc.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'D:\\60_Repositories\\10_Public\\PR202301_CHAOS\\CHAOS\\porting\\Aurix_TC3xx_ADS\\Debug\\',0,12,1
+	.word	.L70,.L69
+	.byte	2
+	.word	.L43
+	.byte	3
+	.byte	'Os_IsEvtQueueFull',0,1,167,1,17
+	.word	.L109
+	.byte	1,1,1
+	.word	.L34,.L113,.L33
+	.byte	4
+	.byte	'QueueCfg',0,1,167,1,54
+	.word	.L101,.L114
+	.byte	5
+	.word	.L34,.L113
+	.byte	6
+	.byte	'Ret',0,1,170,1,11
+	.word	.L105,.L115
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('Os_IsEvtQueueFull')
+	.sect	'.debug_abbrev'
+.L68:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('Os_IsEvtQueueFull')
+	.sect	'.debug_line'
+.L69:
+	.word	.L199-.L198
+.L198:
+	.half	3
+	.word	.L201-.L200
+.L200:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../os/os_ipc.c',0,0,0,0,0
+.L201:
+	.byte	5,15,7,0,5,2
+	.word	.L34
+	.byte	3,172,1,1,5,43,9
+	.half	.L202-.L34
+	.byte	1,5,3,9
+	.half	.L203-.L202
+	.byte	1,5,9,7,9
+	.half	.L204-.L203
+	.byte	3,2,1,5,24,9
+	.half	.L140-.L204
+	.byte	1,5,9,9
+	.half	.L9-.L140
+	.byte	3,4,1,5,3,9
+	.half	.L10-.L9
+	.byte	3,3,1,5,1,9
+	.half	.L11-.L10
+	.byte	3,1,1,7,9
+	.half	.L71-.L11
+	.byte	0,1,1
+.L199:
+	.sdecl	'.debug_ranges',debug,cluster('Os_IsEvtQueueFull')
+	.sect	'.debug_ranges'
+.L70:
+	.word	-1,.L34,0,.L71-.L34,0,0
+	.sdecl	'.debug_info',debug,cluster('Os_GetQueueItemCount')
+	.sect	'.debug_info'
+.L72:
+	.word	294
+	.half	3
+	.word	.L73
+	.byte	4,1
+	.byte	'../os/os_ipc.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'D:\\60_Repositories\\10_Public\\PR202301_CHAOS\\CHAOS\\porting\\Aurix_TC3xx_ADS\\Debug\\',0,12,1
+	.word	.L75,.L74
+	.byte	2
+	.word	.L43
+	.byte	3
+	.byte	'Os_GetQueueItemCount',0,1,193,1,19,1,1,1
+	.word	.L36,.L116,.L35
+	.byte	4
+	.byte	'QueueCfg',0,1,193,1,59
+	.word	.L101,.L117
+	.byte	4
+	.byte	'QueueItems',0,1,193,1,79
+	.word	.L118,.L119
+	.byte	5
+	.word	.L36,.L116
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('Os_GetQueueItemCount')
+	.sect	'.debug_abbrev'
+.L73:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('Os_GetQueueItemCount')
+	.sect	'.debug_line'
+.L74:
+	.word	.L206-.L205
+.L205:
+	.half	3
+	.word	.L208-.L207
+.L207:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../os/os_ipc.c',0,0,0,0,0
+.L208:
+	.byte	5,25,7,0,5,2
+	.word	.L36
+	.byte	3,195,1,1,5,15,9
+	.half	.L209-.L36
+	.byte	1,5,1,9
+	.half	.L210-.L209
+	.byte	3,1,1,7,9
+	.half	.L76-.L210
+	.byte	0,1,1
+.L206:
+	.sdecl	'.debug_ranges',debug,cluster('Os_GetQueueItemCount')
+	.sect	'.debug_ranges'
+.L75:
+	.word	-1,.L36,0,.L76-.L36,0,0
+	.sdecl	'.debug_info',debug,cluster('Os_QueueInsert')
+	.sect	'.debug_info'
+.L77:
+	.word	310
+	.half	3
+	.word	.L78
+	.byte	4,1
+	.byte	'../os/os_ipc.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'D:\\60_Repositories\\10_Public\\PR202301_CHAOS\\CHAOS\\porting\\Aurix_TC3xx_ADS\\Debug\\',0,12,1
+	.word	.L80,.L79
+	.byte	2
+	.word	.L43
+	.byte	3
+	.byte	'Os_QueueInsert',0,1,208,1,21
+	.word	.L120
+	.byte	1,1,1
+	.word	.L38,.L121,.L37
+	.byte	4
+	.byte	'QueueCfg',0,1,208,1,55
+	.word	.L101,.L122
+	.byte	4
+	.byte	'DataElemIn',0,1,208,1,71
+	.word	.L123,.L124
+	.byte	5
+	.word	.L38,.L121
+	.byte	6
+	.byte	'Ret',0,1,211,1,23
+	.word	.L120,.L125
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('Os_QueueInsert')
+	.sect	'.debug_abbrev'
+.L78:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('Os_QueueInsert')
+	.sect	'.debug_line'
+.L79:
+	.word	.L212-.L211
+.L211:
+	.half	3
+	.word	.L214-.L213
+.L213:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../os/os_ipc.c',0,0,0,0,0
+.L214:
+	.byte	5,21,7,0,5,2
+	.word	.L38
+	.byte	3,207,1,1,5,26,9
+	.half	.L143-.L38
+	.byte	3,6,1,5,8,9
+	.half	.L141-.L143
+	.byte	1,5,17,7,9
+	.half	.L215-.L141
+	.byte	3,3,1,5,45,9
+	.half	.L216-.L215
+	.byte	1,5,65,9
+	.half	.L217-.L216
+	.byte	1,5,56,9
+	.half	.L218-.L217
+	.byte	1,5,87,9
+	.half	.L219-.L218
+	.byte	1,5,77,9
+	.half	.L220-.L219
+	.byte	1,5,5,9
+	.half	.L221-.L220
+	.byte	1,5,42,7,9
+	.half	.L222-.L221
+	.byte	3,2,1,5,33,9
+	.half	.L223-.L222
+	.byte	1,5,31,9
+	.half	.L224-.L223
+	.byte	1,5,13,9
+	.half	.L13-.L224
+	.byte	3,3,1,5,39,9
+	.half	.L225-.L13
+	.byte	1,5,28,9
+	.half	.L226-.L225
+	.byte	1,5,22,9
+	.half	.L227-.L226
+	.byte	3,2,1,5,41,9
+	.half	.L228-.L227
+	.byte	1,5,32,9
+	.half	.L229-.L228
+	.byte	1,5,79,9
+	.half	.L230-.L229
+	.byte	1,5,13,9
+	.half	.L145-.L230
+	.byte	3,2,1,5,29,9
+	.half	.L231-.L145
+	.byte	1,5,9,9
+	.half	.L232-.L231
+	.byte	3,2,1,5,49,9
+	.half	.L146-.L232
+	.byte	3,122,1,5,9,9
+	.half	.L12-.L146
+	.byte	3,11,1,5,3,9
+	.half	.L14-.L12
+	.byte	3,3,1,5,1,9
+	.half	.L15-.L14
+	.byte	3,1,1,7,9
+	.half	.L81-.L15
+	.byte	0,1,1
+.L212:
+	.sdecl	'.debug_ranges',debug,cluster('Os_QueueInsert')
+	.sect	'.debug_ranges'
+.L80:
+	.word	-1,.L38,0,.L81-.L38,0,0
+	.sdecl	'.debug_info',debug,cluster('Os_QueueExtract')
+	.sect	'.debug_info'
+.L82:
+	.word	312
+	.half	3
+	.word	.L83
+	.byte	4,1
+	.byte	'../os/os_ipc.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'D:\\60_Repositories\\10_Public\\PR202301_CHAOS\\CHAOS\\porting\\Aurix_TC3xx_ADS\\Debug\\',0,12,1
+	.word	.L85,.L84
+	.byte	2
+	.word	.L43
+	.byte	3
+	.byte	'Os_QueueExtract',0,1,248,1,22
+	.word	.L126
+	.byte	1,1,1
+	.word	.L40,.L127,.L39
+	.byte	4
+	.byte	'QueueCfg',0,1,248,1,57
+	.word	.L101,.L128
+	.byte	4
+	.byte	'DataElemOut',0,1,248,1,73
+	.word	.L123,.L129
+	.byte	5
+	.word	.L40,.L127
+	.byte	6
+	.byte	'Ret',0,1,251,1,24
+	.word	.L126,.L130
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('Os_QueueExtract')
+	.sect	'.debug_abbrev'
+.L83:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('Os_QueueExtract')
+	.sect	'.debug_line'
+.L84:
+	.word	.L234-.L233
+.L233:
+	.half	3
+	.word	.L236-.L235
+.L235:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../os/os_ipc.c',0,0,0,0,0
+.L236:
+	.byte	5,22,7,0,5,2
+	.word	.L40
+	.byte	3,247,1,1,5,15,9
+	.half	.L149-.L40
+	.byte	3,5,1,5,3,9
+	.half	.L237-.L149
+	.byte	1,5,35,7,9
+	.half	.L238-.L237
+	.byte	3,3,1,5,54,9
+	.half	.L239-.L238
+	.byte	1,5,45,9
+	.half	.L240-.L239
+	.byte	1,5,81,9
+	.half	.L241-.L240
+	.byte	1,5,22,9
+	.half	.L150-.L241
+	.byte	3,2,1,5,41,9
+	.half	.L242-.L150
+	.byte	1,5,32,9
+	.half	.L243-.L242
+	.byte	1,5,60,9
+	.half	.L244-.L243
+	.byte	1,5,75,9
+	.half	.L245-.L244
+	.byte	1,5,13,9
+	.half	.L246-.L245
+	.byte	3,2,1,5,40,9
+	.half	.L247-.L246
+	.byte	1,5,29,9
+	.half	.L248-.L247
+	.byte	1,5,17,9
+	.half	.L249-.L248
+	.byte	3,2,1,5,45,9
+	.half	.L250-.L249
+	.byte	1,5,65,9
+	.half	.L251-.L250
+	.byte	1,5,56,9
+	.half	.L252-.L251
+	.byte	1,5,5,9
+	.half	.L253-.L252
+	.byte	1,5,34,7,9
+	.half	.L254-.L253
+	.byte	3,2,1,5,32,9
+	.half	.L255-.L254
+	.byte	1,5,13,9
+	.half	.L17-.L255
+	.byte	3,3,1,5,29,9
+	.half	.L256-.L17
+	.byte	1,5,9,9
+	.half	.L257-.L256
+	.byte	3,2,1,5,31,9
+	.half	.L151-.L257
+	.byte	3,126,1,5,9,9
+	.half	.L16-.L151
+	.byte	3,7,1,5,3,9
+	.half	.L18-.L16
+	.byte	3,3,1,5,1,9
+	.half	.L19-.L18
+	.byte	3,1,1,7,9
+	.half	.L86-.L19
+	.byte	0,1,1
+.L234:
+	.sdecl	'.debug_ranges',debug,cluster('Os_QueueExtract')
+	.sect	'.debug_ranges'
+.L85:
+	.word	-1,.L40,0,.L86-.L40,0,0
+	.sdecl	'.debug_info',debug,cluster('Os_QueueExtractAndShift')
+	.sect	'.debug_info'
+.L87:
+	.word	362
+	.half	3
+	.word	.L88
+	.byte	4,1
+	.byte	'../os/os_ipc.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'D:\\60_Repositories\\10_Public\\PR202301_CHAOS\\CHAOS\\porting\\Aurix_TC3xx_ADS\\Debug\\',0,12,1
+	.word	.L90,.L89
+	.byte	2
+	.word	.L43
+	.byte	3
+	.byte	'Os_QueueExtractAndShift',0,1,164,2,22
+	.word	.L126
+	.byte	1,1,1
+	.word	.L42,.L131,.L41
+	.byte	4
+	.byte	'QueueCfg',0,1,164,2,65
+	.word	.L101,.L132
+	.byte	4
+	.byte	'DataElemOut',0,1,164,2,81
+	.word	.L123,.L133
+	.byte	5
+	.word	.L42,.L131
+	.byte	6
+	.byte	'Ret',0,1,167,2,24
+	.word	.L126,.L134
+	.byte	6
+	.byte	'ElmIdx',0,1,168,2,12
+	.word	.L103,.L135
+	.byte	6
+	.byte	'QueueIdx',0,1,169,2,12
+	.word	.L103,.L136
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('Os_QueueExtractAndShift')
+	.sect	'.debug_abbrev'
+.L88:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('Os_QueueExtractAndShift')
+	.sect	'.debug_line'
+.L89:
+	.word	.L259-.L258
+.L258:
+	.half	3
+	.word	.L261-.L260
+.L260:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../os/os_ipc.c',0,0,0,0,0
+.L261:
+	.byte	5,22,7,0,5,2
+	.word	.L42
+	.byte	3,163,2,1,5,21,9
+	.half	.L154-.L42
+	.byte	3,5,1,5,15,9
+	.half	.L155-.L154
+	.byte	3,2,1,5,3,9
+	.half	.L262-.L155
+	.byte	1,5,35,7,9
+	.half	.L263-.L262
+	.byte	3,3,1,5,54,9
+	.half	.L264-.L263
+	.byte	1,5,45,9
+	.half	.L265-.L264
+	.byte	1,5,81,9
+	.half	.L266-.L265
+	.byte	1,5,17,9
+	.half	.L156-.L266
+	.byte	3,2,1,5,55,9
+	.half	.L157-.L156
+	.byte	1,5,24,9
+	.half	.L22-.L157
+	.byte	3,2,1,5,34,9
+	.half	.L267-.L22
+	.byte	1,5,57,9
+	.half	.L268-.L267
+	.byte	1,5,88,9
+	.half	.L269-.L268
+	.byte	1,5,78,9
+	.half	.L270-.L269
+	.byte	1,5,67,9
+	.half	.L271-.L270
+	.byte	1,5,111,9
+	.half	.L272-.L271
+	.byte	1,5,27,9
+	.half	.L273-.L272
+	.byte	3,1,1,5,16,9
+	.half	.L274-.L273
+	.byte	1,5,63,9
+	.half	.L275-.L274
+	.byte	3,125,1,5,39,9
+	.half	.L21-.L275
+	.byte	1,5,55,9
+	.half	.L276-.L21
+	.byte	1,5,13,7,9
+	.half	.L277-.L276
+	.byte	3,6,1,5,29,9
+	.half	.L278-.L277
+	.byte	1,5,13,9
+	.half	.L279-.L278
+	.byte	3,2,1,5,39,9
+	.half	.L280-.L279
+	.byte	1,5,28,9
+	.half	.L281-.L280
+	.byte	1,5,9,9
+	.half	.L282-.L281
+	.byte	3,2,1,5,31,9
+	.half	.L159-.L282
+	.byte	3,124,1,5,9,9
+	.half	.L20-.L159
+	.byte	3,9,1,5,3,9
+	.half	.L23-.L20
+	.byte	3,3,1,5,1,9
+	.half	.L24-.L23
+	.byte	3,1,1,7,9
+	.half	.L91-.L24
+	.byte	0,1,1
+.L259:
+	.sdecl	'.debug_ranges',debug,cluster('Os_QueueExtractAndShift')
+	.sect	'.debug_ranges'
+.L90:
+	.word	-1,.L42,0,.L91-.L42,0,0
+	.sdecl	'.debug_loc',debug,cluster('Os_GenerateEvt')
+	.sect	'.debug_loc'
+.L95:
+	.word	-1,.L26,0,.L93-.L26
+	.half	1
+	.byte	100
+	.word	0,0
+.L96:
+	.word	-1,.L26,.L137-.L26,.L93-.L26
+	.half	1
+	.byte	82
+	.word	0,0
+.L25:
+	.word	-1,.L26,0,.L93-.L26
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('Os_GetQueueItemCount')
+	.sect	'.debug_loc'
+.L35:
+	.word	-1,.L36,0,.L116-.L36
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L117:
+	.word	-1,.L36,0,.L116-.L36
+	.half	1
+	.byte	100
+	.word	0,0
+.L119:
+	.word	-1,.L36,0,.L116-.L36
+	.half	1
+	.byte	101
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('Os_InitEvtQueue')
+	.sect	'.debug_loc'
+.L106:
+	.word	-1,.L30,0,.L100-.L30
+	.half	1
+	.byte	85
+	.word	0,0
+.L29:
+	.word	-1,.L30,0,.L100-.L30
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L102:
+	.word	-1,.L30,0,.L100-.L30
+	.half	1
+	.byte	100
+	.word	0,0
+.L108:
+	.word	-1,.L30,0,.L100-.L30
+	.half	1
+	.byte	101
+	.word	0,0
+.L104:
+	.word	-1,.L30,0,.L100-.L30
+	.half	1
+	.byte	84
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('Os_IsEvtQueueEmpty')
+	.sect	'.debug_loc'
+.L31:
+	.word	-1,.L32,0,.L110-.L32
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L111:
+	.word	-1,.L32,0,.L110-.L32
+	.half	1
+	.byte	100
+	.word	0,0
+.L112:
+	.word	-1,.L32,.L139-.L32,.L6-.L32
+	.half	1
+	.byte	82
+	.word	.L7-.L32,.L110-.L32
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('Os_IsEvtQueueFull')
+	.sect	'.debug_loc'
+.L33:
+	.word	-1,.L34,0,.L113-.L34
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L114:
+	.word	-1,.L34,0,.L113-.L34
+	.half	1
+	.byte	100
+	.word	0,0
+.L115:
+	.word	-1,.L34,.L140-.L34,.L9-.L34
+	.half	1
+	.byte	82
+	.word	.L10-.L34,.L113-.L34
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('Os_QueueExtract')
+	.sect	'.debug_loc'
+.L129:
+	.word	-1,.L40,0,.L147-.L40
+	.half	1
+	.byte	101
+	.word	.L148-.L40,.L150-.L40
+	.half	1
+	.byte	100
+	.word	.L16-.L40,.L18-.L40
+	.half	1
+	.byte	101
+	.word	0,0
+.L39:
+	.word	-1,.L40,0,.L127-.L40
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L128:
+	.word	-1,.L40,0,.L148-.L40
+	.half	1
+	.byte	100
+	.word	.L149-.L40,.L127-.L40
+	.half	1
+	.byte	111
+	.word	.L16-.L40,.L18-.L40
+	.half	1
+	.byte	100
+	.word	0,0
+.L130:
+	.word	-1,.L40,.L151-.L40,.L16-.L40
+	.half	1
+	.byte	82
+	.word	.L18-.L40,.L127-.L40
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('Os_QueueExtractAndShift')
+	.sect	'.debug_loc'
+.L133:
+	.word	-1,.L42,0,.L152-.L42
+	.half	1
+	.byte	101
+	.word	.L153-.L42,.L156-.L42
+	.half	1
+	.byte	100
+	.word	.L20-.L42,.L23-.L42
+	.half	1
+	.byte	101
+	.word	0,0
+.L135:
+	.word	-1,.L42,.L157-.L42,.L158-.L42
+	.half	1
+	.byte	88
+	.word	.L21-.L42,.L20-.L42
+	.half	1
+	.byte	88
+	.word	0,0
+.L41:
+	.word	-1,.L42,0,.L131-.L42
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L132:
+	.word	-1,.L42,0,.L153-.L42
+	.half	1
+	.byte	100
+	.word	.L154-.L42,.L131-.L42
+	.half	1
+	.byte	111
+	.word	.L20-.L42,.L23-.L42
+	.half	1
+	.byte	100
+	.word	0,0
+.L136:
+	.word	-1,.L42,.L155-.L42,.L131-.L42
+	.half	1
+	.byte	89
+	.word	0,0
+.L134:
+	.word	-1,.L42,.L159-.L42,.L20-.L42
+	.half	1
+	.byte	82
+	.word	.L23-.L42,.L131-.L42
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('Os_QueueInsert')
+	.sect	'.debug_loc'
+.L124:
+	.word	-1,.L38,0,.L141-.L38
+	.half	1
+	.byte	101
+	.word	.L143-.L38,.L121-.L38
+	.half	1
+	.byte	108
+	.word	.L144-.L38,.L145-.L38
+	.half	1
+	.byte	101
+	.word	0,0
+.L37:
+	.word	-1,.L38,0,.L121-.L38
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L122:
+	.word	-1,.L38,0,.L141-.L38
+	.half	1
+	.byte	100
+	.word	.L142-.L38,.L121-.L38
+	.half	1
+	.byte	111
+	.word	0,0
+.L125:
+	.word	-1,.L38,.L146-.L38,.L12-.L38
+	.half	1
+	.byte	82
+	.word	.L14-.L38,.L121-.L38
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('Os_ReceiveEvt')
+	.sect	'.debug_loc'
+.L98:
+	.word	-1,.L28,0,.L97-.L28
+	.half	1
+	.byte	100
+	.word	0,0
+.L99:
+	.word	-1,.L28,.L138-.L28,.L3-.L28
+	.half	1
+	.byte	82
+	.word	.L4-.L28,.L97-.L28
+	.half	1
+	.byte	82
+	.word	0,0
+.L27:
+	.word	-1,.L28,0,.L97-.L28
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_frame',debug
+	.sect	'.debug_frame'
+.L283:
+	.word	48
+	.word	-1
+	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
+	.byte	8,39
+	.sdecl	'.debug_frame',debug,cluster('Os_GenerateEvt')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L283,.L26,.L93-.L26
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('Os_ReceiveEvt')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L283,.L28,.L97-.L28
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('Os_InitEvtQueue')
+	.sect	'.debug_frame'
+	.word	20
+	.word	.L283,.L30,.L100-.L30
+	.byte	8,18,8,19,8,22,8,23
+	.sdecl	'.debug_frame',debug,cluster('Os_IsEvtQueueEmpty')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L283,.L32,.L110-.L32
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('Os_IsEvtQueueFull')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L283,.L34,.L113-.L34
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('Os_GetQueueItemCount')
+	.sect	'.debug_frame'
+	.word	20
+	.word	.L283,.L36,.L116-.L36
+	.byte	8,18,8,19,8,22,8,23
+	.sdecl	'.debug_frame',debug,cluster('Os_QueueInsert')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L283,.L38,.L121-.L38
+	.sdecl	'.debug_frame',debug,cluster('Os_QueueExtract')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L283,.L40,.L127-.L40
+	.sdecl	'.debug_frame',debug,cluster('Os_QueueExtractAndShift')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L283,.L42,.L131-.L42
+	; Module end
