@@ -105,3 +105,5 @@ Port List:
 | RP2040          | Raspberry Pico    | Eclipse + Extension                      | Planned     |
 | ESP32           | Node MCU          | Eclipse + Extension                      | Planned     |
 | Tricore Aurix   | TC375 Lite kit    | Aurix Studio                             | Completed   |
+| MCHP Pic18      | Pic18F57Q43       | MPLAB X + CCS                            | Planned     |
+| MCHP Pic24      | Pic24FJ128GB204   | MPLAB X + CCS                            | Planned     |
