@@ -28,6 +28,7 @@
 * Includes
 ************************************************************************/
 #include "common.h"
+#include "os_task.h"
 #include "os_timers.h"
 #include "os_cfg.h"
 #include "os_ipc.h"
