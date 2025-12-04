@@ -148,7 +148,7 @@ extern QueueCtrlStrType TaskReadyQueueCtrl;
 * EXPORTED USER Hooks
 ************************************************************************/
 #if (ENABLE_ERROR_HOOK == STD_TRUE)
-extern void User_ErrorHook (Os_ApiErrorType ErrorCode);
+extern void User_ErrorHook (Os_ErrorType ErrorCode);
 #endif
 
 /************************************************************************
