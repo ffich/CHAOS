@@ -1,4 +1,4 @@
-# 20 – CooperativeChaos
+# Cooperative Chaos
 
 This example demonstrates **CHAOS running in fully cooperative mode**.  
 Unlike preemptive scheduling, no timer interrupt forces context switches: tasks must **explicitly yield** by returning control to the scheduler.
