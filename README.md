@@ -75,21 +75,18 @@ The best way to get started to make some **CHAOS** is to look at the [examples](
 ## Example List
 Now you can unkork a beer yourself and start making some **CHAOS**.
 
-**World born out of CHAOS...**: Very simple example that blinks two LEDs at different rate. It demonstrates how to create a basic CHAOS configuration with 2 tasks and a schedule table with 2 scheduling events.
+[**World born out of CHAOS...**](https://github.com/ffich/CHAOS/tree/main/examples/10_HelloWorld): Very simple example that blinks two LEDs at different rate. It demonstrates how to create a basic CHAOS configuration with 2 tasks and a schedule table with 2 scheduling events.
 
-**Cooperative CHAOS**: Example on the usage of cooperative scheduling (yield option) to yield execution control to higher priority tasks.
+[**Cooperative CHAOS**](https://github.com/ffich/CHAOS/tree/main/examples/20_CooperativeChaos): Example on the usage of cooperative scheduling (yield option) to yield execution control to higher priority tasks.
 
-**Lifecycle of CHAOS**: Example on the CHAOS Lifecycle management.
+[**Lifecycle of CHAOS**](https://github.com/ffich/CHAOS/tree/main/examples/30_ChaosLifecycle): Example on the CHAOS Lifecycle management.
 
-**CHAOS Alarms**: Example on usage of CHAOS Alarms.
+[**CHAOS Alarms**](https://github.com/ffich/CHAOS/tree/main/examples/40_ChaosAlarms): Example on usage of CHAOS Alarms.
 
-**In the event of CHAOS**: Example on usage of events.
+[**In the event of CHAOS**](https://github.com/ffich/CHAOS/tree/main/examples/50_ChaosEvents): Example on usage of events.
 
-**Hooking on CHAOS**: Example on usage of User Hooks.
+[**Hooking on CHAOS**](https://github.com/ffich/CHAOS/tree/main/examples/60_HookingChaos): Example on usage of User Hooks.
 
-**Queueing CHAOS**: Example on usage of queues.
-
-**Messing with Chaos**: Error Handling in CHAOS.
 
 ## Porting
 I'm currently working on porting the Hello World example on some common architecture, like Microchip PIC18, PIC24, STM STM32, ExpressIf ESP8266/ESP32, NXP S32K, Infineon Tricore, etc...
