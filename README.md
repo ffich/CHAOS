@@ -96,11 +96,9 @@ Port List:
 | Device family   | Board             | Conf./Build Environment                  | Status      |
 |-----------------|-------------------|------------------------------------------|--------------
 | STM32F1         | Blue Pill         | STM32 Cube MX                            | Completed   |
-| STM32L0         | Nucleo-32         | STM32 Cube MX                            | Planned     |
+| STM32F4         | Nucleo-32         | STM32 Cube MX                            | Planned     |
+| Tricore Aurix   | TC375 Lite kit    | Aurix Studio                             | Completed   |
 | MCXA156         | FRDM              | MCUxpresso                               | Planned     |
 | S32K1           | S32K144 EVB       | S32 Studio                               | Planned     |
-| RP2040          | Raspberry Pico    | Eclipse + Extension                      | Planned     |
-| ESP32           | Node MCU          | Eclipse + Extension                      | Planned     |
-| Tricore Aurix   | TC375 Lite kit    | Aurix Studio                             | Completed   |
 | MCHP Pic18      | Pic18F57Q43       | MPLAB X + CCS                            | Planned     |
 | MCHP Pic24      | Pic24FJ128GB204   | MPLAB X + CCS                            | Planned     |
