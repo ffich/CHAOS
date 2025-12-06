@@ -68,7 +68,7 @@ Additional APIs are optional and they may be needed to have a better defined OS 
 ## Getting Started
 The best way to get started to make some **CHAOS** is to look at the [examples](https://github.com/ffich/CHAOS/tree/main/examples) section. Normally all the basic feature of an OS can be showed using LEDs and printf, so basically any evaluation board that has this characteristics is good enough for the job. I've used a [Microchip Curiosity 2.0 Pic32 MZ EF](https://www.microchip.com/en-us/development-tool/dm320209) evalution board and [MPLAB X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide) + [MPLAB Harmony V3](https://www.microchip.com/en-us/tools-resources/configure/mplab-harmony) code generator, but everything is easily portable to other platform, following the examples guides. 
 
-![image](https://github.com/ffich/CHAOS/assets/59200746/33cdfd6b-bde9-4cc2-b57a-0d35b5831352)
+<img width="800" height="487" alt="image" src="https://github.com/user-attachments/assets/8ebcd04b-169c-424e-b74f-0d196bfef402" />
 
 *Fig. 3 - Microchip Curiosity 2.0 Pic32 MZ EF evalution board*
 
