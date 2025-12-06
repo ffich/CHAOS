@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<project>                                  
+  <executable name="dist/default/debug/Hooks_Os.X.debug.elf">                 
+    <memory name="program">                 
+      <units>bytes</units>                 
+      <length>2098304</length>                 
+      <used>20556</used>                     
+      <free>2077748</free>                     
+    </memory>                              
+    <memory name="data">              
+      <units>bytes</units>                 
+      <length>525184</length>                 
+      <used>3332</used>                     
+      <free>521852</free>                     
+    </memory>                              
+  </executable>                            
+</project>                                 
