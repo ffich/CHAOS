@@ -95,9 +95,9 @@ Port List:
 
 | Device family   | Board             | Conf./Build Environment                  | Status      |
 |-----------------|-------------------|------------------------------------------|--------------
-| STM32F1         | Blue Pill         | STM32 Cube MX                            | Completed   |
+| [STM32F1](https://github.com/ffich/CHAOS/tree/main/porting/STM32F1_CubeMx)         | Blue Pill         | STM32 Cube MX                            | Completed   |
 | STM32F4         | Nucleo-32         | STM32 Cube MX                            | Planned     |
-| Tricore Aurix   | TC375 Lite kit    | Aurix Studio                             | Completed   |
+| [Tricore Aurix](https://github.com/ffich/CHAOS/tree/main/porting/Aurix_TC3xx_ADS)   | TC375 Lite kit    | Aurix Studio                             | Completed   |
 | MCXA156         | FRDM              | MCUxpresso                               | Planned     |
 | S32K1           | S32K144 EVB       | S32 Studio                               | Planned     |
 | MCHP Pic18      | Pic18F57Q43       | MPLAB X + CCS                            | Planned     |
