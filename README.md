@@ -100,5 +100,5 @@ Port List:
 | [Tricore Aurix](https://github.com/ffich/CHAOS/tree/main/porting/Aurix_TC3xx_ADS)   | TC375 Lite kit    | Aurix Studio                             | Completed   |
 | MCXA156         | FRDM              | MCUxpresso                               | Planned     |
 | S32K1           | S32K144 EVB       | S32 Studio                               | Planned     |
-| MCHP Pic18      | Pic18F57Q43       | MPLAB X + CCS                            | Planned     |
-| MCHP Pic24      | Pic24FJ128GB204   | MPLAB X + CCS                            | Planned     |
+| MCHP Pic18      | Pic18F57Q43       | MPLAB X                                  | Planned     |
+| MCHP Pic24      | Pic24FJ128GB204   | MPLAB X                                  | Planned     |
