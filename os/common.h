@@ -70,9 +70,9 @@
 #define PERIOD_250_MS                                                250u
 #define PERIOD_500_MS                                                500u
 #define PERIOD_1000_MS                                               1000u
-#define PERIOD_3000_MS                                               2000u
-#define PERIOD_4000_MS                                               3000u
-#define PERIOD_2000_MS                                               4000u
+#define PERIOD_2000_MS                                               2000u
+#define PERIOD_3000_MS                                               3000u
+#define PERIOD_4000_MS                                               4000u
 #define PERIOD_5000_MS                                               5000u
 #define PERIOD_10000_MS                                              10000u
 #define PERIOD_15000_MS                                              15000u

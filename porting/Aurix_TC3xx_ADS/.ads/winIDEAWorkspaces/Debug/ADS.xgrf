@@ -57,20 +57,20 @@
      <ViewData>
       <AllViewBaseData>
        <__.0>
-        <ViewId>0</ViewId>
-        <ViewType>Symbols</ViewType>
-       </__.0>
-       <__.1>
-        <ViewId>1</ViewId>
-        <ViewType>Output_Progress</ViewType>
-       </__.1>
-       <__.2>
         <ViewId>2</ViewId>
         <ViewType>Locals</ViewType>
-       </__.2>
-       <__.3>
+       </__.0>
+       <__.1>
         <ViewId>3</ViewId>
         <ViewType>CustomWatch</ViewType>
+       </__.1>
+       <__.2>
+        <ViewId>1</ViewId>
+        <ViewType>Output_Progress</ViewType>
+       </__.2>
+       <__.3>
+        <ViewId>0</ViewId>
+        <ViewType>Symbols</ViewType>
        </__.3>
       </AllViewBaseData>
       <OtherViews>
@@ -190,7 +190,7 @@
       </WatchViews>
      </ViewData>
      <ViewLayout>
-      <PrimaryDocumentPaneId>5</PrimaryDocumentPaneId>
+      <PrimaryDocumentPaneId>4</PrimaryDocumentPaneId>
       <Frames>
        <__.0>
         <FocusedViewId>3</FocusedViewId>
@@ -305,10 +305,6 @@
       </FindInFilesDialogData>
      </GlobalData>
      <History>
-      <ComboBox>
-       <ComboBoxes>
-       </ComboBoxes>
-      </ComboBox>
      </History>
      <Options>
       <CallstackWindow>

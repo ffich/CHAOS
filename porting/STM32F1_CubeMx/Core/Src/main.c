@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "usb_device.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -42,9 +41,15 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+CAN_HandleTypeDef hcan;
+
 TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
+
+CAN_TxHeaderTypeDef TxHeader;
+uint8_t TxData[8];
+uint32_t TxMailbox;
 
 /* USER CODE END PV */
 
@@ -52,6 +57,7 @@ TIM_HandleTypeDef htim2;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_CAN_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -68,13 +74,37 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   }
 }
 
+void CAN_SendMessage(void)
+{
+    // Configura header del messaggio
+    TxHeader.DLC = 8;                    // Numero di byte (da 0 a 8)
+    TxHeader.ExtId = 0x01;               // ID esteso (se usi esteso)
+    TxHeader.IDE = CAN_ID_STD;           // Usa CAN_ID_EXT se vuoi esteso
+    TxHeader.RTR = CAN_RTR_DATA;         // Tipo messaggio: DATA FRAME
+    TxHeader.StdId = 0x321;              // ID standard (11 bit)
+    TxHeader.TransmitGlobalTime = DISABLE;
+
+    // Dati da inviare
+    TxData[0] = 0xAB;
+    TxData[1] = 0xCD;
+    TxData[2] = 0x12;
+    TxData[3] = 0x34;
+
+    // Invia il messaggio
+    if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK)
+    {
+        // Errore trasmissione
+        Error_Handler();
+    }
+}
+
 /* MyTask_1 function */
 TASK(MyTask_1)
 {
   char *data = "LED_1 Toggle \r\n";
 
   /* Toggle LED */
-  CDC_Transmit_FS((uint8_t*)data, strlen(data));
+  //CDC_Transmit_FS((uint8_t*)data, strlen(data));
   HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
   HAL_Delay(10);
   HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
@@ -90,15 +120,14 @@ TASK(MyTask_2)
   char *data = "LED_2 Toggle \r\n";
 
   /* Toggle LED */
-  CDC_Transmit_FS((uint8_t*)data, strlen(data));
+ // CDC_Transmit_FS((uint8_t*)data, strlen(data));
   HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
   HAL_Delay(10);
   HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
   HAL_Delay(100);
-  //HAL_Delay(100);
-  //HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-  //HAL_Delay(10);
-  //HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+
+  /* Send can messages */
+  CAN_SendMessage();
 
   /* Task Termination */
   Os_TerminateTask();
@@ -135,10 +164,12 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM2_Init();
-  MX_USB_DEVICE_Init();
+  MX_CAN_Init();
   /* USER CODE BEGIN 2 */
 
   HAL_TIM_Base_Start_IT(&htim2);
+
+  HAL_CAN_Start(&hcan);
 
   /* Start OS */
   Os_Start();
@@ -164,7 +195,6 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
@@ -194,12 +224,43 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB;
-  PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL_DIV1_5;
-  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+}
+
+/**
+  * @brief CAN Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_CAN_Init(void)
+{
+
+  /* USER CODE BEGIN CAN_Init 0 */
+
+  /* USER CODE END CAN_Init 0 */
+
+  /* USER CODE BEGIN CAN_Init 1 */
+
+  /* USER CODE END CAN_Init 1 */
+  hcan.Instance = CAN1;
+  hcan.Init.Prescaler = 8;
+  hcan.Init.Mode = CAN_MODE_NORMAL;
+  hcan.Init.SyncJumpWidth = CAN_SJW_1TQ;
+  hcan.Init.TimeSeg1 = CAN_BS1_3TQ;
+  hcan.Init.TimeSeg2 = CAN_BS2_5TQ;
+  hcan.Init.TimeTriggeredMode = DISABLE;
+  hcan.Init.AutoBusOff = DISABLE;
+  hcan.Init.AutoWakeUp = ENABLE;
+  hcan.Init.AutoRetransmission = ENABLE;
+  hcan.Init.ReceiveFifoLocked = DISABLE;
+  hcan.Init.TransmitFifoPriority = DISABLE;
+  if (HAL_CAN_Init(&hcan) != HAL_OK)
   {
     Error_Handler();
   }
+  /* USER CODE BEGIN CAN_Init 2 */
+
+  /* USER CODE END CAN_Init 2 */
+
 }
 
 /**

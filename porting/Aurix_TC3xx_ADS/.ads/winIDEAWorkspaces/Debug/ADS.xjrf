@@ -339,7 +339,7 @@
        <DisplayLoadMap>False</DisplayLoadMap>
        <PostDLActionAlsoAfterReset>0</PostDLActionAlsoAfterReset>
        <TargetDownload>0</TargetDownload>
-       <VerifyDownload>False</VerifyDownload>
+       <VerifyDownload>True</VerifyDownload>
        <Download>
         <DefaultFile>-1</DefaultFile>
        </Download>

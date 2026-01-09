@@ -142,7 +142,7 @@ OBJS += \
 "Libraries/iLLD/TC37A/Tricore/_PinMap/IfxMsc_PinMap.o":"Libraries/iLLD/TC37A/Tricore/_PinMap/IfxMsc_PinMap.src" "Libraries/iLLD/TC37A/Tricore/_PinMap/subdir.mk"
 	astc -Og -Os --no-warnings= --error-limit=42 -o  "$@" "$<"
 "Libraries/iLLD/TC37A/Tricore/_PinMap/IfxPms_PinMap.src":"../Libraries/iLLD/TC37A/Tricore/_PinMap/IfxPms_PinMap.c" "Libraries/iLLD/TC37A/Tricore/_PinMap/subdir.mk"
-	cctc -cs --dep-file="$*.d" --misrac-version=2004 -D__CPU__=tc37x "-fD:/60_Repositories/10_Public/PR202301_CHAOS/CHAOS/porting/Aurix_TC3xx_ADS/Debug/TASKING_C_C___Compiler-Include_paths__-I_.opt" --iso=99 --c++14 --language=+volatile --exceptions --anachronisms --fp-model=3 -O0 --tradeoff=4 --compact-max-size=200 -g -Wc-w544 -Wc-w557 -Ctc37x -Y0 -N0 -Z0 -o "$@" "$<"
+	cctc -cs --dep-file="$*.d" --misrac-version=2004 -D__CPU__=tc37x --iso=99 --c++14 --language=+volatile --exceptions --anachronisms --fp-model=3 -O0 --tradeoff=4 --compact-max-size=200 -g -Wc-w544 -Wc-w557 -Ctc37x -Y0 -N0 -Z0 -o "$@" "$<"
 "Libraries/iLLD/TC37A/Tricore/_PinMap/IfxPms_PinMap.o":"Libraries/iLLD/TC37A/Tricore/_PinMap/IfxPms_PinMap.src" "Libraries/iLLD/TC37A/Tricore/_PinMap/subdir.mk"
 	astc -Og -Os --no-warnings= --error-limit=42 -o  "$@" "$<"
 "Libraries/iLLD/TC37A/Tricore/_PinMap/IfxPort_PinMap.src":"../Libraries/iLLD/TC37A/Tricore/_PinMap/IfxPort_PinMap.c" "Libraries/iLLD/TC37A/Tricore/_PinMap/subdir.mk"
