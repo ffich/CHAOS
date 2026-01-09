@@ -68,7 +68,7 @@ Additional APIs are optional and they may be needed to have a better defined OS 
 ## Getting Started
 The best way to get started to make some **CHAOS** is to look at the [examples](https://github.com/ffich/CHAOS/tree/main/examples) section. Normally all the basic feature of an OS can be showed using LEDs and printf, so basically any evaluation board that has this characteristics is good enough for the job. I've used a [Microchip Curiosity 2.0 Pic32 MZ EF](https://www.microchip.com/en-us/development-tool/dm320209) evalution board and [MPLAB X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide) + [MPLAB Harmony V3](https://www.microchip.com/en-us/tools-resources/configure/mplab-harmony) code generator, but everything is easily portable to other platform, following the examples guides. 
 
-![image](https://github.com/ffich/CHAOS/assets/59200746/33cdfd6b-bde9-4cc2-b57a-0d35b5831352)
+<img width="800" height="487" alt="image" src="https://github.com/user-attachments/assets/8ebcd04b-169c-424e-b74f-0d196bfef402" />
 
 *Fig. 3 - Microchip Curiosity 2.0 Pic32 MZ EF evalution board*
 
@@ -77,31 +77,28 @@ Now you can unkork a beer yourself and start making some **CHAOS**.
 
 [**World born out of CHAOS...**](https://github.com/ffich/CHAOS/tree/main/examples/10_HelloWorld): Very simple example that blinks two LEDs at different rate. It demonstrates how to create a basic CHAOS configuration with 2 tasks and a schedule table with 2 scheduling events.
 
-**Cooperative CHAOS**: Example on the usage of cooperative scheduling (yield option) to yield execution control to higher priority tasks.
+[**Cooperative CHAOS**](https://github.com/ffich/CHAOS/tree/main/examples/20_CooperativeChaos): Example on the usage of cooperative scheduling (yield option) to yield execution control to higher priority tasks.
 
-**Lifecycle of CHAOS**: Example on the CHAOS Lifecycle management.
+[**Lifecycle of CHAOS**](https://github.com/ffich/CHAOS/tree/main/examples/30_ChaosLifecycle): Example on the CHAOS Lifecycle management.
 
-**Timing CHAOS**: Example on usage of CHAOS virtual timing features.
+[**CHAOS Alarms**](https://github.com/ffich/CHAOS/tree/main/examples/40_ChaosAlarms): Example on usage of CHAOS Alarms.
 
-**In the event of CHAOS**: Example on usage of events.
+[**In the event of CHAOS**](https://github.com/ffich/CHAOS/tree/main/examples/50_ChaosEvents): Example on usage of events.
 
-**Queueing CHAOS**: Example on usage of queues.
+[**Hooking on CHAOS**](https://github.com/ffich/CHAOS/tree/main/examples/60_HookingChaos): Example on usage of User Hooks.
 
-**Hooking on CHAOS**: Example on usage of User Hooks.
-
-**Messing with Chaos**: Error Handling in CHAOS.
 
 ## Porting
-I'm currently working on porting the Hello World example on some common architecture, like Microchip PIC18, PIC24, STM STM32, ExpressIf ESP8266/ESP32, NXP S32K, Infineon Tricore, etc...
+I'm currently working on porting the Hello World example on some common architecture, like Microchip PIC18, PIC24, ST STM32, NXP S32K, Infineon Tricore, etc...
 
 Port List:
 
 | Device family   | Board             | Conf./Build Environment                  | Status      |
 |-----------------|-------------------|------------------------------------------|--------------
-| STM32F1         | Blue Pill         | STM32 Cube MX                            | Completed   |
-| STM32L0         | Nucleo-32         | STM32 Cube MX                            | Planned     |
+| [STM32F1](https://github.com/ffich/CHAOS/tree/main/porting/STM32F1_CubeMx)         | Blue Pill         | STM32 Cube MX                            | Completed   |
+| STM32F4         | Black Pill        | STM32 Cube MX                            | Planned     |
+| [Tricore Aurix](https://github.com/ffich/CHAOS/tree/main/porting/Aurix_TC3xx_ADS)   | TC375 Lite kit    | Aurix Studio                             | Completed   |
 | MCXA156         | FRDM              | MCUxpresso                               | Planned     |
 | S32K1           | S32K144 EVB       | S32 Studio                               | Planned     |
-| RP2040          | Raspberry Pico    | Eclipse + Extension                      | Planned     |
-| ESP32           | Node MCU          | Eclipse + Extension                      | Planned     |
-| Tricore Aurix   | TC375 Lite kit    | Aurix Studio                             | Completed   |
+| MCHP Pic18      | Pic18F57Q43       | MPLAB X                                  | Planned     |
+| MCHP Pic24      | Pic24FJ128GB204   | MPLAB X                                  | Planned     |

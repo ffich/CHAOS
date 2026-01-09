@@ -1,0 +1,1 @@
+ $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -fno-common -I"../src" -I"../src/config/default" -I"../../../../../os" -I"../src/os_cfg" -Wall   -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)    C:\Dati\60_Repositories\10_Public\CHAOS\examples\50_ChaosEvents\ChaosEvents\firmware\src\os_cfg\os_task_cfg.c
